@@ -201,6 +201,26 @@ export const asyncRouterMap = [
           }
         ]
       },
+
+      // Home
+      {
+        path: '/home',
+        name: 'Home',
+        component: RouteView,
+        redirect: '/home',
+        hideChildrenInMenu: true,
+        meta: { title: 'menu.all-matching-room', keepAlive: true, icon: 'user' },
+        children: [
+          {
+            path: '/home',
+            name: 'HomePage',
+            component: () => import('@/views/Home'),
+            meta: { title: 'menu.matchingroom.swipe', keepAlive: false },
+            hidden: true
+          }
+        ]
+      },
+
       // MatchingRoom
       {
         path: '/matchingroom',
