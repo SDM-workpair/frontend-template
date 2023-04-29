@@ -37,5 +37,6 @@ export default {
     'menu.account.trigger': 'Trigger Error',
     'menu.account.logout': 'Logout',
     'menu.matchingroom': 'Matching Room',
-    'menu.matchingroom.swipe': 'Matching'
+    'menu.matchingroom.swipe': 'Matching',
+    'menu.addnewroom': 'Add New Room'
 }
