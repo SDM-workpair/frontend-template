@@ -35,6 +35,13 @@ export const asyncRouterMap = [
         meta: { title: 'menu.addnewroom', keepAlive: true, icon: 'plus-circle' }
       },
 
+      {
+        path: '/roomProfile',
+        name: 'roomProfile',
+        component: () => import('@/views/roomProfile/roomProfile'),
+        meta: { title: 'menu.addnewroom', keepAlive: false }
+      },
+
       // dashboard
       {
         path: '/dashboard',

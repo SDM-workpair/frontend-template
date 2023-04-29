@@ -20,6 +20,10 @@ const constantRouterComponents = {
 
   // add new room
   addNewRoom: () => import('@/views/addNewRoom/addNewRoom'),
+
+  // room profile
+  roomProfile: () => import('@/views/roomProfile/roomProfile'),
+
   // form
   BasicForm: () => import('@/views/form/basicForm'),
   StepForm: () => import('@/views/form/stepForm/StepForm'),

@@ -115,17 +115,17 @@ import axios from 'axios'
 
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
-          // due_time: this.selectedDateTime.toISOString(),
+          due_time: this.selectedDateTime,
           min_member_num: 0,
           description: this.description,
           is_forced_matching: false
       })
         .then((mrResponse) => {
-          const roomId = mrResponse.data.data.room_id
+          const roomId = mrResponse.data.room_id
           console.log(roomId)
 
           this.$router.push({
-            name: 'RoomProfile',
+            name: 'roomProfile',
             params: {
               roomId
             }
