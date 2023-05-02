@@ -42,11 +42,7 @@ export const asyncRouterMap = [
         meta: { title: 'menu.addnewroom', keepAlive: false }
       },
 
-      {
-        path: '/login',
-        name: 'login',
-        component: () => import('@/views/Login')
-      },
+     
 
       // dashboard
       {
