@@ -18,6 +18,12 @@ const constantRouterComponents = {
   Workplace: () => import('@/views/dashboard/Workplace'),
   Analysis: () => import('@/views/dashboard/Analysis'),
 
+  // add new room
+  addNewRoom: () => import('@/views/addNewRoom/addNewRoom'),
+
+  // room profile
+  roomProfile: () => import('@/views/roomProfile/roomProfile'),
+
   // form
   BasicForm: () => import('@/views/form/basicForm'),
   StepForm: () => import('@/views/form/stepForm/StepForm'),
@@ -84,8 +90,6 @@ const rootRouter = {
 
 /**
  * 动态生成菜单
- * @param token
- * @returns {Promise<Router>}
  */
 export const generatorDynamicRouter = token => {
   return new Promise((resolve, reject) => {
@@ -111,6 +115,7 @@ export const generatorDynamicRouter = token => {
       })
   })
 }
+ 
 
 /**
  * 格式化树形结构数据 生成 vue-router 层级路由表

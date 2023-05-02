@@ -32,5 +32,6 @@ export default {
   'dashboard.analysis.table.rank': '排名',
   'dashboard.analysis.table.search-keyword': '搜索关键词',
   'dashboard.analysis.table.users': '用户数',
-  'dashboard.analysis.table.weekly-range': '周涨幅'
+  'dashboard.analysis.table.weekly-range': '周涨幅',
+  'menu.addnewroom': '新增配對空間'
 }

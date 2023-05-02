@@ -1,16 +1,9 @@
 <template>
   <page-header-wrapper>
     <template v-slot:content>
+      ???
       <div class="page-header-content">
-        <div class="avatar">
-          <a-avatar size="large" :src="currentUser.avatar" />
-        </div>
-        <div class="content">
-          <div class="content-title">
-            {{ timeFix }}，{{ user.name }}<span class="welcome-text">，{{ welcome }}</span>
-          </div>
-          <div>前端工程师 | 蚂蚁金服 - 某某某事业群 - VUE平台</div>
-        </div>
+        嗨嗨
       </div>
     </template>
     <template v-slot:extraContent>
