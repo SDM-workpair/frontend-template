@@ -1,135 +1,99 @@
 
 <template>
   <page-header-wrapper>
+    <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp 這裡要接後端的[配對活動名稱] | {{ $t('matchingRoomProfile') }}</h2>
+    <h1>Input value from Page One: {{ newRoomID }}</h1>
+    <hr class="h-color mx-2">
+    <div style="text-align: right; margin-top: -15px;">關閉時間 : [這裡接後端時間] | <i class="bi bi-people-fill"></i> [接後端目前人數]/[接後端總共人數]</div>
+    <!-- <v-container fluid> -->
+    <!-- <v-container fluid class="profileBody"> -->
+    <div class="avatar profileBody">
+      <img src="avatar.png" alt="User Avatar">
+    </div>
+    <div style="margin-top:10px; font:15px;">
+      <div class="name-info">
+        <label for="name">{{ $t('name') }}:</label>
+        <span id="name"></span>
+      </div>
 
-    <v-app>
-      <!-- 這一行要加 不然會有不置中的問題 -->
-      <v-navigation-drawer></v-navigation-drawer>
-      <!--                              -->
+      <div class="email-info">
+        <label for="email">{{ $t('email') }}:</label>
+        <span id="email"></span>
+      </div>
 
-      <!-- 改這個地方!!!!!! -->
-      <v-main>
+      <div class="id-info">
+        <label for="id">{{ $t('my_id') }}:</label>
+        <span id="id"></span> 這裡還沒接ID
+      </div>
+    </div>
+    <!-- </v-container> -->
+    <!-- <v-container fluid style="margin-left:30px;"> -->
+    <!-- 新增我的Tag -->
+    <!-- <v-list> -->
+    <label>新增我的Tag </label>
+    <input type="text" v-model="aaa" :placeholder="$t('inputRoomName')" class="ladyinput" />
+    <button @click="addText">欸給我加</button>
+    <!-- </v-list> -->
+    <!-- 推薦我的Tag -->
+    <!-- <v-list> -->
+    <label>推薦我的Tag </label>
+    <button @click="addRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
+    <!-- </v-list> -->
+    <!-- <v-list> -->
+    <label>我的Tag </label>
+    <div class="hiTag" v-for="text in textList" :key="text">{{ text }}</div>
+    <!-- </v-list>
+    </v-container> -->
 
-        <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp 這裡要接後端的[配對活動名稱] | {{ $t('matchingRoomProfile') }}</h2>
-        <hr class="h-color mx-2">
-        <div style="text-align: right; margin-top: -15px;">關閉時間 : [這裡接後端時間] | <i class="bi bi-people-fill"></i> [接後端目前人數]/[接後端總共人數]</div>
-        <!-- <v-container fluid> -->
-        <v-container fluid class="profileBody">
-          <div class="avatar profileBody">
-            <img src="avatar.png" alt="User Avatar">
-          </div>
-          <div style="margin-top:10px; font:15px;">
-            <div class="name-info">
-              <label for="name">{{ $t('name') }}:</label>
-              <span id="name"></span>
-            </div>
+    <!-- 這裡以下是FIND TAG -->
+    <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;">
 
-            <div class="email-info">
-              <label for="email">{{ $t('email') }}:</label>
-              <span id="email"></span>
-            </div>
+    <!-- <v-container fluid style="margin-left:30px;"> -->
+    <!-- 新增Find Tag -->
+    <!-- <v-list> -->
+    <label>新增 Find Tag </label>
+    <input type="text" v-model="inputFindText" :placeholder="$t('inputRoomName')" class="ladyinput" />
+    <button @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></button>
+    <!-- </v-list> -->
+    <!-- 推薦Find Tag -->
+    <!-- <v-list> -->
+    <label>推薦 Find Tag </label>
+    <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
+    <!-- </v-list>
+      <v-list> -->
+    <label>Find Tag </label>
 
-            <div class="id-info">
-              <label for="id">{{ $t('my_id') }}:</label>
-              <span id="id"></span> 這裡還沒接ID
-            </div>
-          </div>
-        </v-container>
-        <v-container fluid style="margin-left:30px;">
-          <!-- 新增我的Tag -->
-          <v-list>
-            <label>新增我的Tag </label>
-            <input type="text" v-model="aaa" @keyup.enter="addText" :placeholder="$t('inputRoomName')" class="ladyinput" />
-            <button @click="addText"><i class="bi bi-plus-circle hiRP"></i></button>
-          </v-list>
-          <!-- 推薦我的Tag -->
-          <v-list>
-            <label>推薦我的Tag </label>
-            <button @click="addRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
-          </v-list>
-          <v-list>
-            <label>我的Tag </label>
+    <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div>
+    <!--
+      </v-list>
+    </v-container> -->
 
-            <div class="hiTag" v-for="text in textList" :key="text">{{ text }}</div>
+    <div>
 
-            <!-- <input type="text" v-model="inputText" @keyup.enter="addText" />
-        <button @click="addText">Add Text</button>
-        <ul>
-        <li v-for="text in textList" :key="text">{{ text }}</li>
-        </ul> -->
-          </v-list>
-        </v-container>
+      <button>
+        Add Item
+        <a-icon type="right-circle" class="hiRP"/>
+      </button>
 
-        <!-- 這裡以下是FIND TAG -->
-        <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;">
+    </div>
 
-        <v-container fluid style="margin-left:30px;">
-          <!-- 新增Find Tag -->
-          <v-list>
-            <label>新增 Find Tag </label>
-            <input type="text" v-model="inputFindText" @keyup.enter="addFindText" :placeholder="$t('inputRoomName')" class="ladyinput" />
-            <button @click="addFindText"><i class="bi bi-plus-circle hiRP"></i></button>
-          </v-list>
-          <!-- 推薦Find Tag -->
-          <v-list>
-            <label>推薦 Find Tag </label>
-            <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
-          </v-list>
-          <v-list>
-            <label>Find Tag </label>
-
-            <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div>
-
-          </v-list>
-        </v-container>
-
-        <!-- 這裡是要確認的pop up -->
-        <v-container >
-          <div style="text-align: right; margin-right:10px;">
-            <b-button @click="showPopup = true"><i class="bi bi-arrow-right-circle hiRP"></i></b-button>
-          </div>
-          <div v-if="showPopup" :show="showPopup" @close="showPopup = false">
-            <div class="popup-overlay" v-if="show">
-              <div class="popup_RP">
-
-                <h5 class="gaga_RP">[配對活動個人資訊編輯提醒]</h5>
-                <p>{{ romm_id }}</p>
-                <h6 style="text-align: center; margin-top: 10px;">為了能更好的配對到合適的夥伴，</h6>
-                <h6 style="text-align: center;">在按下確認後，即無法再編輯本活動的所設定的個人資訊，</h6>
-                <h6 style="text-align: center;">請問您已經確認本活動的個人資訊是您最後的編輯結果了嗎?</h6>
-
-                <div class="ladyhaha_RP">
-                  <button @click="showPopup = false" class="ladygaga">不，我再想想</button>
-                  <button @click="submitInput" class="ladygaga">對，我確定了</button>
-                </div>
-                <div class="popup-body">
-                  <slot></slot>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </v-container>
-        <div>
-
-        </div>
-      </v-main>
-
-    </v-app>
   </page-header-wrapper>
+
 </template>
 
-  <script>
-//   import ChangeLang from '../components/ChangeLang.vue'
-//   import SearchBar from '../components/SearchBar.vue'
+<script>
 //   import axios from 'axios'
-
+// console.log('RoomProfile: ', this.newRoomID)
   export default {
-    props: {
-    // roomId: {
-    //   type: String
-    // }
-  },
+    // name: 'roomProfile',
+    // params: ['roomID'],
+  name: 'RoomProfile',
+  // props: {
+  //   newRoomID: {
+  //     type: String,
+  //     default: 'this i s default value'
+  //   }
+  // },
   data () {
     return {
       show: [],
@@ -141,15 +105,22 @@
       inputText: '',
       textList: [],
       find_textList: [],
-      showPopup: false
+      showPopup: false,
+      inputValue: '',
+      itemList: [],
+      aaa: '',
+      inputFindText: '',
+      newRoomID: this.$route.query.roomID
 
     }
   },
-//   components: {
-//   ChangeLang,
-//   SearchBar
-//   },
   methods: {
+    addItem () {
+      if (this.inputValue) {
+        this.itemList.push(this.inputValue)
+        this.inputValue = ''
+      }
+    },
     addText () {
       if (this.aaa) {
         this.textList.push(this.aaa)
@@ -213,11 +184,28 @@
   mounted: function () {
     this.refresh_mr()
     this.fetchUserProfile()
+    // this.newRoomID = this.$route.query.roomID
   }
+  // created () {
+  //   const roomID1 = this.$route.query.roomID
+  //   // this.newRoomID = roomID1
+  //   console.log('roomID1:', roomID1)
+  // }
   }
   </script>
 
   <style>
+
+.ladyinput {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+  background-color: white;
+  margin-left: 0.5rem;
+  width: 400px;
+}
+
   .gaga_RP{
     text-align: center;
     color: rgb(209, 7, 7);

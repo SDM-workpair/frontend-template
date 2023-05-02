@@ -38,5 +38,6 @@ export default {
     'menu.account.logout': '退出登录',
     'menu.matchingroom': '配對空間',
     'menu.matchingroom.swipe': '組員配對',
-    'menu.addnewroom': '新增配對空間'
+    'menu.addnewroom': '新增配對空間',
+    'menu.roomprofile': '配對空間個人資料'
 }

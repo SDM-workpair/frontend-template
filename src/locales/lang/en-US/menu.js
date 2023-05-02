@@ -38,5 +38,6 @@ export default {
     'menu.account.logout': 'Logout',
     'menu.matchingroom': 'Matching Room',
     'menu.matchingroom.swipe': 'Matching',
-    'menu.addnewroom': 'Add New Room'
+    'menu.addnewroom': 'Add New Room',
+    'menu.roomprofile': 'Room Profile'
 }

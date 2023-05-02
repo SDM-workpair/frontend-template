@@ -136,7 +136,7 @@
                   <span slot="subtitle">
                     <span>{{ $t('dashboard.analysis.per-capita-search') }}</span>
                     <a-tooltip :title="$t('dashboard.analysis.introduce')" slot="action">
-                      <a-icon type="info-circle-o" :style="{ marginLeft: '8px' }" />
+                      <a-icon type="step-forward-outlined" :style="{ marginLeft: '8px' }" />
                     </a-tooltip>
                   </span>
                 </number-info>

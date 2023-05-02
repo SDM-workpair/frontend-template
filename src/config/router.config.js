@@ -39,7 +39,8 @@ export const asyncRouterMap = [
         path: '/roomProfile',
         name: 'roomProfile',
         component: () => import('@/views/roomProfile/roomProfile'),
-        meta: { title: 'menu.addnewroom', keepAlive: false }
+        meta: { title: 'menu.roomprofile', keepAlive: false, hidden: true }
+        // props: (route) => ({ roomID: route.params.data })
       },
 
       // dashboard

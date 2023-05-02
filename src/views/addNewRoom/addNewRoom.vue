@@ -121,14 +121,12 @@ import axios from 'axios'
           is_forced_matching: false
       })
         .then((mrResponse) => {
-          const roomId = mrResponse.data.room_id
-          console.log(roomId)
+          const roomID = mrResponse.data.room_id
+          console.log('roomID is', roomID)
 
           this.$router.push({
-            name: 'roomProfile',
-            params: {
-              roomId
-            }
+            path: '/roomProfile',
+            query: { roomID: roomID }
           })
         })
 
