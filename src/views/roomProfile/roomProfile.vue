@@ -70,10 +70,22 @@
 
     <div>
 
-      <button>
-        Add Item
+      <a-button @click="modal2Visible = true">
+        要確欸!!
         <a-icon type="right-circle" class="hiRP"/>
-      </button>
+      </a-button>
+
+      <a-modal
+        v-model="modal2Visible"
+        title="[配對活動個人資訊編輯提醒]"
+        centered
+        @ok="joinRoom"
+      >
+        <!-- @ok="modal2Visible = false" -->
+        <p>為了能更好的配對到合適的夥伴，</p>
+        <p>在按下確認後，即無法再編輯本活動的所設定的個人資訊，</p>
+        <p>請問您已經確認本活動的個人資訊是您最後的編輯結果了嗎?</p>
+      </a-modal>
 
     </div>
 
@@ -82,18 +94,25 @@
 </template>
 
 <script>
-//   import axios from 'axios'
+  import axios from 'axios'
 // console.log('RoomProfile: ', this.newRoomID)
+import { ref } from 'vue'
   export default {
     // name: 'roomProfile',
     // params: ['roomID'],
   name: 'RoomProfile',
-  // props: {
-  //   newRoomID: {
-  //     type: String,
-  //     default: 'this i s default value'
-  //   }
-  // },
+  setup () {
+    // const modal1Visible = ref(false);
+    const modal2Visible = ref(false)
+    // const setModal1Visible = visible => {
+    //   modal1Visible.value = visible;
+    // }
+    return {
+      // modal1Visible,
+      modal2Visible
+      // setModal1Visible,
+    }
+  },
   data () {
     return {
       show: [],
@@ -110,8 +129,8 @@
       itemList: [],
       aaa: '',
       inputFindText: '',
-      newRoomID: this.$route.query.roomID
-
+      newRoomID: this.$route.query.roomID,
+      memberID: ''
     }
   },
   methods: {
@@ -141,6 +160,59 @@
         this.find_textList.push(item)
         this.inputFindText = ''
     },
+    joinRoom () {
+      this.modal2Visible = false
+      // 這是先join room
+      axios.post('/api/v1/mr-member/create', {
+        user: {
+          // 這邊之後要改
+          email: 'admin@sdm-teamatch.com',
+          is_admin: false,
+          name: '--'
+        },
+        matching_room: {
+          room_id: this.newRoomID
+  }
+  })
+  .then((joinResponse) => {
+    console.log(joinResponse)
+    this.memberID = joinResponse.data.data.member_id
+    console.log('這是加入room的member id: ', this.memberID)
+    // 這是POST my tag
+    console.log(this.textList)
+      axios.post('/api/v1/mr-member-tag/create-self-tag', {
+        mr_member: { member_id: this.memberID },
+        tag_text_list: this.textList,
+
+        matching_room: { room_id: this.newRoomID }
+  })
+  .then((addMyResponse) => console.log(addMyResponse))
+  .catch((error) => console.log(error))
+
+    // 這是POST find tag
+    console.log(this.find_textList)
+      axios.post('/api/v1/mr-member-tag/create-find-tag', {
+        mr_member: {
+          member_id: this.memberID
+         },
+        tag_text_list: this.find_textList,
+        matching_room: {
+            room_id: this.newRoomID
+        }
+  })
+  .then((addFindResponse) => console.log('addFindResponse', addFindResponse))
+  .catch((error) => console.log(error))
+    // 傳值到matching room
+  this.$router.push({
+            path: '/matchingroom/Swipe',
+            query: { roomID: this.newRoomID, memberID: this.memberID }
+          })
+  })
+
+  .catch((error) => console.log(error))
+  console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
+    },
+
 //   refresh_mr () {
 //     axios.post('/api/v1/search/matching-room/list', {
 //       user_email: '',
