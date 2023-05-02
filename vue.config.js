@@ -40,10 +40,10 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
-  
+
   configureWebpack: {
     resolve: {
-      extensions: ['', '.js', '.jsx', '.css'],
+      extensions: ['', '.js', '.jsx', '.css']
       // alias: {
       //   xyz$: path.resolve(__dirname, 'path/to/file.js'),
       // },
@@ -143,7 +143,7 @@ const vueConfig = {
     allowedHosts: [
       'localhost',
       'app.sdm-workpair.com',
-      '34.96.75.13',
+      '34.96.75.13'
     ]
 
   },

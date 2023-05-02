@@ -42,8 +42,6 @@ export const asyncRouterMap = [
         meta: { title: 'menu.addnewroom', keepAlive: false }
       },
 
-     
-
       // dashboard
       {
         path: '/dashboard',

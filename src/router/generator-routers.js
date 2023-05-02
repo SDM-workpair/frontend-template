@@ -118,7 +118,6 @@ export const generatorDynamicRouter = token => {
       })
   })
 }
- 
 
 /**
  * 格式化树形结构数据 生成 vue-router 层级路由表
