@@ -40,7 +40,15 @@ const assetsCDN = {
 
 // vue.config.js
 const vueConfig = {
+
   configureWebpack: {
+    resolve: {
+      extensions: ['', '.js', '.jsx', '.css']
+      // alias: {
+      //   xyz$: path.resolve(__dirname, 'path/to/file.js'),
+      // },
+    },
+
     // webpack plugins
     plugins: [
       // Ignore all locale files of moment.js
@@ -122,9 +130,8 @@ const vueConfig = {
   },
 
   devServer: {
-    // development server port 8000
+    // development server port 8080
     port: 8080,
-    // If you want to turn on the proxy, please remove the mockjs /src/main.jsL11
     proxy: {
       '/api': {
         target: 'http://localhost:8000/api/',
@@ -132,7 +139,13 @@ const vueConfig = {
         changeOrigin: true,
         ws: false
       }
-    }
+    },
+    allowedHosts: [
+      'localhost',
+      'app.sdm-workpair.com',
+      '34.96.75.13'
+    ]
+
   },
 
   // disable source map in production

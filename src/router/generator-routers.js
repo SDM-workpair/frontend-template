@@ -58,6 +58,9 @@ const constantRouterComponents = {
   BindingSettings: () => import('@/views/account/settings/Binding'),
   NotificationSettings: () => import('@/views/account/settings/Notification'),
 
+  // home page
+  Home: () => import('@/views/Home'),
+
   // matchingroom
   MatchingRoomSwipe: () => import('@/views/matchingroom/Swipe')
 
@@ -115,7 +118,6 @@ export const generatorDynamicRouter = token => {
       })
   })
 }
- 
 
 /**
  * 格式化树形结构数据 生成 vue-router 层级路由表
