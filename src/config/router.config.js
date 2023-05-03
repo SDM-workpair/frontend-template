@@ -118,6 +118,54 @@ export const asyncRouterMap = [
       //   ]
       // },
 
+      // Exception
+      {
+        path: '/exception',
+        name: 'exception',
+        component: RouteView,
+        redirect: '/exception/403',
+        meta: { title: 'menu.exception', icon: 'warning', permission: ['exception'] },
+        children: [
+          {
+            path: '/exception/403',
+            name: 'Exception403',
+            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/403'),
+            meta: { title: 'menu.exception.not-permission', permission: ['exception'] }
+          },
+          {
+            path: '/exception/404',
+            name: 'Exception404',
+            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/404'),
+            meta: { title: 'menu.exception.not-find', permission: ['exception'] }
+          },
+          {
+            path: '/exception/500',
+            name: 'Exception500',
+            component: () => import(/* webpackChunkName: "fail" */ '@/views/exception/500'),
+            meta: { title: 'menu.exception.server-error', permission: ['exception'] }
+          }
+        ]
+      },
+
+      // Home
+      {
+        path: '/home',
+        name: 'Home',
+        component: RouteView,
+        redirect: '/home',
+        hideChildrenInMenu: true,
+        meta: { title: 'menu.all-matching-room', keepAlive: true, icon: 'user' },
+        children: [
+          {
+            path: '/home',
+            name: 'HomePage',
+            component: () => import('@/views/Home'),
+            meta: { title: 'menu.matchingroom.swipe', keepAlive: false },
+            hidden: true
+          }
+        ]
+      },
+
       // MatchingRoom
       {
         path: '/matchingroom',

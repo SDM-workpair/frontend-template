@@ -33,6 +33,7 @@
     console.log('here')
     console.log(response)
     console.log(response.credential)
+
     fetch('/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {

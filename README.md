@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# frontend-template
+=======
 English | [简体中文](./README.zh-CN.md)
 
 <h1 align="center">Ant Design Vue Pro</h1>
@@ -101,3 +104,4 @@ Modern browsers and IE10.
 
 This project exists thanks to all the people who contribute. 
 <a href="https://github.com/vueComponent/ant-design-vue-pro/graphs/contributors"><img src="https://opencollective.com/ant-design-pro-vue/contributors.svg?width=890&button=false" /></a>
+>>>>>>> 5925b32c069125511daf84216b2c6f228a83b378

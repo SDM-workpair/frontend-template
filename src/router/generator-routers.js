@@ -58,6 +58,9 @@ const constantRouterComponents = {
   BindingSettings: () => import('@/views/account/settings/Binding'),
   NotificationSettings: () => import('@/views/account/settings/Notification'),
 
+  // home page
+  Home: () => import('@/views/Home'),
+
   // matchingroom
   MatchingRoomSwipe: () => import('@/views/matchingroom/Swipe')
 
