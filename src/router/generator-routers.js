@@ -21,6 +21,9 @@ const constantRouterComponents = {
   // add new room
   addNewRoom: () => import('@/views/addNewRoom/addNewRoom'),
 
+  // add my group
+  addMyGroup: () => import('@/views/mygroup/mygroup'),
+
   // room profile
   roomProfile: () => import('@/views/roomProfile/roomProfile'),
 
@@ -115,7 +118,6 @@ export const generatorDynamicRouter = token => {
       })
   })
 }
- 
 
 /**
  * 格式化树形结构数据 生成 vue-router 层级路由表

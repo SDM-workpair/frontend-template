@@ -51,12 +51,13 @@
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
       const token = sessionStorage.getItem('token')
+      window.location.href = 'http://localhost:8080/'
     })
     .catch(error => {
       console.error('Error:', error)
     })
 
-    window.location.href = 'http://localhost:8080/';
+    
   }
 
   </script>

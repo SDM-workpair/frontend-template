@@ -34,16 +34,19 @@ export const asyncRouterMap = [
         component: () => import('@/views/addNewRoom/addNewRoom'),
         meta: { title: 'menu.addnewroom', keepAlive: true, icon: 'plus-circle' }
       },
-
+      // add my group
+      {
+        path: '/mygroup',
+        name: 'mygroup',
+        component: () => import('@/views/mygroup/mygroup'),
+        meta: { title: 'My Group', keepAlive: true, icon: bxAnaalyse }
+      },
       {
         path: '/roomProfile',
         name: 'roomProfile',
         component: () => import('@/views/roomProfile/roomProfile'),
         meta: { title: 'menu.addnewroom', keepAlive: false }
       },
-
-     
-
       // dashboard
       {
         path: '/dashboard',
