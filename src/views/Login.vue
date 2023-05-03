@@ -1,10 +1,15 @@
 <template>
-  <div>
+  <div id="my-template">
     <!-- 這邊語謙的login要加 才不會有上面白白的 -->
+    <br>
+    <br>
+    <br>
+    <br>
     <div style="text-align:center; margin-top: 90px;">
-      <font size="6" color="white" face="Arial Black">Teamatch</font>
-      <h2 style="color:white">{{ $t('loginMessage') }}<font size="6" color="white" face="Arial Black">Teamatch</font></h2>
+      <font size="36" color="white" face="Arial Black">Teamatch</font>
+
     </div>
+    <br>
     <div class="center">
       <div
         id="g_id_onload"
@@ -27,15 +32,12 @@
     </div>
   </div>
 </template>
-
   <script>
-
   window.handleCallback = (response) => {
-    console.log('here')
-    console.log(response)
-    console.log(response.credential)
-
-    fetch('/api/v1/auth/sso-login', {
+   console.log('here')
+   console.log(response)
+   console.log(response.credential)
+   fetch('http://localhost:8000/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -44,23 +46,19 @@
     })
     .then(response => response.json())
     .then(data => {
-      // const params = new URLSearchParams();
-      // params.append('data', JSON.stringify(data));
-      // window.location.href = 'http://localhost:8080/'
+      sessionStorage.removeItem('token');
       console.log('okkk')
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
       const token = sessionStorage.getItem('token')
-      // window.location.href = 'http://localhost:8080/'
+      console.log('111')
+      console.log(token)
+      window.location.href = 'http://localhost:8080/'
     })
     .catch(error => {
       console.error('Error:', error)
     })
-    const token = sessionStorage.getItem('token')
-    console.log(token)
-    window.location.href = 'http://localhost:8080/'
   }
-
   </script>
   <style>
       .center {
@@ -68,8 +66,10 @@
     justify-content: center;
     height: 100vh;
   }
-
   .hihiLogin{
     margin-top: 100px;
+  }
+  #my-template {
+  background-color: black;
   }
   </style>
