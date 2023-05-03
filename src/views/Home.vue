@@ -9,18 +9,18 @@
         v-for="(item, index) in matching_rooms"
         :key="index">
 
-        <chart-card :loading="loading" :title="item.name" total="">
+        <chart-card :title="item.name" total="">
           <div>
             <trend flag="up" style="margin-right: 16px;">
               {{ $t('dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('minMemberNum') }}：{{ item.min_member_num }}
             </trend>
-            <trend flag="down">
+            <!-- <trend flag="down">
               <span slot="term">{{ $t('dashboard.analysis.day') }}</span>
               11%
-            </trend>
+            </trend> -->
           </div>
-          <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template>
+          <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
         </chart-card>
       </a-col>
     </a-row>
@@ -52,6 +52,7 @@
     methods: {
       refreshMR () {
         const token = sessionStorage.getItem('token')
+        console.log(token)
         axios.post('/api/v1/search/matching-room/list', {
           prompt: '',
           query_all: true
