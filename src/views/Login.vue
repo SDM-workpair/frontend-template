@@ -37,7 +37,7 @@
    console.log('here')
    console.log(response)
    console.log(response.credential)
-   fetch('http://localhost:8000/api/v1/auth/sso-login', {
+   fetch('/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {
         'Content-Type': 'application/json'
