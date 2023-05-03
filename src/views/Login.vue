@@ -29,13 +29,11 @@
 </template>
 
   <script>
-
   window.handleCallback = (response) => {
     console.log('here')
     console.log(response)
     console.log(response.credential)
-
-    fetch('http://localhost:8000/api/v1/auth/sso-login', {
+    fetch('/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -51,14 +49,15 @@
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
       const token = sessionStorage.getItem('token')
+      // window.location.href = 'http://localhost:8080/'
     })
     .catch(error => {
       console.error('Error:', error)
     })
-
-    window.location.href = 'http://localhost:8080/';
+    const token = sessionStorage.getItem('token')
+    console.log(token)
+    window.location.href = 'http://localhost:8080/'
   }
-
   </script>
   <style>
       .center {
@@ -66,7 +65,6 @@
     justify-content: center;
     height: 100vh;
   }
-
   .hihiLogin{
     margin-top: 100px;
   }

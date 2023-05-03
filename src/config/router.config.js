@@ -43,8 +43,6 @@ export const asyncRouterMap = [
         // props: (route) => ({ roomID: route.params.data })
       },
 
-     
-
       // dashboard
       {
         path: '/dashboard',
