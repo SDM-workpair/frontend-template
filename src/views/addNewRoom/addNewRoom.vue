@@ -112,14 +112,19 @@ import axios from 'axios'
           alert('配對空間資訊 ')
           return
         }
-
+        const token = sessionStorage.getItem('token')
+        console.log(token)
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
           due_time: this.selectedDateTime,
           min_member_num: 0,
           description: this.description,
           is_forced_matching: false
-      })
+      }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
         .then((mrResponse) => {
           const roomID = mrResponse.data.room_id
           console.log('roomID is', roomID)

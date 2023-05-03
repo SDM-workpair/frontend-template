@@ -33,7 +33,6 @@
     console.log('here')
     console.log(response)
     console.log(response.credential)
-
     fetch('/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {
@@ -47,6 +46,7 @@
       // params.append('data', JSON.stringify(data));
       // window.location.href = 'http://localhost:8080/'
       console.log('okkk')
+      console.log(response)
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
       const token = sessionStorage.getItem('token')

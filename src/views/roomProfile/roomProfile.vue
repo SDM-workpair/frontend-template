@@ -163,6 +163,8 @@ import { ref } from 'vue'
     joinRoom () {
       this.modal2Visible = false
       // 這是先join room
+      const token = sessionStorage.getItem('token')
+      console.log(token)
       axios.post('/api/v1/mr-member/create', {
         user: {
           // 這邊之後要改
@@ -173,7 +175,11 @@ import { ref } from 'vue'
         matching_room: {
           room_id: this.newRoomID
   }
-  })
+  }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
   .then((joinResponse) => {
     console.log(joinResponse)
     this.memberID = joinResponse.data.data.member_id
@@ -185,7 +191,11 @@ import { ref } from 'vue'
         tag_text_list: this.textList,
 
         matching_room: { room_id: this.newRoomID }
-  })
+  }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
   .then((addMyResponse) => console.log(addMyResponse))
   .catch((error) => console.log(error))
 
@@ -199,7 +209,11 @@ import { ref } from 'vue'
         matching_room: {
             room_id: this.newRoomID
         }
-  })
+  }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
   .then((addFindResponse) => console.log('addFindResponse', addFindResponse))
   .catch((error) => console.log(error))
     // 傳值到matching room
