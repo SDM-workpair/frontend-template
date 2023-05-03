@@ -56,12 +56,13 @@
 import { SettingDrawer, updateTheme } from '@ant-design-vue/pro-layout'
 import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
-import { CONTENT_WIDTH_TYPE, SIDEBAR_TYPE, TOGGLE_MOBILE_TYPE } from '@/store/mutation-types'
+import { CONTENT_WIDTH_TYPE } from '@/store/mutation-types'
 
 import defaultSettings from '@/config/defaultSettings'
 import RightContent from '@/components/GlobalHeader/RightContent'
 import GlobalFooter from '@/components/GlobalFooter'
 import Ads from '@/components/Other/CarbonAds'
+import { asyncRouterMap } from '@/config/router.config.js'
 
 export default {
   name: 'BasicLayout',
@@ -113,15 +114,9 @@ export default {
     })
   },
   created () {
-    const routes = this.mainMenu.find(item => item.path === '/')
+    const routes = asyncRouterMap.find((item) => item.path === '/')
+    // const routes = this.mainMenu.find((item) => item.path === '/')
     this.menus = (routes && routes.children) || []
-    // 处理侧栏收起状态
-    this.$watch('collapsed', () => {
-      this.$store.commit(SIDEBAR_TYPE, this.collapsed)
-    })
-    this.$watch('isMobile', () => {
-      this.$store.commit(TOGGLE_MOBILE_TYPE, this.isMobile)
-    })
   },
   mounted () {
     const userAgent = navigator.userAgent
