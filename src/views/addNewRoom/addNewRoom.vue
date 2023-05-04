@@ -3,20 +3,20 @@
 
     <!-- 這裡是配對活動名稱 -->
     <div class="input-panel">
-      <label for="input-field">{{ $t('roomName') }}</label>
-      <input id="input-field" type="text" :placeholder="$t('inputRoomName')" v-model="inputValue" class="ladyinput">
+      <label for="input-field">{{ $t('room.roomName') }}</label>
+      <input id="input-field" type="text" :placeholder="$t('room.inputRoomName')" v-model="inputValue" class="ladyinput">
 
     </div>
 
     <!-- 這裡是配對日期 -->
     <div style="margin-top: 20px;">
-      <label for="date" class="datelabel">{{ $t('dueDate') }}</label>
-      <a-date-picker show-time placeholder="Select Time" @change="onChange" @ok="onOk" />
+      <label for="date" class="datelabel">{{ $t('room.dueDate') }}</label>
+      <a-date-picker show-time :placeholder="$t('room.inputDate')" @change="onChange" @ok="onOk" />
     </div>
 
     <!-- 這裡是配對人數 -->
     <div class="ladyqua">
-      <label for="quantity">{{ $t('roomQuantity') }}</label>
+      <label for="quantity">{{ $t('room.roomQuantity') }}</label>
       <input
         id="quantity"
         type="number"
@@ -27,12 +27,12 @@
     </div>
 
     <div class="ladyqua">
-      <label for="description">{{ $t('roomDescription') }}</label>
+      <label for="description">{{ $t('room.roomDescription') }}</label>
       <textarea class="textArea" id="description" name="description" v-model="description"></textarea>
     </div>
 
     <div class="ladyhaha">
-      <button @click="createMR" class="ladygaga" >{{ $t('add') }}</button>
+      <button @click="createMR" class="ladygaga" >{{ $t('room.add') }}</button>
     </div>
 
   </page-header-wrapper>
@@ -97,21 +97,21 @@ import axios from 'axios'
         // const router = useRouter()
 
         if (!this.inputValue) {
-          alert('配對空間名稱 ')
+          alert('room.error_name ')
           return
         }
         if (!this.selectedDateTime) {
-          alert('配對日期 ')
+          alert('room.error_date ')
           return
         }
-        if (!this.quantity) {
-          alert('配對人數 ')
-          return
-        }
-        if (!this.description) {
-          alert('配對空間資訊 ')
-          return
-        }
+        // if (!this.quantity) {
+        //   alert('配對人數 ')
+        //   return
+        // }
+        // if (!this.description) {
+        //   alert('配對空間資訊 ')
+        //   return
+        // }
         const token = sessionStorage.getItem('token')
         console.log(token)
         axios.post('/api/v1/matching-room/create', {

@@ -1,10 +1,10 @@
 
 <template>
   <page-header-wrapper>
-    <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp 這裡要接後端的[配對活動名稱] | {{ $t('matchingRoomProfile') }}</h2>
-    <h1>Input value from Page One: {{ newRoomID }}</h1>
-    <hr class="h-color mx-2">
-    <div style="text-align: right; margin-top: -15px;">關閉時間 : [這裡接後端時間] | <i class="bi bi-people-fill"></i> [接後端目前人數]/[接後端總共人數]</div>
+    <!-- <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp 這裡要接後端的[配對活動名稱] | {{ $t('matchingRoomProfile') }}</h2> -->
+    <!-- <h1>Input value from Page One: {{ newRoomID }}</h1> -->
+    <!-- <hr class="h-color mx-2"> -->
+    <!-- <div style="text-align: right; margin-top: -15px;">關閉時間 : [這裡接後端時間] | <i class="bi bi-people-fill"></i> [接後端目前人數]/[接後端總共人數]</div> -->
     <!-- <v-container fluid> -->
     <!-- <v-container fluid class="profileBody"> -->
     <div class="avatar profileBody">
@@ -12,17 +12,17 @@
     </div>
     <div style="margin-top:10px; font:15px;">
       <div class="name-info">
-        <label for="name">{{ $t('name') }}:</label>
+        <label for="name">{{ $t('room.name') }}:</label>
         <span id="name"></span>
       </div>
 
       <div class="email-info">
-        <label for="email">{{ $t('email') }}:</label>
+        <label for="email">{{ $t('room.email') }}:</label>
         <span id="email"></span>
       </div>
 
       <div class="id-info">
-        <label for="id">{{ $t('my_id') }}:</label>
+        <label for="id">{{ $t('room.my_id') }}:</label>
         <span id="id"></span> 這裡還沒接ID
       </div>
     </div>
@@ -30,9 +30,9 @@
     <!-- <v-container fluid style="margin-left:30px;"> -->
     <!-- 新增我的Tag -->
     <!-- <v-list> -->
-    <label>新增我的Tag </label>
+    <label>{{ $t('room.about_my_tag') }}</label>
     <input type="text" v-model="aaa" :placeholder="$t('inputRoomName')" class="ladyinput" />
-    <button @click="addText">欸給我加</button>
+    <a-button shape="circle" @click="addText"><a-icon type="plus-circle" class="hiRP"/></a-button>
     <!-- </v-list> -->
     <!-- 推薦我的Tag -->
     <!-- <v-list> -->
@@ -41,7 +41,8 @@
     <!-- </v-list> -->
     <!-- <v-list> -->
     <label>我的Tag </label>
-    <div class="hiTag" v-for="text in textList" :key="text">{{ text }}</div>
+    <!-- <div class="hiTag" v-for="text in textList" :key="text">{{ text }}</div> -->
+    <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
     <!-- </v-list>
     </v-container> -->
 
@@ -53,7 +54,7 @@
     <!-- <v-list> -->
     <label>新增 Find Tag </label>
     <input type="text" v-model="inputFindText" :placeholder="$t('inputRoomName')" class="ladyinput" />
-    <button @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></button>
+    <a-button shape="circle" @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></a-button>
     <!-- </v-list> -->
     <!-- 推薦Find Tag -->
     <!-- <v-list> -->
@@ -63,16 +64,16 @@
       <v-list> -->
     <label>Find Tag </label>
 
-    <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div>
+    <!-- <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div> -->
+    <button @click="removeFindTag(item)" class="hiTag" v-for="(item, index) in find_textList" :key="index">{{ item }}</button>
     <!--
       </v-list>
     </v-container> -->
 
     <div>
 
-      <a-button @click="modal2Visible = true">
-        要確欸!!
-        <a-icon type="right-circle" class="hiRP"/>
+      <a-button type="primary" @click="modal2Visible = true">
+        next step <a-icon type="right-circle" />
       </a-button>
 
       <a-modal
@@ -134,6 +135,20 @@ import { ref } from 'vue'
     }
   },
   methods: {
+    removeFindTag (item) {
+      // this.find_textList.remove(item)
+      const i = this.find_textList.indexOf(item)
+        if (i > -1) { // only splice array when item is found
+          this.find_textList.splice(i, 1) // 2nd parameter means remove one item only
+          }
+    },
+    removeMyTag (item) {
+      // this.textList.splice(index, 1)
+      const i = this.textList.indexOf(item)
+        if (i > -1) { // only splice array when item is found
+          this.textList.splice(i, 1) // 2nd parameter means remove one item only
+          }
+    },
     addItem () {
       if (this.inputValue) {
         this.itemList.push(this.inputValue)
@@ -281,7 +296,20 @@ import { ref } from 'vue'
   </script>
 
   <style>
-
+.ladygaga{
+  background-color: white;
+  border: 1px solid black;
+  /* color: black; */
+  padding: 6px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 3rem;
+  /* flex: 1; */
+}
 .ladyinput {
   flex: 1;
   padding: 0.5rem;
@@ -317,7 +345,7 @@ import { ref } from 'vue'
   }
 
   .hiRP{
-    margin-left: 10px;
+    /* margin-left: 10px; */
     font-size: 2rem;
     border:10px;
   }

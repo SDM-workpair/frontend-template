@@ -12,8 +12,8 @@
         <chart-card :title="item.name" total="">
           <div>
             <trend flag="up" style="margin-right: 16px;">
-              {{ $t('dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
-              {{ $t('minMemberNum') }}：{{ item.min_member_num }}
+              {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
+              {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
             <!-- <trend flag="down">
               <span slot="term">{{ $t('dashboard.analysis.day') }}</span>
