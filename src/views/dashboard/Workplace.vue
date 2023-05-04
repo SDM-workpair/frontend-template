@@ -133,7 +133,8 @@ import { Radar } from '@/components'
 import { getRoleList, getServiceList } from '@/api/manage'
 
 const DataSet = require('@antv/data-set')
-
+const token = sessionStorage.getItem('token')
+console.log('這是使用者的token', token) // 输出 "John"
 export default {
   name: 'Workplace',
   components: {
