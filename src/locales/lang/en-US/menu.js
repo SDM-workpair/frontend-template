@@ -39,5 +39,6 @@ export default {
     'menu.all-matching-room': 'All Matching Rooms',
     'menu.matchingroom': 'Matching Room',
     'menu.matchingroom.swipe': 'Matching',
-    'menu.addnewroom': 'Add New Room'
+    'menu.addnewroom': 'Add New Room',
+    'menu.roomprofile': 'Room Profile'
 }
