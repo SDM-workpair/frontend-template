@@ -146,7 +146,7 @@ const vueConfig = {
       '34.96.75.13'
     ],
     client: {
-      webSocketURL: 'ws://0.0.0.0:8000/ws',
+      webSocketURL: 'ws://0.0.0.0:8000/ws'
     }
 
   },
