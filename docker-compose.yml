@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+ frontend:
+    container_name: "ant-pro"
+    build:
+      context: .
+    ports:
+      - "8080:8000"
+    volumes:
+      - ".:/frontend"
+    restart: always
+    environment:
+      - HOST=0.0.0.0
+      - WATCHPACK_POLLING=true
+    tty: true
+    command: "yarn run serve"

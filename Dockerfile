@@ -9,7 +9,7 @@ WORKDIR /frontend
 COPY package*.json ./
 
 # install project dependencies
-RUN npm install --force
+RUN yarn install
 # Run npm install @vuepic/vue-datepicker
 # copy project files and folders to the current working directory (i.e. 'app' folder)
 COPY . .
