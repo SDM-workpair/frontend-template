@@ -46,14 +46,14 @@
     })
     .then(response => response.json())
     .then(data => {
-      sessionStorage.removeItem('token');
+      sessionStorage.removeItem('token')
       console.log('okkk')
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
       const token = sessionStorage.getItem('token')
       console.log('111')
       console.log(token)
-      window.location.href = 'http://localhost:8080/'
+      window.location.href = 'http://localhost:8080/home'
     })
     .catch(error => {
       console.error('Error:', error)
