@@ -56,7 +56,8 @@ export default {
       showMenu: true,
       currentUser: {},
       messageCount: 0,
-      drawerVisible: false
+      drawerVisible: false,
+      token: null
     }
   },
   computed: {
@@ -68,40 +69,32 @@ export default {
     }
   },
   mounted () {
-    // setTimeout(() => {
-    //   this.currentUser = {
-    //     name: 'Serati Ma'
-    //   }
-    // }, 1500)
-    const token = sessionStorage.getItem('token')
-    const url = `ws://localhost:8000/ws/${token}`
-    const socket = new WebSocket(url)
-
-    socket.onopen = () => {
-      console.log('WebSocket connected')
-    }
-
-    socket.onmessage = (event) => {
-      console.log('Received message:', event.data)
-      console.log('Received message:', event)
-      this.messageCount = this.messageCount + 1
-    }
-
-    socket.onclose = () => {
-      console.log('WebSocket disconnected')
-    }
+    this.token = sessionStorage.getItem('token')
+    this.initWebSocket()
+    fetch('/api/v1/notification/my-list', {
+      method: 'GET',
+      headers: {
+        'Authorization': 'Bearer ' + this.token
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log(data.unread_num)
+      this.messageCount = data.unread_num
+    })
+    .catch(error => {
+      console.error('Failed to fetch notifications:', error)
+    })
   },
   methods: {
-
     async handleBellClick () {
       console.log('open')
       this.messageCount = 0
 
-      const token = sessionStorage.getItem('token')
       fetch('/api/v1/notification/my-list', {
         method: 'GET',
         headers: {
-          'Authorization': 'Bearer ' + token
+          'Authorization': 'Bearer ' + this.token
         }
       })
       .then(response => response.json())
@@ -114,11 +107,40 @@ export default {
       .catch(error => {
         console.error('Failed to fetch notifications:', error)
       })
+      fetch('/api/v1/notification/set-read', {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Bearer ' + this.token
+        }
+      })
     },
 
     handleDrawerClose () {
       // Close the drawer
       this.drawerVisible = false
+    },
+
+    initWebSocket () {
+      const url = `ws://localhost:8000/ws/${this.token}`
+      const socket = new WebSocket(url)
+
+      socket.onopen = () => {
+        console.log('WebSocket connected')
+      }
+
+      socket.onmessage = (event) => {
+        console.log('Received message:', event.data)
+        console.log('Received message:', event)
+        this.messageCount = this.messageCount + 1
+      }
+
+      socket.onclose = () => {
+        console.log('WebSocket disconnected')
+        // Reconnect
+        setTimeout(() => {
+          this.initWebSocket()
+        }, 3000)
+      }
     }
   }
 }
