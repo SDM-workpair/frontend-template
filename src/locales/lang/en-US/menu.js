@@ -40,5 +40,6 @@ export default {
     'menu.matchingroom': 'Matching Room',
     'menu.matchingroom.swipe': 'Matching',
     'menu.addnewroom': 'Add New Room',
-    'menu.roomprofile': 'Room Profile'
+    'menu.roomprofile': 'Room Profile',
+    'menu.MyGroup': 'My Group'
 }

@@ -13,6 +13,7 @@ import account from './en-US/account'
 import home from './en-US/home'
 import room from './en-US/room'
 import nav from './en-US/nav'
+import group from './en-US/group'
 
 const components = {
   antLocale: antdEnUS,
@@ -37,5 +38,6 @@ export default {
   ...account,
   ...home,
   ...room,
-  ...nav
+  ...nav,
+  ...group
 }

@@ -168,6 +168,23 @@ export const asyncRouterMap = [
         ]
       },
 
+      // show my group
+      {
+        path: '/myGroup',
+        name: 'MyGroup',
+        component: () => import('@/views/MyGroup'),
+        meta: { title: 'menu.MyGroup', keepAlive: true, icon: 'team' }
+      },
+
+      // show group result
+      {
+        path: '/groupResult',
+        name: 'GroupResult',
+        component: () => import('@/views/GroupResult'),
+        hidden: true,
+        meta: { title: 'menu.MyGroup', keepAlive: true, icon: 'team' }
+      },
+
       // MatchingRoom
       {
         path: '/matchingroom',

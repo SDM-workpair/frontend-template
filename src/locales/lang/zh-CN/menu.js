@@ -40,5 +40,6 @@ export default {
     'menu.matchingroom': '配對空間',
     'menu.matchingroom.swipe': '組員配對',
     'menu.addnewroom': '新增配對空間',
-    'menu.roomprofile': '配對空間個人資料'
+    'menu.roomprofile': '配對空間個人資料',
+    'menu.MyGroup': '我的小組'
 }

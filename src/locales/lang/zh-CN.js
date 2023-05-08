@@ -12,6 +12,7 @@ import account from './zh-CN/account'
 import home from './zh-CN/home'
 import room from './zh-CN/room'
 import nav from './zh-CN/nav'
+import group from './zh-CN/group'
 
 const components = {
   antLocale: antd,
@@ -36,5 +37,6 @@ export default {
   ...account,
   ...home,
   ...room,
-  ...nav
+  ...nav,
+  ...group
 }
