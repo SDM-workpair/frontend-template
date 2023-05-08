@@ -34,13 +34,6 @@ export const asyncRouterMap = [
         component: () => import('@/views/addNewRoom/addNewRoom'),
         meta: { title: 'menu.addnewroom', keepAlive: true, icon: 'plus-circle' }
       },
-      // add my group
-      {
-        path: '/mygroup',
-        name: 'MyGroup',
-        component: () => import('@/views/mygroup/MyGroup'),
-        meta: { title: 'My Group', keepAlive: true, icon: bxAnaalyse }
-      },
       {
         path: '/roomProfile',
         name: 'roomProfile',
@@ -48,6 +41,13 @@ export const asyncRouterMap = [
         hidden: true,
         meta: { title: 'menu.roomprofile', keepAlive: false, hidden: true }
         // props: (route) => ({ roomID: route.params.data })
+      },
+      // add my group
+      {
+        path: '/mygroup',
+        name: 'MyGroup',
+        component: () => import('@/views/mygroup/MyGroup'),
+        meta: { title: 'My Group', keepAlive: true, icon: 'TeamOutlined' }
       },
       // dashboard
       {

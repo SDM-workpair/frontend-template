@@ -1,87 +1,38 @@
 <template>
-  <v-app>
-    <!-- 這一行要加 不然會有不置中的問題 -->
-    <v-navigation-drawer></v-navigation-drawer>
-    <!--                              -->
-
-    <!-- 改這個地方!!!!!! -->
-    <v-main>
-      <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp{{ $t('my_group') }}</h2>
-      <hr class="h-color mx-2" />
-      <v-container fluid>
-        <v-row dense>
-          <v-col v-for="(item, index) in matching_rooms" :key="index">
-            <v-expand-transition>
-              <v-card class="mx-auto" max-width="250">
-                <!-- <v-img
-                        color="#FFFFF"
-                        class="align-end"
-                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-                        height="150px"
-                        cover
-                      > -->
-                <!-- <v-card-title class="text-white" v-text="card.title"></v-card-title> -->
-                <!-- </v-img> -->
-
-                <v-card-title class="text-left">
-                  {{ item.name }}
-                </v-card-title>
-
-                <v-card-subtitle class="text-left">
-                  {{ $t('dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{
-                    item.due_time.getMinutes()
-                  }}:{{ item.due_time.getSeconds() }}<br />
-                  {{ $t('minMemberNum') }}：{{ item.min_member_num }}
-                </v-card-subtitle>
-
-                <v-card-actions>
-                  <v-btn color="orange-lighten-2" variant="text">
-                    {{ $t('joinRoom') }}
-                  </v-btn>
-
-                  <v-spacer></v-spacer>
-
-                  <v-btn
-                    :icon="show[index] ? 'mdi-chevron-up' : 'mdi-chevron-down'"
-                    @click="show[index] = !show[index]"
-                  ></v-btn>
-                </v-card-actions>
-
-                <div v-show="show[index]">
-                  <v-divider></v-divider>
-                  <v-card-text>
-                    {{ item.description }}
-                  </v-card-text>
-                </div>
-              </v-card>
-            </v-expand-transition>
-          </v-col>
-        </v-row>
-      </v-container>
-
-      <!-- 给应用提供合适的间距 -->
-      <v-container>
-        <!-- 如果使用 vue-router -->
-        <router-view></router-view>
-      </v-container>
-    </v-main>
-
-    <v-footer>
-      <!-- -->
-    </v-footer>
-  </v-app>
+  <div>
+    <a-row :gutter="24">
+      <a-col
+        :sm="24"
+        :md="12"
+        :xl="6"
+        :style="{ marginBottom: '24px' }"
+        v-for="(item, index) in group_list"
+        :key="index">
+        <chart-card :title="item.name" total="">
+          <div>
+            <trend flag="up" style="margin-right: 16px;">
+              <div>{{item.name}}</div>
+            </trend>
+          </div>
+        </chart-card>
+      </a-col>
+    </a-row>
+  </div>
 </template>
 
 <script>
-// import ChangeLang from '@/components/ChangeLang.vue'
-// import SearchBar from '@/components/SearchBar.vue'
+// import ChangeLang from '@/../../components/ChangeLang.vue'
+// import SearchBar from '@/../../components/SearchBar.vue'
 import axios from 'axios'
+import {
+    ChartCard
+} from '@/components'
 
 export default {
   data() {
     return {
       show: [],
-      matching_rooms: [],
+      group_list: []
     }
   },
   // components: {
@@ -101,6 +52,14 @@ export default {
         })
         .then((res) => {
           console.log(res.data)
+          this.group_list = res.data.data.map(group => {
+            return {
+              group_id: group.group_id,
+              name: group.name,
+              room_uuid: group.room_uuid
+            }
+          }) 
+          console.log(this.group_list)
         })
         .catch((error) => console.log(error))
     },

@@ -84,6 +84,7 @@
           }
         })
         .then((MRResponse) => {
+          console.log(MRResponse)
           this.matching_rooms = MRResponse.data.data.map (room => {
             return {
                 name: room.name,
