@@ -131,7 +131,11 @@ import axios from 'axios'
 
           this.$router.push({
             path: '/roomProfile',
-            query: { roomID: roomID }
+            query: {
+                    roomID: roomID,
+                    roomName: this.inputValue,
+                    matchDate: this.selectedDateTime
+                  }
           })
         })
 

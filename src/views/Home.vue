@@ -15,10 +15,10 @@
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
-            <!-- <trend flag="down">
-              <span slot="term">{{ $t('dashboard.analysis.day') }}</span>
-              11%
-            </trend> -->
+            <div class="chart-card-footer">
+              <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
+            </div>
+
           </div>
           <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
         </chart-card>
@@ -28,7 +28,6 @@
 </template>
 
   <script>
-  // import moment from 'moment'
   import axios from 'axios'
 
   import {
@@ -42,14 +41,37 @@
     components: {
       ChartCard
     },
+  //   setup () {
+  //   const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
+  //   const activeKey = ref(['1'])
+  //   watch(activeKey, val => {
+  //     console.log(val)
+  //   })
+  //   return {
+  //     text,
+  //     activeKey
+  //   }
+  // },
     data () {
       return {
         loading: true,
         show: [],
         matching_rooms: []
+
       }
     },
     methods: {
+
+      joinMR (roomID, name, dueDate) {
+        this.$router.push({
+            path: '/roomProfile',
+            query: {
+                    roomID: roomID,
+                    roomName: name,
+                    matchDate: dueDate.toISOString()
+                  }
+          })
+      },
       refreshMR () {
         const token = sessionStorage.getItem('token')
         console.log(token)
@@ -67,7 +89,8 @@
                 name: room.name,
                 due_time: new Date(room.due_time),
                 description: room.description,
-                min_member_num: room.min_member_num
+                min_member_num: room.min_member_num,
+                roomID: room.room_id
               }
           })
             console.log(this.matching_rooms)
@@ -78,6 +101,7 @@
       },
       mounted: function () {
         this.refreshMR()
+        this.expandDescription()
     }
       }
 </script>
