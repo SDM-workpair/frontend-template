@@ -49,7 +49,6 @@
 
                 <div v-show="show[index]">
                   <v-divider></v-divider>
-
                   <v-card-text>
                     {{ item.description }}
                   </v-card-text>
@@ -74,8 +73,8 @@
 </template>
 
 <script>
-import ChangeLang from '../components/ChangeLang.vue'
-import SearchBar from '../components/SearchBar.vue'
+// import ChangeLang from '@/components/ChangeLang.vue'
+// import SearchBar from '@/components/SearchBar.vue'
 import axios from 'axios'
 
 export default {
@@ -85,10 +84,10 @@ export default {
       matching_rooms: [],
     }
   },
-  components: {
-    ChangeLang,
-    SearchBar,
-  },
+  // components: {
+  //   ChangeLang,
+  //   SearchBar,
+  // },
   methods: {
     refresh_mr() {
       const token = sessionStorage.getItem('token')
