@@ -86,8 +86,8 @@
         const token = sessionStorage.getItem('token')
         console.log(token)
         axios.post('/api/v1/swipe-card/swipe-recommend', {
-          member_id: '12',
-          room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d'
+          member_id: this.memberID,
+          room_id: this.newRoomID
         }, {
           headers: {
             'Authorization': 'Bearer ' + token
@@ -97,7 +97,7 @@
           this.recom = gRResponse.data.data.map (member => {
             return {
               member_id: member.member_id,
-              room_uuid: member.room_uuid,
+              room_id: member.room_id,
               recommended_member_id: member.recommended_member_id,
               self_tag_text: member.self_tag_text,
               find_tag_text: member.find_tag_text,
@@ -106,7 +106,7 @@
             }
           })
             console.log(this.recom)
-            console.log(this.recom[1].name)
+            console.log(this.recom[1].member_id)
             const list = []
             for (let i = 0; i < this.recom.length; i++) {
               list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id })
@@ -130,8 +130,8 @@
           const token = sessionStorage.getItem('token')
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
-            member_id: '12',
-            room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d',
+            member_id: this.memberID,
+            room_id: this.newRoomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: true,
             is_hated: false
@@ -144,7 +144,7 @@
             this.swipe = swipeResponse.data.data.map (swipeMember => {
               return {
                 member_id: swipeMember.member_id,
-                room_uuid: swipeMember.room_uuid,
+                room_id: swipeMember.room_id,
                 target_member_id: swipeMember.recommended_member_id,
                 is_liked: swipeMember.is_liked,
                 is_hated: swipeMember.is_hated
@@ -156,8 +156,8 @@
           const token = sessionStorage.getItem('token')
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
-            member_id: '12',
-            room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d',
+            member_id: this.memberID,
+            room_id: this.newRoomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: false,
             is_hated: true
@@ -170,7 +170,7 @@
             this.swipe = swipeResponse.data.data.map (swipeMember => {
               return {
                 member_id: swipeMember.member_id,
-                room_uuid: swipeMember.room_uuid,
+                room_id: swipeMember.room_id,
                 target_member_id: swipeMember.recommended_member_id,
                 is_liked: swipeMember.is_liked,
                 is_hated: swipeMember.is_hated
