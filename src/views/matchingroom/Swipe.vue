@@ -46,7 +46,9 @@
       offset: 0,
       history: [],
       recom: [],
-      swipe: []
+      swipe: [],
+      roomID: this.$route.query.roomID,
+      memberID: this.$route.query.memberID
     }),
     created () {
       this.mock()
@@ -86,8 +88,8 @@
         const token = sessionStorage.getItem('token')
         console.log(token)
         axios.post('/api/v1/swipe-card/swipe-recommend', {
-          member_id: '12',
-          room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d'
+          member_id: this.memberID,
+          room_uuid: this.roomID
         }, {
           headers: {
             'Authorization': 'Bearer ' + token
@@ -130,8 +132,8 @@
           const token = sessionStorage.getItem('token')
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
-            member_id: '12',
-            room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d',
+            member_id: this.memberID,
+            room_uuid: this.roomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: true,
             is_hated: false
@@ -156,8 +158,8 @@
           const token = sessionStorage.getItem('token')
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
-            member_id: '12',
-            room_uuid: '58102867-1773-4c68-a78f-d6da7124bb2d',
+            member_id: this.memberID,
+            room_uuid: this.roomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: false,
             is_hated: true
