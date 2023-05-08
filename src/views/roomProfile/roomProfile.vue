@@ -1,86 +1,68 @@
 
 <template>
   <page-header-wrapper>
-    <!-- <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp 這裡要接後端的[配對活動名稱] | {{ $t('matchingRoomProfile') }}</h2> -->
-    <!-- <h1>Input value from Page One: {{ newRoomID }}</h1> -->
-    <!-- <hr class="h-color mx-2"> -->
-    <!-- <div style="text-align: right; margin-top: -15px;">關閉時間 : [這裡接後端時間] | <i class="bi bi-people-fill"></i> [接後端目前人數]/[接後端總共人數]</div> -->
-    <!-- <v-container fluid> -->
-    <!-- <v-container fluid class="profileBody"> -->
+    <div class="roomInfoBody"> 配對活動名稱 : {{ roomName }}|關閉時間 : {{ matchDate }}</div>
+
     <div class="profileBody">
       <img class="avatar" id="photo" alt="User Avatar">
       <div class="name-info">
-        <label for="name">{{ $t('room.name') }}:</label>
-        <label>{{ name }}</label>
+        <label for="name">{{ $t('room.name') }}:{{ name }}</label>
       </div>
 
       <div class="email-info">
-        <label for="email">{{ $t('room.email') }}:</label>
-        <label>{{ email }}</label>
+        <label for="email">{{ $t('room.email') }}:{{ email }}</label>
       </div>
 
       <div class="id-info">
-        <label for="id">{{ $t('room.my_id') }}:</label>
-        <label>{{ lineID }}</label>
+        <label for="id">{{ $t('room.my_id') }}:{{ lineID }}</label>
       </div>
     </div>
-    <!-- <div style="margin-top:10px; font:15px;">
-      <div class="name-info">
-        <label for="name">{{ $t('room.name') }}:</label>
-        <span id="name"></span>
-      </div>
 
-      <div class="email-info">
-        <label for="email">{{ $t('room.email') }}:</label>
-        <span id="email"></span>
-      </div>
+    <div class="tagBody">
+      <!-- 新增我的Tag -->
 
-      <div class="id-info">
-        <label for="id">{{ $t('room.my_id') }}:</label>
-        <span id="id"></span> 這裡還沒接ID
-      </div>
-    </div> -->
-    <!-- </v-container> -->
-    <!-- <v-container fluid style="margin-left:30px;"> -->
-    <!-- 新增我的Tag -->
-    <!-- <v-list> -->
-    <label>{{ $t('room.new_my_tag') }}</label>
-    <input type="text" v-model="aaa" :placeholder="$t('room.new_my_tag')" class="ladyinput" />
-    <a-button shape="circle" @click="addText"><a-icon type="plus-circle" class="hiRP"/></a-button>
-    <!-- </v-list> -->
-    <!-- 推薦我的Tag -->
-    <!-- <v-list> -->
-    <!-- 這裡的recommand list是寫死的 -->
-    <label>{{ $t('room.recommand_my_tag') }} </label>
-    <button @click="addRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
-    <!-- </v-list> -->
-    <!-- <v-list> -->
-    <label>{{ $t('room.about_my_tag') }} </label>
-    <!-- <div class="hiTag" v-for="text in textList" :key="text">{{ text }}</div> -->
-    <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
-    <!-- </v-list>
-    </v-container> -->
+      <label>{{ $t('room.new_my_tag') }}
+        <input type="text" v-model="aaa" :placeholder="$t('room.new_my_tag')" class="ladyinput" />
+        <a-button shape="circle" @click="addText"><a-icon type="plus-circle" class="hiRP"/></a-button>
+      </label>
+      <!-- 推薦我的Tag -->
 
+      <!-- 這裡的recommand list是寫死的 -->
+      <label>{{ $t('room.recommand_my_tag') }}
+        <button @click="addRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
+      </label>
+      <label>{{ $t('room.about_my_tag') }}
+        <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
+      </label>
+    </div>
+    <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;"/>
     <!-- 這裡以下是FIND TAG -->
-    <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;">
+    <div class="tagBody">
+      <!-- <v-container fluid style="margin-left:30px;"> -->
+      <!-- 新增Find Tag -->
+      <!-- <v-list> -->
 
-    <!-- <v-container fluid style="margin-left:30px;"> -->
-    <!-- 新增Find Tag -->
-    <!-- <v-list> -->
+      <label>{{ $t('room.new_find_tag') }}
+        <input type="text" v-model="inputFindText" :placeholder="$t('room.new_find_tag')" class="ladyinput" />
+        <a-button shape="circle" @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></a-button>
+      </label>
+      <!-- </v-list> -->
+      <!-- 推薦Find Tag -->
+      <!-- <v-list> -->
+      <!-- <label>{{ $t('room.new_find_tag') }}
+        <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
+      </label> -->
 
-    <label>{{ $t('room.new_find_tag') }}</label>
-    <input type="text" v-model="inputFindText" :placeholder="$t('room.new_find_tag')" class="ladyinput" />
-    <a-button shape="circle" @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></a-button>
-    <!-- </v-list> -->
-    <!-- 推薦Find Tag -->
-    <!-- <v-list> -->
-    <label>{{ $t('room.new_find_tag') }}</label>
-    <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
-    <!-- </v-list>
+      <label>{{ $t('room.new_find_tag') }}
+        <button @click="addFindRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
+      </label>
+
+      <!-- </v-list>
       <v-list> -->
-    <label>{{ $t('room.about_find_tag') }}</label>
-    <!-- <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div> -->
-    <button @click="removeFindTag(item)" class="hiTag" v-for="(item, index) in find_textList" :key="index">{{ item }}</button>
+      <label>{{ $t('room.about_find_tag') }}</label>
+      <!-- <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div> -->
+      <button @click="removeFindTag(item)" class="hiTag" v-for="(item, index) in find_textList" :key="index">{{ item }}</button>
+    </div>
     <!--
       </v-list>
     </v-container> -->
@@ -114,19 +96,12 @@
 // console.log('RoomProfile: ', this.newRoomID)
 import { ref } from 'vue'
   export default {
-    // name: 'roomProfile',
-    // params: ['roomID'],
+
   name: 'RoomProfile',
   setup () {
-    // const modal1Visible = ref(false);
     const modal2Visible = ref(false)
-    // const setModal1Visible = visible => {
-    //   modal1Visible.value = visible;
-    // }
     return {
-      // modal1Visible,
       modal2Visible
-      // setModal1Visible,
     }
   },
   data () {
@@ -146,7 +121,9 @@ import { ref } from 'vue'
       aaa: '',
       inputFindText: '',
       newRoomID: this.$route.query.roomID,
-      memberID: '',
+      roomName: this.$route.query.roomName,
+      matchDate: this.$route.query.matchDate,
+      memberID: 0,
       email: '',
       name: '',
       photo: '',
@@ -220,7 +197,7 @@ import { ref } from 'vue'
           }
         })
   .then((joinResponse) => {
-    console.log(joinResponse)
+    console.log('這是加入room的 response ', joinResponse)
     this.memberID = joinResponse.data.data.member_id
     console.log('這是加入room的member id: ', this.memberID)
     // 這是POST my tag
@@ -258,12 +235,17 @@ import { ref } from 'vue'
     // 傳值到matching room
   this.$router.push({
             path: '/matchingroom/Swipe',
-            query: { roomID: this.newRoomID, memberID: this.memberID }
+            query: {
+              roomID: this.newRoomID,
+              memberID: this.memberID,
+              my_tag_list: this.textList,
+              find_tag_list: this.find_textList
+            }
           })
-  })
+  console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
+})
 
   .catch((error) => console.log(error))
-  console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
     },
 
 //   refresh_mr () {
@@ -317,22 +299,8 @@ import { ref } from 'vue'
   </script>
 
   <style>
-.ladygaga{
-  background-color: white;
-  border: 1px solid black;
-  /* color: black; */
-  padding: 6px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 15px;
-  margin: 4px;
-  cursor: pointer;
-  border-radius: 3rem;
-  /* flex: 1; */
-}
 .ladyinput {
-  flex: 1;
+  /* flex: 1; */
   padding: 0.5rem;
   border-radius: 1rem;
   border: 1px solid black;
@@ -406,9 +374,23 @@ margin-top: 80px;
   }
   label {
     display: flex;
-    margin-right: 10px;
-  }
+    /* margin-right: 10px; */
+    margin: 10px;
 
+  }
+  .tagBody{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    font-family: Arial, sans-serif;
+    margin-top: 10px;
+  }
+  .roomInfoBody{
+    display: flex;
+    flex-direction: column;
+    align-items: right;
+    font-family: Arial, sans-serif;
+  }
   .profileBody {
     display: flex;
     flex-direction: column;
