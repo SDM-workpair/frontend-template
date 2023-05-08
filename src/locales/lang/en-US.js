@@ -12,6 +12,7 @@ import result from './en-US/result'
 import account from './en-US/account'
 import home from './en-US/home'
 import room from './en-US/room'
+import nav from './en-US/nav'
 
 const components = {
   antLocale: antdEnUS,
@@ -35,5 +36,6 @@ export default {
   ...result,
   ...account,
   ...home,
-  ...room
+  ...room,
+  ...nav
 }
