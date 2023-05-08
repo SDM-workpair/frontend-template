@@ -1,13 +1,28 @@
 <template>
-  <page-header-wrapper>
+  <v-app>
+    <!-- 這一行要加 不然會有不置中的問題 -->
+    <v-navigation-drawer></v-navigation-drawer>
+    <!--                              -->
+
     <!-- 改這個地方!!!!!! -->
     <v-main>
+      <h2 class="text-left hahaMR">&nbsp&nbsp&nbsp&nbsp{{ $t('my_group') }}</h2>
       <hr class="h-color mx-2" />
       <v-container fluid>
         <v-row dense>
           <v-col v-for="(item, index) in matching_rooms" :key="index">
             <v-expand-transition>
               <v-card class="mx-auto" max-width="250">
+                <!-- <v-img
+                        color="#FFFFF"
+                        class="align-end"
+                        gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                        height="150px"
+                        cover
+                      > -->
+                <!-- <v-card-title class="text-white" v-text="card.title"></v-card-title> -->
+                <!-- </v-img> -->
+
                 <v-card-title class="text-left">
                   {{ item.name }}
                 </v-card-title>
@@ -51,211 +66,59 @@
         <router-view></router-view>
       </v-container>
     </v-main>
-  </page-header-wrapper>
+
+    <v-footer>
+      <!-- -->
+    </v-footer>
+  </v-app>
 </template>
 
 <script>
-// import { CheckCircleOutlined } from '@ant-design/icons-vue'
-import { ref } from 'vue'
+import ChangeLang from '../components/ChangeLang.vue'
+import SearchBar from '../components/SearchBar.vue'
 import axios from 'axios'
+
 export default {
-  // setup() {
-  //   const selectedDateTime = ref(new Date())
-  //   const onChange = (value, dateString) => {
-  //     console.log('Selected Time: ', value)
-  //     console.log('Formatted Selected Time: ', dateString)
-  //   }
-  //   const onOk = (value) => {
-  //     selectedDateTime.value = value.toISOString()
-  //     console.log('onOk: ', value.toISOString())
-  //     console.log('onselectedDateTimeOk: ', selectedDateTime.value)
-  //   }
-  //   return {
-  //     onChange,
-  //     onOk,
-  //     selectedDateTime
-  //   }
-  // },
   data() {
     return {
       show: [],
-      matching_rooms: []
+      matching_rooms: [],
     }
+  },
+  components: {
+    ChangeLang,
+    SearchBar,
   },
   methods: {
-    refreshMR() {
-      const token = sessionStorage.getItem('token');
-      console.log(token)  
-      // axios.get('/api/v1/group/my-list', {
-      //     headers: {
-      //       'Authorization': 'Bearer ' + token
-      //     }
-      //   })
-      //   .then(
-      //     (mr_response) => {
-      //     console.log(mr_response.data)
-      //   })
-      //   .catch((error) => console.log(error))
-    }
+    refresh_mr() {
+      const token = sessionStorage.getItem('token')
+      console.log(token)
+
+      axios
+        .get('/api/v1/group/my-list', {
+          headers: {
+            Authorization: 'Bearer ' + token,
+          },
+        })
+        .then((res) => {
+          console.log(res.data)
+        })
+        .catch((error) => console.log(error))
+    },
   },
-  mounted:function(){
-    this.refreshMR()
-  }
+  mounted: function () {
+    this.refresh_mr()
+  },
 }
 </script>
 
 <style>
-.gaga {
-  padding: 1rem;
-  margin-bottom: 1px;
-  color: black;
-  font: bold;
-}
-
-.popup-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* background-color: rgba(248, 245, 245, 0.7); */
-  background-color: transparent;
-  z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.popup {
-  background-color: rgb(235, 233, 233);
-  padding: 1rem;
-  border-radius: 1rem;
-  width: 600px;
-  height: 540px;
-  /* max-width: 90%;
-    max-height: 90%; */
-  overflow-y: auto;
-  /* border-color: black;
-    border-width: 10px; */
-  margin-top: 90px;
-}
-
-.popup-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.close-btn {
-  font-size: 1.5rem;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-}
-
-.popup-body {
-  margin-top: 1rem;
-}
-
-.input-panel {
-  display: flex;
-  align-items: center;
-  height: 20;
-}
-
-.ladyinput {
-  flex: 1;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  border: 1px solid black;
-  background-color: white;
-  margin-left: 0.5rem;
-  width: 400px;
-}
-
-.ant-calendar-picker-input {
-  padding: 0.5rem;
-  border-radius: 0.9rem;
-  margin-left: 1.5rem;
-  border: 1px solid black;
-  /* width: 500px; */
-  height: 35px;
-  /* margin-top: 90px; */
-}
-
-.dp__input {
-  flex: 1;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  border: 1px solid black;
-  background-color: white;
-
-  /* width: 430px; */
-}
-
-.dp__input_icon {
-  color: #95959500;
-}
-
-.datelabel {
-  position: relative;
-  /* top: 35px; */
-}
-
-.v3dp__datepicker {
-  width: 400px;
-  left: 105px;
-}
-
-.textArea {
-  width: 100%;
-  height: 100px;
-  padding: 12px;
-  box-sizing: border-box;
-  border: 2px solid #ccc;
-  border-radius: 4px;
-  background-color: #f8f8f8;
-  font-size: 16px;
-  resize: none;
-  margin-top: 10px;
-  flex: 1;
-  border-radius: 1rem;
-  border: 1px solid black;
-  background-color: white;
-}
-
-/* 按鈕的css */
-.ladygaga {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  padding: 10px;
-  /* text-align: center; */
-  /* text-decoration: none; */
-  /* display: inline-block; */
-  font-size: 15px;
-  margin: 4px;
-  cursor: pointer;
-  border-radius: 1.2rem;
-  flex: 1;
-}
-
-.ladyhaha {
-  /* margin-left: 370px; */
-}
-
-.ladyqua {
-  margin-top: 10px;
-}
-
-.ladyqua1 {
-  margin-top: 10px;
-  flex: 1;
-  padding: 0.5rem;
-  border-radius: 1rem;
-  border: 1px solid black;
-  background-color: white;
-  margin-left: 2.5rem;
-  width: 70px;
+.hahaMR {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 80px;
 }
 </style>
