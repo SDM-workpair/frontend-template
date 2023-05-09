@@ -2,7 +2,7 @@ export default {
     'room.roomName': '配對活動名稱',
     'room.inputRoomName': '輸入配對活動名稱',
     'room.dueDate': '截止時間',
-    'room.minMemberNum': '最低小組人數',
+    'room.minMemberNum': '預期最低小組人數',
     'room.roomQuantity': '群組人數',
     'room.roomDescription': '配對活動介紹',
     'room.add': '新增配對活動',
