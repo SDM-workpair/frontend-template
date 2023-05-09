@@ -9,14 +9,14 @@
       </a>
     </span>
 
-    <!-- <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls" /> -->
+    <avatar-dropdown :menu="showMenu" :current-user="currentUser" :class="prefixCls" />
     <select-lang :class="prefixCls" />
     <br>
 
     <a-drawer :title="$t('nav.notification')" :visible="drawerVisible" :width="350" :closable="true" @close="handleDrawerClose">
       <p v-for="(item, index) in myList" :key="index">{{ item.content }}</p>
-      <p>{{ $t('home.dueDate') }}</p>
-      <p>{{ $t('nav.notification') }}</p>
+      <!-- <p>{{ $t('home.dueDate') }}</p>
+      <p>{{ $t('nav.notification') }}</p> -->
     </a-drawer>
 
   </div>
@@ -70,6 +70,18 @@ export default {
   },
   mounted () {
     this.token = sessionStorage.getItem('token')
+    if (!this.token) {
+      const currentUrl = window.location.href
+      const pathname = window.location.pathname
+      const newUrl = currentUrl.replace(pathname, '/user/login')
+      window.location.replace(newUrl)
+    }
+
+setTimeout(() => {
+  const currentUrl = window.location.href
+  const pathname = window.location.pathname
+  const newUrl = currentUrl.replace(pathname, '/user/login')
+}, 2000)
     this.initWebSocket()
     fetch('/api/v1/notification/my-list', {
       method: 'GET',
@@ -121,7 +133,7 @@ export default {
     },
 
     initWebSocket () {
-      const url = `ws://localhost:8000/ws/${this.token}`
+      const url = `ws://0.0.0.0:8000/ws/${this.token}`
       const socket = new WebSocket(url)
 
       socket.onopen = () => {

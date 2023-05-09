@@ -12,6 +12,7 @@ import account from './zh-CN/account'
 import home from './zh-CN/home'
 import room from './zh-CN/room'
 import nav from './zh-CN/nav'
+import group from './zh-CN/group'
 
 const components = {
   antLocale: antd,
@@ -22,9 +23,11 @@ const components = {
 export default {
   message: '-',
 
-  'layouts.usermenu.dialog.title': '信息',
-  'layouts.usermenu.dialog.content': '您确定要注销吗？',
+  'layouts.usermenu.dialog.title': '提示',
+  'layouts.usermenu.dialog.content': '您確定要登出嗎？',
   'layouts.userLayout.title': 'Ant Design 是西湖区最具影响力的 Web 设计规范',
+  'layouts.userLayout.ok': '確認',
+  'layouts.userLayout.cancel': '取消',
   ...components,
   ...global,
   ...menu,
@@ -36,5 +39,6 @@ export default {
   ...account,
   ...home,
   ...room,
-  ...nav
+  ...nav,
+  ...group
 }

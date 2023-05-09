@@ -50,14 +50,21 @@
       console.log('okkk')
       console.log(data.data.access_token)
       sessionStorage.setItem('token', data.data.access_token)
-      const token = sessionStorage.getItem('token')
-      console.log('111')
-      console.log(token)
-      window.location.href = 'http://localhost:8080/home'
+      // const token = sessionStorage.getItem('token')
+      // console.log(token)
+      // window.location.href = 'http://localhost:8080/home'
+      const currentUrl = window.location.href // 取得當前網址
+      console.log(currentUrl)
+      const newUrl = currentUrl.replace('/user/login', '/home') // 修改為新網址
+      console.log(newUrl)
+      window.location.replace(newUrl)
     })
     .catch(error => {
       console.error('Error:', error)
     })
+    // const token = sessionStorage.getItem('token')
+    // console.log(token)
+    // window.location.href = 'http://localhost:8080/'
   }
   </script>
   <style>

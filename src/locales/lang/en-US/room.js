@@ -2,7 +2,7 @@ export default {
     'room.roomName': 'Room Name',
     'room.inputRoomName': 'Named a New Room',
     'room.dueDate': 'Due Date',
-    'room.minMemberNum': 'Minimum Group Size',
+    'room.minMemberNum': 'Expected Minimum Group Size',
     'room.roomQuantity': 'Room Quantity',
     'room.roomDescription': 'Room Description',
     'room.add': 'New A Room',
@@ -13,7 +13,7 @@ export default {
     'room.matchingRoomProfile': 'Matching Room Profile',
     'room.error_name': 'Room Name Cannot Be Null',
     'room.error_date': 'Matching Date Cannot Be Null',
-
+    'room.result_of': 'Result of',
     'room.about_my_tag': 'My Tag',
     'room.new_my_tag': 'New My Tag',
     'room.recommand_my_tag': 'Recommand My Tag',

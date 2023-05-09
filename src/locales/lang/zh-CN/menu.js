@@ -35,10 +35,13 @@ export default {
     'menu.account.center': '个人中心',
     'menu.account.settings': '个人设置',
     'menu.account.trigger': '触发报错',
-    'menu.account.logout': '退出登录',
+    'menu.account.logout': '登出帳號',
     'menu.all-matching-room': '所有配對空間',
     'menu.matchingroom': '配對空間',
     'menu.matchingroom.swipe': '組員配對',
     'menu.addnewroom': '新增配對空間',
-    'menu.roomprofile': '配對空間個人資料'
+    'menu.roomprofile': '配對空間個人資料',
+    'menu.MyGroup': '我的小組',
+    'menu.MyRoom': '我的配對空間',
+    'menu.enterMyRoom': '進入配對空間'
 }

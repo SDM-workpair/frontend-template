@@ -25,7 +25,7 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: '' },
-    redirect: '/dashboard/workplace',
+    redirect: '/home',
     children: [
 
       {
@@ -168,11 +168,37 @@ export const asyncRouterMap = [
         ]
       },
 
+      // show my room
+      {
+        path: '/myRoom',
+        name: 'MyRoom',
+        component: () => import('@/views/MyRoom'),
+        meta: { title: 'menu.MyRoom', keepAlive: true, icon: 'home' }
+      },
+
+      // show my group
+      {
+        path: '/myGroup',
+        name: 'MyGroup',
+        component: () => import('@/views/MyGroup'),
+        meta: { title: 'menu.MyGroup', keepAlive: true, icon: 'team' }
+      },
+
+      // show group result
+      {
+        path: '/groupResult',
+        name: 'GroupResult',
+        component: () => import('@/views/GroupResult'),
+        hidden: true,
+        meta: { title: 'menu.MyGroup', keepAlive: true, icon: 'team' }
+      },
+
       // MatchingRoom
       {
         path: '/matchingroom',
         name: 'matchingroom',
         component: RouteView,
+        hidden: true,
         redirect: '/matchingroom/Swipe',
         meta: { title: 'menu.matchingroom', keepAlive: true, icon: 'user' },
         children: [
@@ -180,6 +206,7 @@ export const asyncRouterMap = [
             path: '/matchingroom/Swipe',
             name: 'MatchingRoomSwipe',
             component: () => import('@/views/matchingroom/Swipe'),
+            props: (route) => route.params,
             meta: { title: 'menu.matchingroom.swipe', keepAlive: false }
           }
         //   {

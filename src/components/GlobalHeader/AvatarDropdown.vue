@@ -1,19 +1,20 @@
 <template>
-  <a-dropdown v-if="currentUser && currentUser.name" placement="bottomRight">
+  <!-- <a-dropdown v-if="currentUser && currentUser.name" placement="bottomRight"> -->
+  <a-dropdown placement="bottomRight">
     <span class="ant-pro-account-avatar">
-      <a-avatar size="small" src="https://gw.alipayobjects.com/zos/antfincdn/XAosXuNZyF/BiazfanxmamNRoxxVxka.png" class="antd-pro-global-header-index-avatar" />
+      <a-icon type="user" />
       <span>{{ currentUser.name }}</span>
     </span>
     <template v-slot:overlay>
       <a-menu class="ant-pro-drop-down menu" :selected-keys="[]">
-        <a-menu-item v-if="menu" key="center" @click="handleToCenter">
+        <!-- <a-menu-item v-if="menu" key="center" @click="handleToCenter">
           <a-icon type="user" />
           {{ $t('menu.account.center') }}
         </a-menu-item>
         <a-menu-item v-if="menu" key="settings" @click="handleToSettings">
           <a-icon type="setting" />
           {{ $t('menu.account.settings') }}
-        </a-menu-item>
+        </a-menu-item> -->
         <a-menu-divider v-if="menu" />
         <a-menu-item key="logout" @click="handleLogout">
           <a-icon type="logout" />
@@ -22,9 +23,9 @@
       </a-menu>
     </template>
   </a-dropdown>
-  <span v-else>
+  <!-- <span v-else>
     <a-spin size="small" :style="{ marginLeft: 8, marginRight: 8 }" />
-  </span>
+  </span> -->
 </template>
 
 <script>
@@ -43,23 +44,27 @@ export default {
     }
   },
   methods: {
-    handleToCenter () {
-      this.$router.push({ path: '/account/center' })
-    },
-    handleToSettings () {
-      this.$router.push({ path: '/account/settings' })
-    },
+    // handleToCenter () {
+    //   this.$router.push({ path: '/account/center' })
+    // },
+    // handleToSettings () {
+    //   this.$router.push({ path: '/account/settings' })
+    // },
     handleLogout (e) {
       Modal.confirm({
         title: this.$t('layouts.usermenu.dialog.title'),
         content: this.$t('layouts.usermenu.dialog.content'),
-        onOk: () => {
+        cancelText: this.$t('layouts.userLayout.cancel'),
+        okText: this.$t('layouts.userLayout.ok'),
+        onOk () {
           // return new Promise((resolve, reject) => {
           //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1500)
           // }).catch(() => console.log('Oops errors!'))
-          return this.$store.dispatch('Logout').then(() => {
-            this.$router.push({ name: 'login' })
-          })
+            sessionStorage.removeItem('token')
+            const currentUrl = window.location.href
+            const pathname = window.location.pathname
+            const newUrl = currentUrl.replace(pathname, '/user/login')
+            window.location.replace(newUrl)
         },
         onCancel () {}
       })

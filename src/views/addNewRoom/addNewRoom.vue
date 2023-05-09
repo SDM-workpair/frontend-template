@@ -16,7 +16,7 @@
 
     <!-- 這裡是配對人數 -->
     <div class="ladyqua">
-      <label for="quantity">{{ $t('room.roomQuantity') }}</label>
+      <label for="quantity">{{ $t('room.minMemberNum') }}</label>
       <input
         id="quantity"
         type="number"
@@ -48,6 +48,13 @@ import axios from 'axios'
     // },
     setup () {
     // const selectedDateTime = { value: null }
+    const token = sessionStorage.getItem('token')
+            if (!token) {
+                const currentUrl = window.location.href
+                const pathname = window.location.pathname
+                const newUrl = currentUrl.replace(pathname, '/user/login')
+                window.location.replace(newUrl)
+          }
     const selectedDateTime = ref(new Date())
     const onChange = (value, dateString) => {
       console.log('Selected Time: ', value)

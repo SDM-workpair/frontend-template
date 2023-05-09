@@ -56,8 +56,8 @@
       return {
         loading: true,
         show: [],
-        matching_rooms: []
-
+        matching_rooms: [],
+        myRooms: []
       }
     },
     methods: {
@@ -75,6 +75,7 @@
       refreshMR () {
         const token = sessionStorage.getItem('token')
         console.log(token)
+        // Show出所有room
         axios.post('/api/v1/search/matching-room/list', {
           prompt: '',
           query_all: true
@@ -102,6 +103,13 @@
       mounted: function () {
         this.refreshMR()
         this.expandDescription()
+        const token = sessionStorage.getItem('token')
+            if (!token) {
+                const currentUrl = window.location.href
+                const pathname = window.location.pathname
+                const newUrl = currentUrl.replace(pathname, '/user/login')
+                window.location.replace(newUrl)
+          }
     }
       }
 </script>
