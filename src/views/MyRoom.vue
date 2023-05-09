@@ -67,8 +67,8 @@
                 path: '/matchingroom/Swipe',
                 // name: 'Swipe',
                 query: {
-                roomID: this.roomID,
-                memberID: this.memberID
+                roomID: roomID,
+                memberID: memberID
                 }
           })
         },
