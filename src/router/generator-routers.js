@@ -24,6 +24,9 @@ const constantRouterComponents = {
   // room profile
   roomProfile: () => import('@/views/roomProfile/roomProfile'),
 
+  // my Room
+  MyRoom: () => import('@/views/MyRoom'),
+
   // my Group
   MyGroup: () => import('@/views/MyGroup'),
 

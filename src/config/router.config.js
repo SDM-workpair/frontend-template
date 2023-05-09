@@ -168,6 +168,14 @@ export const asyncRouterMap = [
         ]
       },
 
+      // show my room
+      {
+        path: '/myRoom',
+        name: 'MyRoom',
+        component: () => import('@/views/MyRoom'),
+        meta: { title: 'menu.MyRoom', keepAlive: true, icon: 'home' }
+      },
+
       // show my group
       {
         path: '/myGroup',

@@ -5,21 +5,22 @@
       <a-col
         :sm="24"
         :md="12"
-        :xl="6">
+        :xl="6"
+        :style="{ marginBottom: '24px' }">
         <a-card hoverable style="width: 240px" v-for="(item, index) in groups" :key="index">
           <template #cover>
             <img :src="item.image" :alt="item.image" />
           </template>
           <a-card-meta :title="item.name">
             <template #description>
-              <div> {{ item.name }}</div>
               <div> {{ item.email }}</div>
               <div> {{ item.line_id }}</div>
               <div> {{ item.image }}</div>
             </template>
           </a-card-meta>
         </a-card>
-      </a-col></a-row>
+      </a-col>
+    </a-row>
   </div>
 </template>
 <script>

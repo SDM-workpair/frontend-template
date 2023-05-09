@@ -24,11 +24,11 @@
       <img class="rewind-pointer" slot="rewind" src="../../assets/vue-tinder/rewind-txt.png">
     </Tinder>
     <div class="btns">
-      <img src="../../assets/vue-tinder/rewind.png" @click="decide('rewind')">
+      <!-- <img src="../../assets/vue-tinder/rewind.png" @click="decide('rewind')"> -->
       <img src="../../assets/vue-tinder/nope.png" @click="decide('nope')">
-      <img src="../../assets/vue-tinder/super-like.png" @click="decide('super')">
+      <!-- <img src="../../assets/vue-tinder/super-like.png" @click="decide('super')"> -->
       <img src="../../assets/vue-tinder/like.png" @click="decide('like')">
-      <img src="../../assets/vue-tinder/help.png" @click="decide('help')">
+      <!-- <img src="../../assets/vue-tinder/help.png" @click="decide('help')"> -->
     </div>
   </div>
 </template>
@@ -193,16 +193,8 @@
         this.history.push(choice.item)
       },
       async decide (choice) {
-        if (choice === 'rewind') {
-          if (this.history.length) {
-            this.$refs.tinder.rewind([this.history.pop()])
-          }
-        } else if (choice === 'help') {
-          window.open('https://shanlh.github.io/vue-tinder')
-        } else {
-          this.$refs.tinder.decide(choice)
+        this.$refs.tinder.decide(choice)
         }
-      }
     }
     // mounted: function () {
     //   this.mock()

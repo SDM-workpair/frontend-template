@@ -2,7 +2,7 @@ export default {
     'room.roomName': 'Room Name',
     'room.inputRoomName': 'Named a New Room',
     'room.dueDate': 'Due Date',
-    'room.minMemberNum': 'Minimum Group Size',
+    'room.minMemberNum': 'Expected Minimum Group Size',
     'room.roomQuantity': 'Room Quantity',
     'room.roomDescription': 'Room Description',
     'room.add': 'New A Room',

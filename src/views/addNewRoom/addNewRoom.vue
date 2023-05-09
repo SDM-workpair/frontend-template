@@ -16,7 +16,7 @@
 
     <!-- 這裡是配對人數 -->
     <div class="ladyqua">
-      <label for="quantity">{{ $t('room.roomQuantity') }}</label>
+      <label for="quantity">{{ $t('room.minMemberNum') }}</label>
       <input
         id="quantity"
         type="number"
