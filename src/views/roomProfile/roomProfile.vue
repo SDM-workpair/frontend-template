@@ -235,6 +235,7 @@ import { ref } from 'vue'
     // 傳值到matching room
   this.$router.push({
             path: '/matchingroom/Swipe',
+            // name: 'Swipe',
             query: {
               roomID: this.newRoomID,
               memberID: this.memberID,

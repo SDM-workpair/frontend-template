@@ -39,17 +39,24 @@
   import axios from 'axios'
 
   export default {
-    name: 'App',
+    name: 'Swipe',
     components: { Tinder },
-    data: () => ({
+    data () {
+ return {
       queue: [],
       offset: 0,
       history: [],
       recom: [],
-      swipe: []
-    }),
+      swipe: [],
+      roomID: this.$route.query.roomID,
+      memberID: this.$route.query.memberID
+    }
+},
     created () {
+      // const roomID = this.$route.query.roomID
+      // const memberID = this.$route.query.memberID
       this.mock()
+      console.log(this.roomID, this.memberID)
     },
     methods: {
       // getRecom () {
@@ -84,10 +91,10 @@
       // },
       mock (count = 5, append = true) {
         const token = sessionStorage.getItem('token')
-        console.log(token)
+        // console.log(this.roomID)
         axios.post('/api/v1/swipe-card/swipe-recommend', {
           member_id: this.memberID,
-          room_id: this.newRoomID
+          room_id: this.roomID
         }, {
           headers: {
             'Authorization': 'Bearer ' + token
@@ -105,25 +112,27 @@
               name: member.name
             }
           })
-            console.log(this.recom)
-            console.log(this.recom[1].member_id)
-            const list = []
-            for (let i = 0; i < this.recom.length; i++) {
-              list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id })
-              this.offset++
-            }
-            console.log(list)
-            // for (let i = 0; i < count; i++) {
-            //   list.push({ id: source[this.offset] })
-            //   this.offset++
-            // }
-            if (append) {
-              this.queue = this.queue.concat(list)
-            } else {
-              this.queue.unshift(...list)
-            }
-            })
-        .catch((error) => console.log(error))
+          console.log(this.recom)
+          console.log(this.recom[0].name)
+          console.log(this.recom.length)
+          console.log(this.offset)
+          const list = []
+          for (let i = 0; i < this.recom.length; i++) {
+            list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id })
+            this.offset++
+          }
+          console.log(list)
+          // for (let i = 0; i < count; i++) {
+          //   list.push({ id: source[this.offset] })
+          //   this.offset++
+          // }
+          if (append) {
+            this.queue = this.queue.concat(list)
+          } else {
+            this.queue.unshift(...list)
+          }
+          })
+      .catch((error) => console.log(error))
       },
       onSubmit (choice) {
         if (choice.type === 'like') {
@@ -131,7 +140,7 @@
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
             member_id: this.memberID,
-            room_id: this.newRoomID,
+            room_id: this.roomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: true,
             is_hated: false
@@ -157,7 +166,7 @@
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
             member_id: this.memberID,
-            room_id: this.newRoomID,
+            room_id: this.roomID,
             target_member_id: choice.item.recommended_member_id,
             is_liked: false,
             is_hated: true

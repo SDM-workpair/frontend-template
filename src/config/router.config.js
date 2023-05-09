@@ -190,6 +190,7 @@ export const asyncRouterMap = [
         path: '/matchingroom',
         name: 'matchingroom',
         component: RouteView,
+        hidden: true,
         redirect: '/matchingroom/Swipe',
         meta: { title: 'menu.matchingroom', keepAlive: true, icon: 'user' },
         children: [
@@ -197,6 +198,7 @@ export const asyncRouterMap = [
             path: '/matchingroom/Swipe',
             name: 'MatchingRoomSwipe',
             component: () => import('@/views/matchingroom/Swipe'),
+            props: (route) => route.params,
             meta: { title: 'menu.matchingroom.swipe', keepAlive: false }
           }
         //   {
