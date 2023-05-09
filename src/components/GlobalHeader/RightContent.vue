@@ -15,8 +15,8 @@
 
     <a-drawer :title="$t('nav.notification')" :visible="drawerVisible" :width="350" :closable="true" @close="handleDrawerClose">
       <p v-for="(item, index) in myList" :key="index">{{ item.content }}</p>
-      <p>{{ $t('home.dueDate') }}</p>
-      <p>{{ $t('nav.notification') }}</p>
+      <!-- <p>{{ $t('home.dueDate') }}</p>
+      <p>{{ $t('nav.notification') }}</p> -->
     </a-drawer>
 
   </div>
