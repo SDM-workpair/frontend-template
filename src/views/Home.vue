@@ -56,8 +56,8 @@
       return {
         loading: true,
         show: [],
-        matching_rooms: []
-
+        matching_rooms: [],
+        myRooms: []
       }
     },
     methods: {
@@ -75,6 +75,7 @@
       refreshMR () {
         const token = sessionStorage.getItem('token')
         console.log(token)
+        // Show出所有room
         axios.post('/api/v1/search/matching-room/list', {
           prompt: '',
           query_all: true

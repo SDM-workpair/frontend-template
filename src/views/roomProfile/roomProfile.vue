@@ -18,7 +18,7 @@
       </div>
     </div>
 
-    <div class="tagBody">
+    <div>
       <!-- 新增我的Tag -->
 
       <label>{{ $t('room.new_my_tag') }}
@@ -28,16 +28,16 @@
       <!-- 推薦我的Tag -->
 
       <!-- 這裡的recommand list是寫死的 -->
-      <label>{{ $t('room.recommand_my_tag') }}
-        <button @click="addRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
-      </label>
-      <label>{{ $t('room.about_my_tag') }}
-        <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
-      </label>
+      <label>{{ $t('room.recommand_my_tag') }}</label>
+      <button @click="addRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
+
+      <label>{{ $t('room.about_my_tag') }}</label>
+      <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
+
     </div>
     <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;"/>
     <!-- 這裡以下是FIND TAG -->
-    <div class="tagBody">
+    <div>
       <!-- <v-container fluid style="margin-left:30px;"> -->
       <!-- 新增Find Tag -->
       <!-- <v-list> -->
@@ -53,15 +53,13 @@
         <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
       </label> -->
 
-      <label>{{ $t('room.new_find_tag') }}
-        <button @click="addFindRec(item)" class="hiRec" v-for="(item, index) in recommand_list" :key="index">{{ item }}</button>
-      </label>
-
+      <label>{{ $t('room.new_find_tag') }}</label>
+      <button @click="addFindRec(item)" v-for="(item, index) in recommand_list1" :key="index" class="hiRec">{{ item }}</button>
       <!-- </v-list>
       <v-list> -->
       <label>{{ $t('room.about_find_tag') }}</label>
       <!-- <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div> -->
-      <button @click="removeFindTag(item)" class="hiTag" v-for="(item, index) in find_textList" :key="index">{{ item }}</button>
+      <button @click="removeFindTag(item)" v-for="(item, index) in find_textList" :key="index" class="hiTag">{{ item }}</button>
     </div>
     <!--
       </v-list>
@@ -76,8 +74,8 @@
       <a-modal
         v-model="modal2Visible"
         :title="$t('room.msg1')"
-        :cancelText= "$t('layouts.userLayout.cancel')"
-        :okText= "$t('layouts.userLayout.ok')"
+        :cancelText="$t('layouts.userLayout.cancel')"
+        :okText="$t('layouts.userLayout.ok')"
         centered
         @ok="joinRoom"
       >
@@ -130,7 +128,8 @@ import { ref } from 'vue'
       name: '',
       photo: '',
       lineID: '',
-      recommand_list: ['frontend', 'backend']
+      recommand_list: ['frontend', 'backend'],
+      recommand_list1: ['pretty', 'ugly']
     }
   },
   methods: {
@@ -177,6 +176,10 @@ import { ref } from 'vue'
     addFindRec (item) {
         this.find_textList.push(item)
         this.inputFindText = ''
+        const i = this.recommand_list1.indexOf(item)
+        if (i > -1) { // only splice array when item is found
+          this.recommand_list1.splice(i, 1) // 2nd parameter means remove one item only
+          }
     },
     joinRoom () {
       this.modal2Visible = false
