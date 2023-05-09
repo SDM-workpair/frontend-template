@@ -25,7 +25,7 @@ export const asyncRouterMap = [
     name: 'index',
     component: BasicLayout,
     meta: { title: '' },
-    redirect: '/dashboard/workplace',
+    redirect: '/home',
     children: [
 
       {
