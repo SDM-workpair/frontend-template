@@ -76,6 +76,8 @@
       <a-modal
         v-model="modal2Visible"
         :title="$t('room.msg1')"
+        :cancelText= "$t('layouts.userLayout.cancel')"
+        :okText= "$t('layouts.userLayout.ok')"
         centered
         @ok="joinRoom"
       >

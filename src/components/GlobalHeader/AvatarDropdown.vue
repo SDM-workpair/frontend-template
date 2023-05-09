@@ -54,6 +54,8 @@ export default {
       Modal.confirm({
         title: this.$t('layouts.usermenu.dialog.title'),
         content: this.$t('layouts.usermenu.dialog.content'),
+        cancelText: this.$t('layouts.userLayout.cancel'),
+        okText: this.$t('layouts.userLayout.ok'),
         onOk () {
           // return new Promise((resolve, reject) => {
           //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1500)
