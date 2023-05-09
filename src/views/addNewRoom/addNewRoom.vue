@@ -48,6 +48,13 @@ import axios from 'axios'
     // },
     setup () {
     // const selectedDateTime = { value: null }
+    const token = sessionStorage.getItem('token')
+            if (!token) {
+                const currentUrl = window.location.href
+                const pathname = window.location.pathname
+                const newUrl = currentUrl.replace(pathname, '/user/login')
+                window.location.replace(newUrl)
+          }
     const selectedDateTime = ref(new Date())
     const onChange = (value, dateString) => {
       console.log('Selected Time: ', value)

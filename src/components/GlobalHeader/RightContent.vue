@@ -70,6 +70,18 @@ export default {
   },
   mounted () {
     this.token = sessionStorage.getItem('token')
+    if (!this.token) {
+      const currentUrl = window.location.href
+      const pathname = window.location.pathname
+      const newUrl = currentUrl.replace(pathname, '/user/login')
+      window.location.replace(newUrl)
+    }
+
+setTimeout(() => {
+  const currentUrl = window.location.href
+  const pathname = window.location.pathname
+  const newUrl = currentUrl.replace(pathname, '/user/login')
+}, 2000)
     this.initWebSocket()
     fetch('/api/v1/notification/my-list', {
       method: 'GET',
@@ -121,7 +133,7 @@ export default {
     },
 
     initWebSocket () {
-      const url = `ws://localhost:8000/ws/${this.token}`
+      const url = `ws://0.0.0.0:8000/ws/${this.token}`
       const socket = new WebSocket(url)
 
       socket.onopen = () => {

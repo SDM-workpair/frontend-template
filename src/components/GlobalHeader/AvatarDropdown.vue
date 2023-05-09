@@ -60,7 +60,7 @@ export default {
           // return new Promise((resolve, reject) => {
           //   setTimeout(Math.random() > 0.5 ? resolve : reject, 1500)
           // }).catch(() => console.log('Oops errors!'))
-            const token = sessionStorage.getItem('token')
+            sessionStorage.removeItem('token')
             const currentUrl = window.location.href
             const pathname = window.location.pathname
             const newUrl = currentUrl.replace(pathname, '/user/login')

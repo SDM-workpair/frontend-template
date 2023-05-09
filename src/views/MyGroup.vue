@@ -83,6 +83,13 @@
         mounted: function () {
           this.refreshMR()
           this.expandDescription()
+          const token = sessionStorage.getItem('token')
+            if (!token) {
+                const currentUrl = window.location.href
+                const pathname = window.location.pathname
+                const newUrl = currentUrl.replace(pathname, '/user/login')
+                window.location.replace(newUrl)
+          }
       }
         }
   </script>
