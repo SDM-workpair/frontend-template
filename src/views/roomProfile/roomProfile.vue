@@ -1,6 +1,6 @@
 
 <template>
-  <page-header-wrapper>
+  <div>
     <div class="roomInfoBody"> 配對活動名稱 : {{ roomName }}|關閉時間 : {{ matchDate }}</div>
 
     <div class="profileBody">
@@ -89,7 +89,7 @@
 
     </div>
 
-  </page-header-wrapper>
+  </div>
 
 </template>
 

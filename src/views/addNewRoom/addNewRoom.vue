@@ -1,6 +1,5 @@
 <template>
-  <page-header-wrapper>
-
+  <div>
     <!-- 這裡是配對活動名稱 -->
     <div class="input-panel">
       <label for="input-field">{{ $t('room.roomName') }}</label>
@@ -52,8 +51,7 @@
     <div class="ladyhaha">
       <button @click="createMR" class="ladygaga" >{{ $t('room.add') }}</button>
     </div>
-
-  </page-header-wrapper>
+  </div>
 </template>
 
 <script>
