@@ -201,7 +201,7 @@ import moment from 'moment'
             query: {
                     roomID: roomID,
                     roomName: this.inputValue,
-                    matchDate: this.selectedDateTime
+                    matchDate: this.formattedDate
                   }
           })
         })
