@@ -22,11 +22,11 @@
           </div>
           <!-- 這裡是試試看開始 -->
 
-          <a-collapse v-model="activeKey">
+          <!-- <a-collapse v-model="activeKey">
             <a-collapse-panel key="1" header="This is panel header 1">
               <p>{{ text }}</p>
             </a-collapse-panel>
-          </a-collapse>
+          </a-collapse> -->
 
           <!-- 這裡是試試看結束 -->
           <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
