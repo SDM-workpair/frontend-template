@@ -1,6 +1,5 @@
 <template>
-  <page-header-wrapper>
-
+  <div>
     <!-- 這裡是配對活動名稱 -->
     <div class="input-panel">
       <label for="input-field">{{ $t('room.roomName') }}</label>
@@ -11,8 +10,26 @@
     <!-- 這裡是配對日期 -->
     <div style="margin-top: 20px;">
       <label for="date" class="datelabel">{{ $t('room.dueDate') }}</label>
-      <a-date-picker show-time :placeholder="$t('room.inputDate')" @change="onChange" @ok="onOk" />
+      <a-date-picker
+        v-model="selectedDateTime"
+        show-time
+        :placeholder="$t('room.inputDate')"
+        :disabled-date="disabledDate"
+        format="YYYY-MM-DD HH:mm:ss"
+        @change="onChange"
+        @ok="onOk" />
     </div>
+    <!-- <div>
+      <a-date-picker v-model="selectedDate" @change="formatDate"></a-date-picker>
+      <p>Formatted Date: {{ formattedDate }}</p>
+    </div> -->
+    <!-- <a-date-picker
+      v-model="value1"
+      format="YYYY-MM-DD HH:mm:ss"
+      :disabled-date="disabledDate"
+      :disabled-time="disabledDateTime"
+      :show-time="{ defaultValue: moment('00:00:00', 'HH:mm:ss') }"
+    /> -->
 
     <!-- 這裡是配對人數 -->
     <div class="ladyqua">
@@ -34,14 +51,14 @@
     <div class="ladyhaha">
       <button @click="createMR" class="ladygaga" >{{ $t('room.add') }}</button>
     </div>
-
-  </page-header-wrapper>
+  </div>
 </template>
 
 <script>
 // import { CheckCircleOutlined } from '@ant-design/icons-vue'
 import { ref } from 'vue'
 import axios from 'axios'
+import moment from 'moment'
   export default {
     // components: {
     //   CheckCircleOutlined
@@ -64,20 +81,37 @@ import axios from 'axios'
       selectedDateTime.value = value.toISOString()
       console.log('onOk: ', value.toISOString())
       console.log('onselectedDateTimeOk: ', selectedDateTime.value)
+      console.log('onselectedDateTimeOk: ', this.formatDate(selectedDateTime.value))
     }
+    // const range = (start, end) => {
+    //   const result = [];
+    //   for (let i = start; i < end; i++) {
+    //     result.push(i);
+    //   }
+    //   return result;
+    // };
+    const disabledDate = current => {
+      // Can not select days before today and today
+      const yesterday = new Date()
+      yesterday.setDate(yesterday.getDate() - 1)
+      // return current < moment().endOf('day')-1
+      return current < yesterday
+    }
+    // const disabledDateTime = () => {
+    //   return {
+    //     disabledHours: () => range(0, 24).splice(4, 20),
+    //     disabledMinutes: () => range(30, 60),
+    //     disabledSeconds: () => [55, 56],
+    //   };
+    // };
     return {
       onChange,
       onOk,
-      // value1: ref()
-      selectedDateTime
-      // console.log('onselectedDateTimeOk: ', selectedDateTime.value)
-      // inputValue: '',
-      // quantity: 1,
-      // description: '',
-      // roomID: '',
-      // email: 'user@example.com',
-      // is_admin: false,
-      // name: ''
+      selectedDateTime,
+      moment,
+      value1: ref(),
+      disabledDate
+      // disabledDateTime
     }
   },
 
@@ -90,16 +124,39 @@ import axios from 'axios'
       roomID: '',
       email: 'user@example.com',
       is_admin: false,
-      name: ''
+      name: '',
+      // selectedDate: null,
+      formattedDate: null
     }
   },
     // props: {
     //   show: Boolean
     // },
     methods: {
-      // close () {
-      //   this.$emit('close')
-      // },
+      formatDate (value) {
+        if (value) {
+        const date = new Date(value)
+        const year = date.getFullYear()
+        const month = String(date.getMonth() + 1).padStart(2, '0')
+        const day = String(date.getDate()).padStart(2, '0')
+        const hours = String(date.getHours()).padStart(2, '0')
+        const minutes = String(date.getMinutes()).padStart(2, '0')
+        const seconds = String(date.getSeconds()).padStart(2, '0')
+        const milliseconds = String(date.getMilliseconds()).padStart(3, '0')
+        // const timezoneOffset = date.getTimezoneOffset()
+        // const timezoneOffsetHours = Math.floor(Math.abs(timezoneOffset) / 60).toString().padStart(2, '0')
+        // const timezoneOffsetMinutes = (Math.abs(timezoneOffset) % 60).toString().padStart(2, '0')
+        // const timezoneSign = timezoneOffset <= 0 ? '+' : '-'
+        // const timezoneSign = timezoneOffset <= '+08'
+
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`
+        // const formattedTimezone = `${timezoneSign}${timezoneOffsetHours}${timezoneOffsetMinutes}`
+
+        this.formattedDate = `${formattedDate}+08`
+      } else {
+        this.formattedDate = null
+      }
+        },
       createMR () {
         // const router = useRouter()
 
@@ -119,11 +176,12 @@ import axios from 'axios'
         //   alert('配對空間資訊 ')
         //   return
         // }
+        this.formatDate(this.selectedDateTime)
         const token = sessionStorage.getItem('token')
         console.log(token)
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
-          due_time: this.selectedDateTime,
+          due_time: this.formattedDate,
           min_member_num: 0,
           description: this.description,
           is_forced_matching: false
@@ -141,7 +199,7 @@ import axios from 'axios'
             query: {
                     roomID: roomID,
                     roomName: this.inputValue,
-                    matchDate: this.selectedDateTime
+                    matchDate: this.formattedDate
                   }
           })
         })
@@ -149,7 +207,7 @@ import axios from 'axios'
         .catch((error) => console.log(error))
 
       console.log('輸入的值是：', this.inputValue)
-      console.log('輸入的值是：', this.selectedDateTime)
+      console.log('輸入的值是：', this.formattedDate)
       console.log('輸入的值是：', this.quantity)
       console.log('輸入的值是：', this.description)
 

@@ -1,6 +1,6 @@
 
 <template>
-  <page-header-wrapper>
+  <div>
     <div class="roomInfoBody"> 配對活動名稱 : {{ roomName }}|關閉時間 : {{ matchDate }}</div>
 
     <div class="profileBody">
@@ -22,7 +22,7 @@
       <!-- 新增我的Tag -->
 
       <label>{{ $t('room.new_my_tag') }}
-        <input type="text" v-model="aaa" :placeholder="$t('room.new_my_tag')" class="ladyinput" />
+        <input type="text" v-model="aaa" :placeholder="$t('room.new_my_tag')" class="ladyinput" @keyup.enter="addText" />
         <a-button shape="circle" @click="addText"><a-icon type="plus-circle" class="hiRP"/></a-button>
       </label>
       <!-- 推薦我的Tag -->
@@ -35,6 +35,7 @@
       <button @click="removeMyTag(item)" class="hiTag" v-for="(item, index) in textList" :key="index">{{ item }}</button>
 
     </div>
+    <!-- {{ textList }} -->
     <hr class="h-color mx-2" style="border-style: dashed; border-width: 1px;"/>
     <!-- 這裡以下是FIND TAG -->
     <div>
@@ -43,7 +44,7 @@
       <!-- <v-list> -->
 
       <label>{{ $t('room.new_find_tag') }}
-        <input type="text" v-model="inputFindText" :placeholder="$t('room.new_find_tag')" class="ladyinput" />
+        <input type="text" v-model="inputFindText" :placeholder="$t('room.new_find_tag')" class="ladyinput" @keyup.enter="addFindText"/>
         <a-button shape="circle" @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></a-button>
       </label>
       <!-- </v-list> -->
@@ -60,6 +61,7 @@
       <label>{{ $t('room.about_find_tag') }}</label>
       <!-- <div class="hiTag" v-for="f_text in find_textList" :key="f_text">{{ f_text }}</div> -->
       <button @click="removeFindTag(item)" v-for="(item, index) in find_textList" :key="index" class="hiTag">{{ item }}</button>
+      <!-- {{ find_textList }} -->
     </div>
     <!--
       </v-list>
@@ -87,7 +89,7 @@
 
     </div>
 
-  </page-header-wrapper>
+  </div>
 
 </template>
 
@@ -128,8 +130,8 @@ import { ref } from 'vue'
       name: '',
       photo: '',
       lineID: '',
-      recommand_list: ['frontend', 'backend'],
-      recommand_list1: ['pretty', 'ugly']
+      recommand_list: ['FRONTEND', 'BACKEND'],
+      recommand_list1: ['PRETTY', 'UGLY']
     }
   },
   methods: {
@@ -149,13 +151,13 @@ import { ref } from 'vue'
     },
     addItem () {
       if (this.inputValue) {
-        this.itemList.push(this.inputValue)
+        this.itemList.push(this.inputValue.toUpperCase())
         this.inputValue = ''
       }
     },
     addText () {
       if (this.aaa) {
-        this.textList.push(this.aaa)
+        this.textList.push(this.aaa.toUpperCase())
         this.aaa = ''
       }
     },
@@ -169,7 +171,7 @@ import { ref } from 'vue'
     },
     addFindText () {
       if (this.inputFindText) {
-        this.find_textList.push(this.inputFindText)
+        this.find_textList.push(this.inputFindText.toUpperCase())
         this.inputFindText = ''
       }
     },
@@ -243,9 +245,9 @@ import { ref } from 'vue'
             // name: 'Swipe',
             query: {
               roomID: this.newRoomID,
-              memberID: this.memberID,
-              my_tag_list: this.textList,
-              find_tag_list: this.find_textList
+              memberID: this.memberID
+              // my_tag_list: this.textList,
+              // find_tag_list: this.find_textList
             }
           })
   console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
