@@ -9,17 +9,26 @@
         v-for="(item, index) in matching_rooms"
         :key="index">
 
-        <chart-card :title="item.name" total="">
+        <chart-card :title="item.name" total="" style="font-size: 13px;">
           <div>
             <trend flag="up" style="margin-right: 16px;">
+              {{ $t('home.roomID') }}：{{ item.roomID }}<br>
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
             <div class="chart-card-footer">
               <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
             </div>
-
           </div>
+          <!-- 這裡是試試看開始 -->
+
+          <a-collapse v-model="activeKey">
+            <a-collapse-panel key="1" header="This is panel header 1">
+              <p>{{ text }}</p>
+            </a-collapse-panel>
+          </a-collapse>
+
+          <!-- 這裡是試試看結束 -->
           <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
         </chart-card>
       </a-col>
@@ -57,11 +66,22 @@
         loading: true,
         show: [],
         matching_rooms: [],
-        myRooms: []
+        myRooms: [],
+        showMore: false,
+        isCollapsed: true,
+        text: `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`,
+        activeKey: ['1']
       }
     },
+    watch: {
+    activeKey (key) {
+      console.log(key)
+    }
+  },
     methods: {
-
+      handleCollapseChange (activeNames) {
+      this.activeNames = activeNames
+    },
       joinMR (roomID, name, dueDate) {
         this.$router.push({
             path: '/roomProfile',
@@ -115,6 +135,7 @@
 </script>
 
   <style lang="less" scoped>
+
     .extra-wrapper {
       line-height: 55px;
       padding-right: 24px;
@@ -157,4 +178,11 @@
       right: 54px;
       bottom: 12px;
     }
+  </style>
+
+  <style>
+   span.chart-card-title {
+    font-weight: bold;
+    font-size: 17px;
+}
   </style>

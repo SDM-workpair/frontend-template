@@ -9,9 +9,10 @@
         v-for="(item, index) in matching_rooms"
         :key="index">
 
-        <chart-card :title="item.name" total="">
+        <chart-card :title="item.name" total="" style="font-size: 13px;">
           <div>
             <trend flag="up" style="margin-right: 16px;">
+              {{ $t('home.roomID') }}：{{ item.roomID }}<br>
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
