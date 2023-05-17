@@ -1,7 +1,11 @@
 
 <template>
   <div>
-    <div class="roomInfoBody"> 配對活動名稱 : {{ roomName }}|關閉時間 : {{ matchDate }}</div>
+    <a-card style="marginBottom: 24px;">
+      <h1 style="font-weight: bold;">{{ $t('menu.roomprofile') }}</h1>
+    </a-card>
+    <div class="roomInfoBody"> {{ $t('room.roomName') }} : {{ roomName }}<br>
+      {{ $t('home.dueDate') }} : {{ matchDate }}</div>
 
     <div class="profileBody">
       <img class="avatar" id="photo" alt="User Avatar">

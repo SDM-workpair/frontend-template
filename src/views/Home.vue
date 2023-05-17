@@ -18,26 +18,36 @@
             </trend>
             <div>
               <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
-              <a-button type="link" @click="toggleContent(item)" :icon="item.showDescription ? 'up-circle' : 'down-circle'" />
             </div>
           </div>
-          <template #footer>
+          <!-- <template #footer style="display: inline-block;">
             <div v-show="item.showDescription">
               {{ item.description }}
             </div>
+          </template> -->
+          <template #action>
+            <a-button type="link" @click="item.showDescription = true" icon="ellipsis" />
           </template>
+          <a-modal
+          v-model="item.showDescription"
+          :title="$t('room.roomDescription')"
+          centered
+          :footer="null"
+        >
+          <!-- @ok="modal2Visible = false" -->
+          <p>{{ item.description }}</p>
+        </a-modal>
         </chart-card>
       </a-col>
     </a-row>
     <div>
-      <!-- <a-button type="link" @click="toggleContent" :icon="showContent ? 'up-circle' : 'down-circle'" /> -->
     </div>
   </div>
 </template>
 
   <script>
   import axios from 'axios'
-
+  import { ref } from 'vue'
   import {
     ChartCard
   } from '@/components'
@@ -49,17 +59,12 @@
     components: {
       ChartCard
     },
-  //   setup () {
-  //   const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
-  //   const activeKey = ref(['1'])
-  //   watch(activeKey, val => {
-  //     console.log(val)
-  //   })
-  //   return {
-  //     text,
-  //     activeKey
-  //   }
-  // },
+    setup () {
+        const modal2Visible = ref(false)
+        return {
+          modal2Visible
+        }
+  },
     data () {
       return {
         loading: true,
