@@ -32,6 +32,7 @@
       <!-- <img src="../../assets/vue-tinder/rewind.png" @click="decide('rewind')"> -->
       <img src="../../assets/vue-tinder/nope.png" @click="decide('nope')">
       <!-- <img src="../../assets/vue-tinder/super-like.png" @click="decide('super')"> -->
+      <img style="background-color: white;" src="../../assets/vue-tinder/exit.png" @click="leaveRoom">
       <img src="../../assets/vue-tinder/like.png" @click="decide('like')">
       <!-- <img src="../../assets/vue-tinder/help.png" @click="decide('help')"> -->
     </div>
@@ -56,7 +57,9 @@
       swipe: [],
       roomID: this.$route.query.roomID,
       memberID: this.$route.query.memberID,
-      tag: []
+      tag: [],
+      email: '',
+      name: ''
     }
 },
     created () {
@@ -64,6 +67,7 @@
       // const memberID = this.$route.query.memberID
       this.mock()
       console.log(this.roomID, this.memberID)
+      this.fetchUser()
     },
     methods: {
       // getRecom () {
@@ -96,6 +100,53 @@
       //   })
       //   .catch((error) => console.log(error))
       // },
+      async leaveRoom () {
+        const token = sessionStorage.getItem('token')
+        console.log('leave room method', token)
+        console.log('leave room method', this.email, this.name)
+        const config = {
+                          headers: {
+                            'Authorization': 'Bearer ' + token
+                          },
+                          data: {
+                                  user:
+                                  {
+                                      email: this.email,
+                                      is_admin: false,
+                                      name: this.name
+                                  },
+                                  matching_room:
+                                  {
+                                    room_id: this.roomID
+                                  }
+                          }
+                        }
+        axios.delete('/api/v1/mr-member/', config)
+        .then((leaveR) => {
+          console.log(leaveR)
+          const currentUrl = window.location.href
+          const pathname = window.location.pathname
+          const newUrl = currentUrl.replace(pathname, '/home')
+          window.location.replace(newUrl)
+        })
+        .catch((error) => console.log('失敗囉廢物', error))
+      },
+      fetchUser () {
+      const token = sessionStorage.getItem('token')
+      console.log(token)
+      axios.get('/api/v1/users/profile/me', {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then((userR) => {
+          this.email = userR.data.data.email
+          this.name = userR.data.data.name
+          console.log('fetch method', userR)
+        })
+
+        .catch((error) => console.log(error))
+    },
       mock (count = 5, append = true) {
         const token = sessionStorage.getItem('token')
         // console.log(this.roomID)

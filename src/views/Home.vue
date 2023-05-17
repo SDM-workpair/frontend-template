@@ -25,7 +25,7 @@
           <!-- <a-collapse v-model="activeKey">
             <a-collapse-panel key="1" header="This is panel header 1">
               <p>{{ text }}</p>
-            </a-collapse-panel> 
+            </a-collapse-panel>
           </a-collapse> -->
 
           <!-- 這裡是試試看結束 -->
