@@ -54,7 +54,7 @@
         <button @click="addFindRec(item.name)" class="hiRec" v-for="(item, index) in matching_rooms" :key="index">{{ item.name }}</button>
       </label> -->
 
-      <label>{{ $t('room.new_find_tag') }}</label>
+      <label>{{ $t('room.recommand_find_tag') }}</label>
       <button @click="addFindRec(item)" v-for="(item, index) in recommand_list1" :key="index" class="hiRec">{{ item }}</button>
       <!-- </v-list>
       <v-list> -->

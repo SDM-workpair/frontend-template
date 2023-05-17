@@ -371,7 +371,7 @@
   }
 
   .null {
-    margin-top: 300px;
+    margin-top: 250px;
     text-align: center;
     font-size: 24px;
     z-index: -1;
