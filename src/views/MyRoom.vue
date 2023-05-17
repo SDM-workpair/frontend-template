@@ -4,7 +4,7 @@
       <a-col
         :sm="24"
         :md="12"
-        :xl="6"
+        :xl="8"
         :style="{ marginBottom: '24px' }"
         v-for="(item, index) in matching_rooms"
         :key="index">

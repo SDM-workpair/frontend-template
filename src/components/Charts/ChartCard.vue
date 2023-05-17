@@ -63,7 +63,9 @@ export default {
       width: 100%;
       color: rgba(0, 0, 0, .45);
       font-size: 14px;
+      font-weight: bold;
       line-height: 22px;
+      margin-bottom: 10px;
     }
   }
 

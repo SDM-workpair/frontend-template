@@ -32,7 +32,7 @@
       <!-- <img src="../../assets/vue-tinder/rewind.png" @click="decide('rewind')"> -->
       <img src="../../assets/vue-tinder/nope.png" @click="decide('nope')">
       <!-- <img src="../../assets/vue-tinder/super-like.png" @click="decide('super')"> -->
-      <img style="background-color: white;" src="../../assets/vue-tinder/exit.png" @click="leaveRoom">
+      <img style="background-color: white; width:50px;" src="../../assets/vue-tinder/exit.png" @click="leaveRoom">
       <img src="../../assets/vue-tinder/like.png" @click="decide('like')">
       <!-- <img src="../../assets/vue-tinder/help.png" @click="decide('help')"> -->
     </div>

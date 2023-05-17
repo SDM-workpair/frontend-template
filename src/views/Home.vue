@@ -4,7 +4,7 @@
       <a-col
         :sm="24"
         :md="12"
-        :xl="6"
+        :xl="8"
         :style="{ marginBottom: '24px' }"
         v-for="(item, index) in matching_rooms"
         :key="index">
@@ -16,23 +16,22 @@
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
-            <div class="chart-card-footer">
+            <div>
               <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
+              <a-button type="link" @click="toggleContent(item)" :icon="item.showDescription ? 'up-circle' : 'down-circle'" />
             </div>
           </div>
-          <!-- 這裡是試試看開始 -->
-
-          <!-- <a-collapse v-model="activeKey">
-            <a-collapse-panel key="1" header="This is panel header 1">
-              <p>{{ text }}</p>
-            </a-collapse-panel>
-          </a-collapse> -->
-
-          <!-- 這裡是試試看結束 -->
-          <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
+          <template #footer>
+            <div v-show="item.showDescription">
+              {{ item.description }}
+            </div>
+          </template>
         </chart-card>
       </a-col>
     </a-row>
+    <div>
+      <!-- <a-button type="link" @click="toggleContent" :icon="showContent ? 'up-circle' : 'down-circle'" /> -->
+    </div>
   </div>
 </template>
 
@@ -68,9 +67,8 @@
         matching_rooms: [],
         myRooms: [],
         showMore: false,
-        isCollapsed: true,
-        text: `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`,
-        activeKey: ['1']
+        expanded: false,
+        showContent: false
       }
     },
     watch: {
@@ -79,8 +77,8 @@
     }
   },
     methods: {
-      handleCollapseChange (activeNames) {
-      this.activeNames = activeNames
+      toggleContent (item) {
+        item.showDescription = !item.showDescription
     },
       joinMR (roomID, name, dueDate) {
         this.$router.push({
@@ -111,7 +109,8 @@
                 due_time: new Date(room.due_time),
                 description: room.description,
                 min_member_num: room.min_member_num,
-                roomID: room.room_id
+                roomID: room.room_id,
+                showDescription: false
               }
           })
             console.log(this.matching_rooms)

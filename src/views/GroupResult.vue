@@ -19,7 +19,7 @@
             <template #description>
               <div> {{ item.email }}</div>
               <div> {{ item.line_id }}</div>
-              <div> {{ item.image }}</div>
+              <!-- <div> {{ item.image }}</div> -->
             </template>
           </a-card-meta>
         </a-card>
