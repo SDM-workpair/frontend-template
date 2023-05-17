@@ -10,7 +10,12 @@
             'background-image': `url(https://cn.bing.com//th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
           }"
         >
-          <span class="title">{{ scope.data.name }}</span>
+          <span class="info">
+            <span class="title">{{ scope.data.name }}</span>
+            <span class="rating" v-for="(self_tag, index) in scope.data.self_tag_text" :key="self_tag.id">{{ self_tag }}
+              <span v-if="index !== scope.data.self_tag_text.length - 1">&nbsp;</span>
+            </span>
+          </span>
         </div>
       </template>
       <!-- <template slot-scope="scope">
@@ -20,7 +25,7 @@
       </template> -->
       <img class="like-pointer" slot="like" src="../../assets/vue-tinder/like-txt.png">
       <img class="nope-pointer" slot="nope" src="../../assets/vue-tinder/nope-txt.png">
-      <img class="super-pointer" slot="super" src="../../assets/vue-tinder/super-txt.png">
+      <img class="like-pointer" slot="super" src="../../assets/vue-tinder/like-txt.png">
       <img class="rewind-pointer" slot="rewind" src="../../assets/vue-tinder/rewind-txt.png">
     </Tinder>
     <div class="btns">
@@ -30,6 +35,7 @@
       <img src="../../assets/vue-tinder/like.png" @click="decide('like')">
       <!-- <img src="../../assets/vue-tinder/help.png" @click="decide('help')"> -->
     </div>
+    <div class="null">目前沒有新加入的用戶</div>
   </div>
 </template>
 
@@ -49,7 +55,8 @@
       recom: [],
       swipe: [],
       roomID: this.$route.query.roomID,
-      memberID: this.$route.query.memberID
+      memberID: this.$route.query.memberID,
+      tag: []
     }
 },
     created () {
@@ -116,9 +123,10 @@
           console.log(this.recom[0].name)
           console.log(this.recom.length)
           console.log(this.offset)
+          console.log(this.recom[0].self_tag_text)
           const list = []
           for (let i = 0; i < this.recom.length; i++) {
-            list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id })
+            list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id, self_tag_text: this.recom[this.offset].self_tag_text })
             this.offset++
           }
           console.log(list)
@@ -135,7 +143,7 @@
       .catch((error) => console.log(error))
       },
       onSubmit (choice) {
-        if (choice.type === 'like') {
+        if (choice.type === 'like' || choice.type === 'super') {
           const token = sessionStorage.getItem('token')
           console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
@@ -232,8 +240,8 @@
     position: absolute;
     z-index: 1;
     top: 20px;
-    width: 64px;
-    height: 64px;
+    width: 100px;
+    height: 100px;
   }
 
   .nope-pointer {
@@ -305,7 +313,31 @@
     margin-right: 0;
   }
 
-  .title {
+  /* .title {
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 10px;
+    width: 100%;
+    font-family: sans-serif;
+    font-size: 18px;
+    color: #fff;
+    text-shadow: 0 0 1px #000;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.9) 0%,
+      rgba(0, 0, 0, 0.7) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    text-transform: uppercase;
+    font-size: 24px;
+    width: 100%;
+    display: block;
+} */
+
+  .info {
     cursor: pointer;
     position: absolute;
     bottom: 0;
@@ -324,9 +356,24 @@
       rgba(0, 0, 0, 0.7) 50%,
       rgba(255, 255, 255, 0) 100%
     );
+  }
+
+  .title {
     text-transform: uppercase;
     font-size: 24px;
     width: 100%;
     display: block;
+  }
+
+  .tag {
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  .null {
+    margin-top: 250px;
+    text-align: center;
+    font-size: 24px;
+    z-index: -1;
 }
   </style>
