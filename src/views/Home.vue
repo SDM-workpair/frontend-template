@@ -20,11 +20,6 @@
               <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
             </div>
           </div>
-          <!-- <template #footer style="display: inline-block;">
-            <div v-show="item.showDescription">
-              {{ item.description }}
-            </div>
-          </template> -->
           <template #action>
             <a-button type="link" @click="item.showDescription = true" icon="ellipsis" />
           </template>
@@ -47,7 +42,6 @@
 
   <script>
   import axios from 'axios'
-  import { ref } from 'vue'
   import {
     ChartCard
   } from '@/components'
@@ -59,12 +53,6 @@
     components: {
       ChartCard
     },
-    setup () {
-        const modal2Visible = ref(false)
-        return {
-          modal2Visible
-        }
-  },
     data () {
       return {
         loading: true,
