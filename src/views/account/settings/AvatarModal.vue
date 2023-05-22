@@ -1,7 +1,7 @@
 <template>
 
   <a-modal
-    title="修改头像"
+    title=""
     :visible="visible"
     :maskClosable="false"
     :confirmLoading="confirmLoading"
@@ -32,7 +32,7 @@
     <a-row>
       <a-col :lg="2" :md="2">
         <a-upload name="file" :beforeUpload="beforeUpload" :showUploadList="false">
-          <a-button icon="upload">选择图片</a-button>
+          <a-button icon="upload"> {{ $t('account.settings.basic.choose') }}</a-button>
         </a-upload>
       </a-col>
       <a-col :lg="{span: 1, offset: 2}" :md="2">
@@ -48,16 +48,18 @@
         <a-button icon="redo" @click="rotateRight"/>
       </a-col>
       <a-col :lg="{span: 2, offset: 6}" :md="2">
-        <a-button type="primary" @click="finish('blob')">保存</a-button>
+        <a-button type="primary" @click="finish('blob')">{{ $t('account.settings.basic.save') }}</a-button>
       </a-col>
     </a-row>
   </a-modal>
 
 </template>
 <script>
+import axios from 'axios'
 export default {
   data () {
     return {
+      base64Data: '',
       visible: false,
       id: null,
       confirmLoading: false,
@@ -86,6 +88,7 @@ export default {
     },
     cancelHandel () {
       this.close()
+      location.reload()
     },
     changeScale (num) {
       num = num || 1
@@ -111,41 +114,106 @@ export default {
       return false
     },
 
-    // 上传图片（点击上传按钮）
     finish (type) {
-      console.log('finish')
       const _this = this
       const formData = new FormData()
-      // 输出
+
       if (type === 'blob') {
         this.$refs.cropper.getCropBlob((data) => {
+          // name: "邱語謙",
+          // line_id: "hihi",
+          console.log(data)
           const img = window.URL.createObjectURL(data)
-          this.model = true
-          this.modelSrc = img
-          formData.append('file', data, this.fileName)
-          this.$http.post('https://www.mocky.io/v2/5cc8019d300000980a055e76', formData, { contentType: false, processData: false, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
-            .then((response) => {
-              console.log('upload response:', response)
-              // var res = response.data
-              // if (response.status === 'done') {
-              //   _this.imgFile = ''
-              //   _this.headImg = res.realPathList[0] // 完整路径
-              //   _this.uploadImgRelaPath = res.relaPathList[0] // 非完整路径
-              //   _this.$message.success('上传成功')
-              //   this.visible = false
-              // }
-              _this.$message.success('上传成功')
-              _this.$emit('ok', response.url)
-              _this.visible = false
-            })
+          console.log(img)
+
+          const reader = new FileReader()
+          reader.onloadend = () => {
+            this.base64Data = reader.result
+            console.log(this.base64Data)
+            // Perform further operations with the base64Data
+          }
+          reader.readAsDataURL(data)
+
+          const token = sessionStorage.getItem('token')
+          axios.put('/api/v1/users/profile', {
+            image: this.base64Data
+          }, {
+              headers: {
+                'Authorization': 'Bearer ' + token
+              }
+          }).then(response => {
+            // Handle the response
+            console.log(response.data)
+          })
+          .catch(error => {
+            // Handle the error
+            console.error(error)
+          })
+          // formData.append('image', data, this.fileName);
+          // const token = sessionStorage.getItem('token')
+          // axios
+          //   .post('/api/v1/users/profile', formData, {
+          //     headers: {
+          //       'Authorization': 'Bearer ' + token,
+          //       'Content-Type': 'multipart/form-data',
+          //     },
+          //   })
+          //   .then((response) => {
+          //     // 在这里处理上传成功后的逻辑
+          //     const imageUrl = response.data.imageUrl; // 假设服务器返回了图片的 URL
+          //     // 将 imageUrl 存储到数据库中，你可以通过发送请求到适当的 API 端点来实现存储操作
+
+          //     _this.$message.success('上传成功');
+          //     _this.$emit('ok', imageUrl);
+          //     _this.visible = false;
+          //   })
+          //   .catch((error) => {
+          //     // 在这里处理上传失败后的逻辑
+          //     console.error('上传失败:', error);
+          //     _this.$message.error('上传失败');
+          //   });
         })
       } else {
         this.$refs.cropper.getCropData((data) => {
-          this.model = true
-          this.modelSrc = data
+          // 处理非 Blob 类型的数据，例如裁剪后的 Base64 编码字符串
         })
       }
     },
+    // 上传图片（点击上传按钮）
+    // finish (type) {
+    //   console.log('finish')
+    //   const _this = this
+    //   const formData = new FormData()
+    //   // 输出
+    //   if (type === 'blob') {
+    //     this.$refs.cropper.getCropBlob((data) => {
+    //       const img = window.URL.createObjectURL(data)
+    //       this.model = true
+    //       this.modelSrc = img
+    //       formData.append('file', data, this.fileName)
+    //       this.$http.post('https://www.mocky.io/v2/5cc8019d300000980a055e76', formData, { contentType: false, processData: false, headers: { 'Content-Type': 'application/x-www-form-urlencoded' } })
+    //         .then((response) => {
+    //           console.log('upload response:', response)
+    //           // var res = response.data
+    //           // if (response.status === 'done') {
+    //           //   _this.imgFile = ''
+    //           //   _this.headImg = res.realPathList[0] // 完整路径
+    //           //   _this.uploadImgRelaPath = res.relaPathList[0] // 非完整路径
+    //           //   _this.$message.success('上传成功')
+    //           //   this.visible = false
+    //           // }
+    //           _this.$message.success('上传成功')
+    //           _this.$emit('ok', response.url)
+    //           _this.visible = false
+    //         })
+    //     })
+    //   } else {
+    //     this.$refs.cropper.getCropData((data) => {
+    //       this.model = true
+    //       this.modelSrc = data
+    //     })
+    //   }
+    // },
     okHandel () {
       const vm = this
 
