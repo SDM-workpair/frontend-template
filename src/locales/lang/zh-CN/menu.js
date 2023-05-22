@@ -33,7 +33,7 @@ export default {
     'menu.exception.trigger': '触发错误',
     'menu.account': '个人页',
     'menu.account.center': '个人中心',
-    'menu.account.settings': '个人设置',
+    'menu.account.settings': '個人資訊設定',
     'menu.account.trigger': '触发报错',
     'menu.account.logout': '登出帳號',
     'menu.all-matching-room': '所有配對空間',

@@ -1,14 +1,15 @@
 export default {
-  'account.settings.menuMap.basic': '基本设置',
+  'account.settings.menuMap.basic': '個人資訊設定',
   'account.settings.menuMap.security': '安全设置',
   'account.settings.menuMap.custom': '个性化',
   'account.settings.menuMap.binding': '账号绑定',
   'account.settings.menuMap.notification': '新消息通知',
   'account.settings.basic.avatar': '头像',
   'account.settings.basic.change-avatar': '更换头像',
-  'account.settings.basic.email': '邮箱',
+  'account.settings.basic.email': '電子信箱',
   'account.settings.basic.email-message': '请输入您的邮箱!',
-  'account.settings.basic.nickname': '昵称',
+  'account.settings.basic.nickname': '姓名',
+  'account.settings.basic.lid': 'LINE ID',
   'account.settings.basic.nickname-message': '请输入您的昵称!',
   'account.settings.basic.profile': '个人简介',
   'account.settings.basic.profile-message': '请输入个人简介!',
@@ -21,8 +22,10 @@ export default {
   'account.settings.basic.address-message': '请输入您的街道地址!',
   'account.settings.basic.phone': '联系电话',
   'account.settings.basic.phone-message': '请输入您的联系电话!',
-  'account.settings.basic.update': '更新基本信息',
+  'account.settings.basic.update': '更改',
   'account.settings.basic.update.success': '更新基本信息成功',
+  'account.settings.basic.save': '儲存',
+  'account.settings.basic.cancel': '取消更改',
   'account.settings.security.strong': '强',
   'account.settings.security.medium': '中',
   'account.settings.security.weak': '弱',
@@ -53,5 +56,6 @@ export default {
   'account.settings.notification.todo': '待办任务',
   'account.settings.notification.todo-description': '待办任务将以站内信的形式通知',
   'account.settings.settings.open': '开',
-  'account.settings.settings.close': '关'
+  'account.settings.settings.close': '关',
+  'account.settings.basic.choose': '選擇圖片'
 }

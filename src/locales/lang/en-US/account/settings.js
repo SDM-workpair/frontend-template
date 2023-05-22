@@ -8,7 +8,8 @@ export default {
   'account.settings.basic.change-avatar': 'Change avatar',
   'account.settings.basic.email': 'Email',
   'account.settings.basic.email-message': 'Please input your email!',
-  'account.settings.basic.nickname': 'Nickname',
+  'account.settings.basic.nickname': 'Name',
+  'account.settings.basic.lid': 'LINE ID',
   'account.settings.basic.nickname-message': 'Please input your Nickname!',
   'account.settings.basic.profile': 'Personal profile',
   'account.settings.basic.profile-message': 'Please input your personal profile!',
@@ -23,6 +24,8 @@ export default {
   'account.settings.basic.phone-message': 'Please input your phone!',
   'account.settings.basic.update': 'Update Information',
   'account.settings.basic.update.success': 'Update basic information successfully',
+  'account.settings.basic.save': 'Save',
+  'account.settings.basic.cancel': 'Cancel',
   'account.settings.security.strong': 'Strong',
   'account.settings.security.medium': 'Medium',
   'account.settings.security.weak': 'Weak',
@@ -58,5 +61,6 @@ export default {
   'account.settings.notification.todo-description':
     'The to-do list will be notified in the form of a letter from the station',
   'account.settings.settings.open': 'Open',
-  'account.settings.settings.close': 'Close'
+  'account.settings.settings.close': 'Close',
+  'account.settings.basic.choose': 'Choose'
 }
