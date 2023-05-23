@@ -4,23 +4,21 @@
       <a-col
         :sm="24"
         :md="12"
-        :xl="6"
+        :xl="8"
         :style="{ marginBottom: '24px' }"
         v-for="(item, index) in groups"
         :key="index">
 
-        <chart-card :title="item.name" total="">
+        <chart-card :title="item.name" total="" style="font-size: 13px;">
           <div>
             <trend flag="up" style="margin-right: 16px;">
+              {{ $t('home.groupID') }}：{{ item.groupID }}<br>
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
-              <!-- {{ $t('home.minMemberNum') }}：{{ item.min_member_num }} -->
             </trend>
             <div class="chart-card-footer">
               <a-button @click="seeGroup(item.groupID)" ><a-icon type="monitor"/>{{ $t('group.seeGroupResult') }}</a-button>
             </div>
-
           </div>
-          <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
         </chart-card>
       </a-col>
     </a-row>
@@ -45,7 +43,8 @@
         return {
           loading: true,
           show: [],
-          groups: []
+          groups: [],
+          showMore: false
         }
       },
       methods: {
@@ -138,3 +137,9 @@
         bottom: 12px;
       }
     </style>
+    <style>
+    span.chart-card-title {
+     font-weight: bold;
+     font-size: 17px;
+ }
+   </style>

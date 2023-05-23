@@ -4,32 +4,44 @@
       <a-col
         :sm="24"
         :md="12"
-        :xl="6"
+        :xl="8"
         :style="{ marginBottom: '24px' }"
         v-for="(item, index) in matching_rooms"
         :key="index">
 
-        <chart-card :title="item.name" total="">
+        <chart-card :title="item.name" total="" style="font-size: 13px;">
           <div>
             <trend flag="up" style="margin-right: 16px;">
+              {{ $t('home.roomID') }}：{{ item.roomID }}<br>
               {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
-            <div class="chart-card-footer">
+            <div>
               <a-button @click="joinMR(item.roomID, item.name, item.due_time)" ><a-icon type="plus-circle"/>{{ $t('home.joinRoom') }}</a-button>
             </div>
-
           </div>
-          <!-- <template slot="footer">{{ $t('dashboard.analysis.day-sales') }}<span>￥ 234.56</span></template> -->
+          <template #action>
+            <a-button type="link" @click="item.showDescription = true" icon="ellipsis" />
+          </template>
+          <a-modal
+          v-model="item.showDescription"
+          :title="$t('room.roomDescription')"
+          centered
+          :footer="null"
+        >
+          <!-- @ok="modal2Visible = false" -->
+          <p>{{ item.description }}</p>
+        </a-modal>
         </chart-card>
       </a-col>
     </a-row>
+    <div>
+    </div>
   </div>
 </template>
 
   <script>
   import axios from 'axios'
-
   import {
     ChartCard
   } from '@/components'
@@ -41,27 +53,26 @@
     components: {
       ChartCard
     },
-  //   setup () {
-  //   const text = `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`
-  //   const activeKey = ref(['1'])
-  //   watch(activeKey, val => {
-  //     console.log(val)
-  //   })
-  //   return {
-  //     text,
-  //     activeKey
-  //   }
-  // },
     data () {
       return {
         loading: true,
         show: [],
         matching_rooms: [],
-        myRooms: []
+        myRooms: [],
+        showMore: false,
+        expanded: false,
+        showContent: false
       }
     },
+    watch: {
+    activeKey (key) {
+      console.log(key)
+    }
+  },
     methods: {
-
+      toggleContent (item) {
+        item.showDescription = !item.showDescription
+    },
       joinMR (roomID, name, dueDate) {
         this.$router.push({
             path: '/roomProfile',
@@ -91,7 +102,8 @@
                 due_time: new Date(room.due_time),
                 description: room.description,
                 min_member_num: room.min_member_num,
-                roomID: room.room_id
+                roomID: room.room_id,
+                showDescription: false
               }
           })
             console.log(this.matching_rooms)
@@ -115,6 +127,7 @@
 </script>
 
   <style lang="less" scoped>
+
     .extra-wrapper {
       line-height: 55px;
       padding-right: 24px;
@@ -157,4 +170,11 @@
       right: 54px;
       bottom: 12px;
     }
+  </style>
+
+  <style>
+   span.chart-card-title {
+    font-weight: bold;
+    font-size: 17px;
+}
   </style>

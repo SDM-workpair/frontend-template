@@ -1,13 +1,17 @@
 <template>
   <div>
-    {{ $t('room.result_of') }} {{ groupID }}
+    <a-card style="marginBottom: 24px;">
+      <h1 style="font-weight: bold;">{{ $t('room.result_of') }} : {{ groupID }}</h1>
+    </a-card>
     <a-row :gutter="24">
       <a-col
         :sm="24"
         :md="12"
         :xl="6"
-        :style="{ marginBottom: '24px' }">
-        <a-card hoverable style="width: 240px" v-for="(item, index) in groups" :key="index">
+        :style="{ marginBottom: '24px' }"
+        v-for="(item, index) in groups"
+        :key="index">
+        <a-card hoverable style="width: 240px" >
           <template #cover>
             <img :src="item.image" :alt="item.image" />
           </template>
@@ -15,7 +19,7 @@
             <template #description>
               <div> {{ item.email }}</div>
               <div> {{ item.line_id }}</div>
-              <div> {{ item.image }}</div>
+              <!-- <div> {{ item.image }}</div> -->
             </template>
           </a-card-meta>
         </a-card>
@@ -33,7 +37,8 @@
         //   loading: true,
         //   show: [],
           groups: [],
-          groupID: this.$route.query.groupID
+          groupID: this.$route.query.groupID,
+          imgUrl: ''
         }
       },
       methods: {
@@ -60,11 +65,16 @@
         .then((MRResponse) => {
           this.groups = MRResponse.data.data.map (group => {
             // document.getElementById(group.name).src = group.image
+            if (group.image === null) {
+              this.imgUrl = 'logo.png'
+            } else {
+              this.imgUrl = group.image
+            }
             return {
               email: group.email,
               name: group.name,
               line_id: group.line_id,
-              image: group.image
+              image: this.imgUrl
               // imageID: document.getElementById('photo').src
               // document.getElementById('photo').src: image
               }
