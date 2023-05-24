@@ -13,6 +13,7 @@
       <a-date-picker
         v-model="selectedDateTime"
         show-time
+        :locale="customLocale"
         :placeholder="$t('room.inputDate')"
         :disabled-date="disabledDate"
         format="YYYY-MM-DD HH:mm:ss"
@@ -126,7 +127,12 @@ import moment from 'moment'
       is_admin: false,
       name: '',
       // selectedDate: null,
-      formattedDate: null
+      formattedDate: null,
+      customLocale: {
+        lang: {
+          ok: '???' // 英文文本
+        }
+      }
     }
   },
     // props: {

@@ -79,7 +79,7 @@
         // Show出所有room
         axios.post('/api/v1/search/matching-room/list', {
           prompt: value,
-          query_all: false
+          query_all: true
       }, {
           headers: {
             'Authorization': 'Bearer ' + token
