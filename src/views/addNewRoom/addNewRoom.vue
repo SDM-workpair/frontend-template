@@ -182,7 +182,7 @@ import moment from 'moment'
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
           due_time: this.formattedDate,
-          min_member_num: 0,
+          min_member_num: this.quantity,
           description: this.description,
           is_forced_matching: false
       }, {
