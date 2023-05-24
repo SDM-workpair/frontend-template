@@ -191,7 +191,8 @@ import moment from 'moment'
           }
         })
         .then((mrResponse) => {
-          const roomID = mrResponse.data.room_id
+          console.log(mrResponse.data.data)
+          const roomID = mrResponse.data.data.room_id
           console.log('roomID is', roomID)
 
           this.$router.push({

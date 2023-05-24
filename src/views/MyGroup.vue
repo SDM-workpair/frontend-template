@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a-input-search placeholder="input search text" style="width: 200px" @search="onSearch" />
     <a-row :gutter="24">
       <a-col
         :sm="24"
@@ -22,6 +23,9 @@
         </chart-card>
       </a-col>
     </a-row>
+    <div v-if="groups.length === 0">
+      {{ $t('home.noSearchResult') }}
+    </div>
   </div>
 </template>
 
@@ -48,6 +52,31 @@
         }
       },
       methods: {
+        onSearch (value) {
+          const token = sessionStorage.getItem('token')
+          console.log(token)
+          axios.post('/api/v1/search/group/list', {
+            prompt: value
+          },
+          {
+            headers: {
+              'Authorization': 'Bearer ' + token
+            }
+          })
+          .then((MRResponse) => {
+            // console.log(MRResponse.data)
+            this.groups = MRResponse.data.data.map (group => {
+              return {
+                  name: group.name,
+                  due_time: new Date(group.created_time),
+                  groupID: group.group_id
+                }
+            })
+              console.log(this.groups)
+              console.log(token)
+  })
+          .catch((error) => console.log(error), console.log(token))
+        },
         seeGroup (groupID) {
             this.$router.push({
             path: '/groupResult',
