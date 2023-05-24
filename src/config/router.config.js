@@ -252,41 +252,41 @@ export const asyncRouterMap = [
                 name: 'BasicSettings',
                 component: () => import('@/views/account/settings/BasicSetting'),
                 meta: { title: 'account.settings.menuMap.basic', hidden: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/security',
-                name: 'SecuritySettings',
-                component: () => import('@/views/account/settings/Security'),
-                meta: {
-                  title: 'account.settings.menuMap.security',
-                  hidden: true,
-                  keepAlive: true,
-                  permission: ['user']
-                }
-              },
-              {
-                path: '/account/settings/custom',
-                name: 'CustomSettings',
-                component: () => import('@/views/account/settings/Custom'),
-                meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/binding',
-                name: 'BindingSettings',
-                component: () => import('@/views/account/settings/Binding'),
-                meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
-              },
-              {
-                path: '/account/settings/notification',
-                name: 'NotificationSettings',
-                component: () => import('@/views/account/settings/Notification'),
-                meta: {
-                  title: 'account.settings.menuMap.notification',
-                  hidden: true,
-                  keepAlive: true,
-                  permission: ['user']
-                }
               }
+              // {
+              //   path: '/account/settings/security',
+              //   name: 'SecuritySettings',
+              //   component: () => import('@/views/account/settings/Security'),
+              //   meta: {
+              //     title: 'account.settings.menuMap.security',
+              //     hidden: true,
+              //     keepAlive: true,
+              //     permission: ['user']
+              //   }
+              // },
+              // {
+              //   path: '/account/settings/custom',
+              //   name: 'CustomSettings',
+              //   component: () => import('@/views/account/settings/Custom'),
+              //   meta: { title: 'account.settings.menuMap.custom', hidden: true, keepAlive: true, permission: ['user'] }
+              // },
+              // {
+              //   path: '/account/settings/binding',
+              //   name: 'BindingSettings',
+              //   component: () => import('@/views/account/settings/Binding'),
+              //   meta: { title: 'account.settings.menuMap.binding', hidden: true, keepAlive: true, permission: ['user'] }
+              // },
+              // {
+              //   path: '/account/settings/notification',
+              //   name: 'NotificationSettings',
+              //   component: () => import('@/views/account/settings/Notification'),
+              //   meta: {
+              //     title: 'account.settings.menuMap.notification',
+              //     hidden: true,
+              //     keepAlive: true,
+              //     permission: ['user']
+              //   }
+              // }
             ]
           }
         ]
