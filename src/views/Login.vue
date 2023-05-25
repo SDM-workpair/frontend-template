@@ -2,15 +2,16 @@
   <div id="my-template">
     <!-- 這邊語謙的login要加 才不會有上面白白的 -->
     <br>
+    <!-- <br>
     <br>
-    <br>
-    <br>
+    <br> -->
+    <Navigation />
     <div style="text-align:center; margin-top: 90px;">
       <font size="36" color="white" face="Arial Black">Teamatch</font>
 
     </div>
     <br>
-    <div class="center">
+    <div class="center" :style="{ height: '100px' }">
       <div
         id="g_id_onload"
         data-client_id="768305533256-eg3ift96spolgtm69bo6r3423df13c73.apps.googleusercontent.com"
@@ -30,9 +31,28 @@
         style="text-align: center;"
       ></div>
     </div>
+    <!-- <br> -->
+    <Hero />
+    <Features />
+    <Contact />
+    <Footer />
   </div>
 </template>
   <script>
+  import Navigation from '@/components/LandingPage/Navigation.vue'
+  import Hero from '@/components/LandingPage/Hero.vue'
+  import Features from '@/components/LandingPage/Features.vue'
+  import Contact from '@/components/LandingPage/Contact.vue'
+  import Footer from '@/components/LandingPage/Footer.vue'
+  export default {
+    name: 'Login',
+    components: { Navigation,
+        Hero,
+        Features,
+        Contact,
+        Footer }
+    }
+
   window.handleCallback = (response) => {
    console.log('here')
    console.log(response)
@@ -67,6 +87,7 @@
     // window.location.href = 'http://localhost:8080/'
   }
   </script>
+
   <style>
       .center {
     display: flex;

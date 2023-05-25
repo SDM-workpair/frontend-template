@@ -24,14 +24,14 @@
             <a-button type="link" @click="item.showDescription = true" icon="ellipsis" />
           </template>
           <a-modal
-          v-model="item.showDescription"
-          :title="$t('room.roomDescription')"
-          centered
-          :footer="null"
-        >
-          <!-- @ok="modal2Visible = false" -->
-          <p>{{ item.description }}</p>
-        </a-modal>
+            v-model="item.showDescription"
+            :title="$t('room.roomDescription')"
+            centered
+            :footer="null"
+          >
+            <!-- @ok="modal2Visible = false" -->
+            <p>{{ item.description }}</p>
+          </a-modal>
         </chart-card>
       </a-col>
     </a-row>
