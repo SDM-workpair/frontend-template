@@ -78,6 +78,8 @@
           .catch((error) => console.log(error), console.log(token))
         },
         seeGroup (groupID) {
+            console.log('see')
+            console.log(groupID)
             this.$router.push({
             path: '/groupResult',
             query: {
