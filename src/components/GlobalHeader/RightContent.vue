@@ -14,7 +14,10 @@
     <br>
 
     <a-drawer :title="$t('nav.notification')" :visible="drawerVisible" :width="350" :closable="true" @close="handleDrawerClose">
-      <p v-for="(item, index) in myList" :key="index">{{ item.content }}</p>
+      <a v-for="(item, index) in myList" :key="index" class="notification-link" @click="seeGroup(item.group_id)">
+        <a-icon type="monitor" />
+        {{ item.content }}
+      </a>
     </a-drawer>
 
   </div>
@@ -100,7 +103,18 @@ export default {
       console.error('Failed to fetch notifications:', error)
     })
   },
+
   methods: {
+    seeGroup (groupID) {
+      this.$router.push({
+        path: '/groupResult',
+        query: {
+          groupID: groupID
+        }
+      })
+      this.drawerVisible = false
+    },
+
     async handleBellClick () {
       console.log('open')
       this.messageCount = 0
@@ -163,3 +177,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  .notification-link {
+    display: block;
+    margin-bottom: 10px;
+  }
+</style>
