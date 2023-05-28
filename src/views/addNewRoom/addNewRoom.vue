@@ -13,6 +13,7 @@
       <a-date-picker
         v-model="selectedDateTime"
         show-time
+        :locale="customLocale"
         :placeholder="$t('room.inputDate')"
         :disabled-date="disabledDate"
         format="YYYY-MM-DD HH:mm:ss"
@@ -126,7 +127,12 @@ import moment from 'moment'
       is_admin: false,
       name: '',
       // selectedDate: null,
-      formattedDate: null
+      formattedDate: null,
+      customLocale: {
+        lang: {
+          ok: '???' // 英文文本
+        }
+      }
     }
   },
     // props: {
@@ -182,7 +188,7 @@ import moment from 'moment'
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
           due_time: this.formattedDate,
-          min_member_num: 0,
+          min_member_num: this.quantity,
           description: this.description,
           is_forced_matching: false
       }, {
@@ -191,7 +197,8 @@ import moment from 'moment'
           }
         })
         .then((mrResponse) => {
-          const roomID = mrResponse.data.room_id
+          console.log(mrResponse.data.data)
+          const roomID = mrResponse.data.data.room_id
           console.log('roomID is', roomID)
 
           this.$router.push({

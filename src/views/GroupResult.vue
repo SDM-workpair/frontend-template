@@ -29,60 +29,61 @@
 </template>
 <script>
     import axios from 'axios'
-
     export default {
-    name: 'GroupResult',
-      data () {
-        return {
-        //   loading: true,
-        //   show: [],
-          groups: [],
-          groupID: this.$route.query.groupID,
-          imgUrl: ''
-        }
-      },
-      methods: {
-
-      },
-      created () {
-      // 看是否登入
-      const token = sessionStorage.getItem('token')
-      if (!token) {
-          const currentUrl = window.location.href
-          const pathname = window.location.pathname
-          const newUrl = currentUrl.replace(pathname, '/user/login')
-          window.location.replace(newUrl)
-    }
-      // Show出所有room
-      console.log('hihi', this.groupID)
-        axios.post('/api/v1/group/members', {
-          group_id: this.groupID
-      }, {
-          headers: {
-            'Authorization': 'Bearer ' + token
+        name: 'GroupResult',
+        data () {
+          return {
+            groups: [],
+            groupID: this.$route.query.groupID,
+            imgUrl: ''
           }
-        })
-        .then((MRResponse) => {
-          this.groups = MRResponse.data.data.map (group => {
-            // document.getElementById(group.name).src = group.image
-            if (group.image === null) {
-              this.imgUrl = 'logo.png'
-            } else {
-              this.imgUrl = group.image
+        },
+        methods: {
+          // 加载数据的方法
+          loadData (groupID) {
+            const token = sessionStorage.getItem('token')
+            if (!token) {
+              const currentUrl = window.location.href
+              const pathname = window.location.pathname
+              const newUrl = currentUrl.replace(pathname, '/user/login')
+              window.location.replace(newUrl)
             }
-            return {
-              email: group.email,
-              name: group.name,
-              line_id: group.line_id,
-              image: this.imgUrl
-              // imageID: document.getElementById('photo').src
-              // document.getElementById('photo').src: image
-              }
-          })
-            console.log(this.groups)
-            console.log(token)
-        })
-        .catch((error) => console.log(error), console.log(token))
-    }
+
+            axios
+              .post('/api/v1/group/members', {
+                group_id: groupID
+              }, {
+                headers: {
+                  'Authorization': 'Bearer ' + token
+                }
+              })
+              .then((MRResponse) => {
+                this.groups = MRResponse.data.data.map(group => {
+                  if (group.image === null) {
+                    this.imgUrl = 'logo.png'
+                  } else {
+                    this.imgUrl = group.image
+                  }
+                  return {
+                    email: group.email,
+                    name: group.name,
+                    line_id: group.line_id,
+                    image: this.imgUrl
+                  }
+                })
+              })
+              .catch((error) => console.log(error))
+          }
+        },
+        created () {
+          this.loadData(this.groupID)
+        },
+        beforeRouteUpdate (to, from, next) {
+          if (to.query.groupID !== from.query.groupID) {
+            this.groupID = to.query.groupID
+            this.loadData(this.groupID)
+          }
+          next()
         }
+      }
   </script>

@@ -7,7 +7,7 @@
           v-show="queue"
           class="pic"
           :style="{
-            'background-image': `url(https://cn.bing.com//th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
+            'background-image': `url(${scope.data.image})`
           }"
         >
           <span class="info">
@@ -177,10 +177,10 @@
           console.log(this.recom[0].self_tag_text)
           const list = []
           for (let i = 0; i < this.recom.length; i++) {
-            list.push({ id: source[this.offset], name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id, self_tag_text: this.recom[this.offset].self_tag_text })
+            list.push({ id: source[this.offset], image: this.recom[this.offset].image, name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id, self_tag_text: this.recom[this.offset].self_tag_text })
             this.offset++
           }
-          console.log(list)
+          console.log('這是list', list)
           // for (let i = 0; i < count; i++) {
           //   list.push({ id: source[this.offset] })
           //   this.offset++
