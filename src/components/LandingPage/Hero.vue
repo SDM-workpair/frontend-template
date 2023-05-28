@@ -12,13 +12,15 @@
             class="btn btn-purple hover:bg-bookmark-white hover:text-black">Discover</button>
         </div>
       </div>
-      <div class="flex justify-center flex-1 mb-10 md:mb-16 lg:mb-0 z-10">
-        <img
-          src="@/assets/images/chris-yang.png"
-          alt="micro illustration"
-          class="w-3/4 h-3/4 sm:w-3/4 sm:h-3/4 md:w-3/5 md:h-3/5 rounded-xl">
-        <!-- <div id="Hero">
-          <Tinder ref="tinder" key-name="id" :queue.sync="queue" :offset-y="10" @submit="onSubmit">
+      <div class="flex flex-1 items-center justify-end mb-10 md:mb-16 lg:mb-0 z-10">
+        <div style="width: 650px; height: 550px; margin-left: auto;">
+          <Tinder
+            ref="tinder"
+            key-name="id"
+            :queue.sync="queue"
+            :offset-y="10"
+            @submit="onSubmit"
+            style="padding-left: 300px;">
             <template slot-scope="scope">
               <div
                 class="pic"
@@ -32,14 +34,16 @@
             <img class="super-pointer" slot="super" src="@/assets/vue-tinder/super-txt.png">
             <img class="rewind-pointer" slot="rewind" src="@/assets/vue-tinder/rewind-txt.png">
           </Tinder>
-          <div class="btns">
+          <div
+            class="btns"
+            style="left: 580px;">
             <img src="@/assets/vue-tinder/rewind.png" @click="decide('rewind')">
             <img src="@/assets/vue-tinder/nope.png" @click="decide('nope')">
             <img src="@/assets/vue-tinder/super-like.png" @click="decide('super')">
             <img src="@/assets/vue-tinder/like.png" @click="decide('like')">
             <img src="@/assets/vue-tinder/help.png" @click="decide('help')">
           </div>
-        </div> -->
+        </div>
       </div>
       <div
         class="hidden md:block overflow-hidden bg-bookmark-purple rounded-l-full absolute h-80 w-2/4 top-32 right-0 lg:-bottom-28 lg:-right-30">
@@ -51,54 +55,57 @@
 
 <script>
 import Tinder from 'vue-tinder'
-import source from '@/views/matchingroom/bing'
+import source from './bingLand'
 
 export default {
-  // name: 'Hero',
-  // components: { Tinder },
-  // data: () => ({
-  //   queue: [],
-  //   offset: 0,
-  //   history: []
-  // }),
-  // created () {
-  //   this.mock()
-  // },
-  // methods: {
-  //   mock (count = 5, append = true) {
-  //     const list = []
-  //     for (let i = 0; i < count; i++) {
-  //       list.push({ id: source[this.offset] })
-  //       this.offset++
-  //     }
-  //     if (append) {
-  //       this.queue = this.queue.concat(list)
-  //     } else {
-  //       this.queue.unshift(...list)
-  //     }
-  //   },
-  //   onSubmit ({ item }) {
-  //     if (this.queue.length < 3) {
-  //       this.mock()
-  //     }
-  //     this.history.push(item)
-  //   },
-  //   async decide (choice) {
-  //     if (choice === 'rewind') {
-  //       if (this.history.length) {
-  //         this.$refs.tinder.rewind([this.history.pop()])
-  //       }
-  //     } else if (choice === 'help') {
-  //       window.open('https://shanlh.github.io/vue-tinder')
-  //     } else {
-  //       this.$refs.tinder.decide(choice)
-  //     }
-  //   }
-  // }
+  name: 'App',
+  components: { Tinder },
+  data () {
+    return {
+      queue: [],
+      offset: 0,
+      history: []
+    }
+  },
+  created () {
+    this.mock()
+  },
+  methods: {
+    mock (count = 5, append = true) {
+      const list = []
+      for (let i = 0; i < count; i++) {
+        list.push({ id: source[this.offset] })
+        this.offset++
+      }
+      if (append) {
+        this.queue = this.queue.concat(list)
+      } else {
+        this.queue.unshift(...list)
+      }
+    },
+    onSubmit ({ item }) {
+      if (this.queue.length < 3) {
+        this.mock()
+      }
+      this.history.push(item)
+    },
+    async decide (choice) {
+      if (choice === 'rewind') {
+        if (this.history.length) {
+          this.$refs.tinder.rewind([this.history.pop()])
+        }
+      } else if (choice === 'help') {
+        window.open('https://shanlh.github.io/vue-tinder')
+      } else {
+        this.$refs.tinder.decide(choice)
+      }
+    }
+  }
 }
 </script>
 
-<!-- <style>
+<style>
+
 html,
 body {
   height: 100%;
@@ -107,7 +114,7 @@ body {
 body {
   margin: 0;
   background-color: #20262e;
-  overflow: hidden;
+  overflow-y: scroll;
 }
 
 #app .vue-tinder {
@@ -121,6 +128,8 @@ body {
   height: calc(100% - 23px - 65px - 47px - 16px);
   min-width: 300px;
   max-width: 355px;
+  /* width: 355px;
+  height: 594px; */
 }
 
 .nope-pointer,
@@ -167,18 +176,39 @@ body {
   background-position: center;
 }
 
-.btns {
+/* .btns {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 30px;
   margin: auto;
+  margin-left: auto;
   height: 65px;
   display: flex;
   align-items: center;
   justify-content: center;
   min-width: 300px;
+  min-height: 65px;
   max-width: 355px;
+  padding-left: 300px;
+} */
+
+.btns {
+  position: absolute;
+  margin: auto;
+  left: 0;
+  right: 0;
+  bottom: 30px;
+  /* margin-right: 593.75px;
+  margin-left: 593.75px; */
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /*Align the content to the right*/
+  min-width: 300px;
+  min-height: 65px;
+  max-width: 355px;
+  /* padding-right: 300px; */
 }
 
 .btns img {
@@ -200,4 +230,4 @@ body {
 .btns img:nth-last-child(1) {
   margin-right: 0;
 }
-</style> -->
+</style>
