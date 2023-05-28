@@ -35,7 +35,6 @@
     <Hero />
     <br>
     <Features />
-    <Contact />
     <Footer />
   </div>
 </template>
@@ -43,14 +42,12 @@
   import Navigation from '@/components/LandingPage/Navigation.vue'
   import Hero from '@/components/LandingPage/Hero.vue'
   import Features from '@/components/LandingPage/Features.vue'
-  import Contact from '@/components/LandingPage/Contact.vue'
   import Footer from '@/components/LandingPage/Footer.vue'
   export default {
     name: 'Login',
     components: { Navigation,
         Hero,
         Features,
-        Contact,
         Footer }
     }
 
