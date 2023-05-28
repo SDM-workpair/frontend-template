@@ -59,6 +59,7 @@
 <script>
 import Tinder from 'vue-tinder'
 import source from './bingLand'
+import '@/index.css'
 
 export default {
   name: 'App',
