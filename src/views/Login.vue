@@ -33,7 +33,6 @@
     </div>
     <!-- <br> -->
     <Hero />
-    <br>
     <Features />
     <Contact />
     <Footer />

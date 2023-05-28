@@ -2,15 +2,17 @@
   <section class="relative">
     <div class="container flex flex-col-reverse lg:flex-row items-center pag-12 mt-14 lg:mt-28">
       <div class="flex flex-1 flex-col items-center lg:items-start">
-        <h2 class="text-white text-3xl md:text-4 leg:text-5xl text-center lg:text-left mb-6">The ultime USB
-          microphone</h2>
-        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">Create incomparable recordings with
-          your computer. Yeti microphones produce pristine, studio-quality recordings with legendary ease.</p>
-        <div class="flex justify-center felx-wrap gap-6">
+        <h2 class="text-white text-3xl md:text-4 leg:text-5xl text-center lg:text-left mb-6">TeaMatch 你的組隊神器</h2>
+        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">開學到了教室卻發現沒有認識的人可以一起討論嗎？<br>
+          要分組做課堂報告卻找不到合得來的隊友嗎？<br>
+          TeamMatch 就是你最強的隊友！<br>
+          只需要像交友軟體一樣左滑右滑就可以找到適合的夥伴
+        </p>
+        <!-- <div class="flex justify-center felx-wrap gap-6">
           <button
             type="button"
             class="btn btn-purple hover:bg-bookmark-white hover:text-black">Discover</button>
-        </div>
+        </div> -->
       </div>
       <div class="flex flex-1 items-center justify-end mb-10 md:mb-16 lg:mb-0 z-10">
         <div style="width: 650px; height: 550px; margin-left: auto;">
@@ -43,6 +45,7 @@
             <img src="@/assets/vue-tinder/like.png" @click="decide('like')">
             <img src="@/assets/vue-tinder/help.png" @click="decide('help')">
           </div>
+          <div class="null"><p>錯過的就錯過囉<br>好好把握每次的機會！</p></div>
         </div>
       </div>
       <div
@@ -229,5 +232,14 @@ body {
 
 .btns img:nth-last-child(1) {
   margin-right: 0;
+}
+
+.null {
+    margin-top: 250px;
+    margin-left: 180px;
+    text-align: center;
+    font-size: 24px;
+    z-index: -1;
+    color: aliceblue;
 }
 </style>
