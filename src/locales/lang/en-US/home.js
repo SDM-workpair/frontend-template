@@ -4,5 +4,6 @@ export default {
   'home.joinRoom': 'Join',
   'home.minMemberNum': 'Expected Minimum Group Size',
   'home.roomID': 'Room ID',
-  'home.groupID': 'Group ID'
+  'home.groupID': 'Group ID',
+  'home.noSearchResult': 'No Search Result'
 }

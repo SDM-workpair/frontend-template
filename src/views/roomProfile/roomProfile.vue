@@ -139,6 +139,23 @@ import { ref } from 'vue'
     }
   },
   methods: {
+    getRecTag () {
+      const token = sessionStorage.getItem('token')
+      console.log(token)
+      axios.post('/api/v1/matching-room/rcmed-tag', {
+        room_id: this.newRoomID
+  }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+  .then((getRecTagResponse) => {
+        console.log('getRecTagResponse', getRecTagResponse)
+        this.recommand_list = getRecTagResponse.data.data.slice(0)
+        this.recommand_list1 = getRecTagResponse.data.data.slice(0)
+      })
+  .catch((error) => console.log(error))
+    },
     removeFindTag (item) {
       // this.find_textList.remove(item)
       const i = this.find_textList.indexOf(item)
@@ -304,7 +321,7 @@ import { ref } from 'vue'
     }
   },
   mounted: function () {
-    // this.refresh_mr()
+    this.getRecTag ()
     this.fetchUser()
   }
   }

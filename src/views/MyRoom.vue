@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a-input-search placeholder="input search text" style="width: 200px" @search="onSearch" />
     <a-row :gutter="24">
       <a-col
         :sm="24"
@@ -25,6 +26,9 @@
         </chart-card>
       </a-col>
     </a-row>
+    <div v-if="matching_rooms.length === 0">
+      {{ $t('home.noSearchResult') }}
+    </div>
   </div>
 </template>
 
@@ -62,7 +66,38 @@
         }
       },
       methods: {
+        onSearch (value) {
+        console.log('search value', value)
+        const token = sessionStorage.getItem('token')
+        console.log(token)
+        // Show出所有room
+        axios.post('/api/v1/search/matching-room/list', {
+          prompt: value,
+          query_all: false
+      }, {
+          headers: {
+            'Authorization': 'Bearer ' + token
+          }
+        })
+        .then((MRResponse) => {
+          console.log(MRResponse.data.data)
+          this.matching_rooms = MRResponse.data.data.map (room => {
+            return {
+                name: room.name,
+                due_time: new Date(room.due_time),
+                description: room.description,
+                min_member_num: room.min_member_num,
+                roomID: room.room_id,
+                showDescription: false
+              }
+          })
 
+            console.log(this.matching_rooms)
+            console.log(token)
+            console.log(this.matching_rooms.length, 'length')
+})
+        .catch((error) => console.log(error), console.log(token))
+      },
         joinMR (roomID, memberID) {
             this.$router.push({
                 path: '/matchingroom/Swipe',
