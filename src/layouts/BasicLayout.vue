@@ -54,6 +54,7 @@
 
 <script>
 import { SettingDrawer, updateTheme } from '@ant-design-vue/pro-layout'
+// import { SettingDrawer } from '@ant-design-vue/pro-layout'
 import { i18nRender } from '@/locales'
 import { mapState } from 'vuex'
 import { CONTENT_WIDTH_TYPE } from '@/store/mutation-types'

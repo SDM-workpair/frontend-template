@@ -14,7 +14,7 @@
           <div>
             <trend flag="up" style="margin-right: 16px;">
               {{ $t('home.groupID') }}：{{ item.groupID }}<br>
-              {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br>
+              <!-- {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br> -->
             </trend>
             <div class="chart-card-footer">
               <a-button @click="seeGroup(item.groupID)" ><a-icon type="monitor"/>{{ $t('group.seeGroupResult') }}</a-button>
