@@ -34,7 +34,7 @@
           </a-form-item> -->
 
           <a-form-item>
-            <a-button v-if="!isEditing" type="primary" @click="startEditing">
+            <a-button v-if="!isEditing" @click="startEditing">
               {{ $t('account.settings.basic.update') }}
             </a-button>
             <a-button v-else type="primary" @click="saveChanges">

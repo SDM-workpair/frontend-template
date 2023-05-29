@@ -36,7 +36,7 @@ export default {
     'menu.account.settings': '個人資訊設定',
     'menu.account.trigger': '触发报错',
     'menu.account.logout': '登出帳號',
-    'menu.all-matching-room': '所有配對空間',
+    'menu.all-matching-room': '可加入的配對空間',
     'menu.matchingroom': '配對空間',
     'menu.matchingroom.swipe': '組員配對',
     'menu.addnewroom': '新增配對空間',
