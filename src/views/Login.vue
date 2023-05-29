@@ -57,7 +57,7 @@
   }
 
   window.handleCallback = (response) => {
-   console.log(response.credential)
+  //  console.log(response.credential)
    fetch('/api/v1/auth/sso-login', {
     method: 'POST',
       headers: {
