@@ -73,6 +73,9 @@ const constantRouterComponents = {
   // matchingroom
   MatchingRoomSwipe: () => import('@/views/matchingroom/Swipe')
 
+  // // landing page
+  // LandingPage: () => import('@/views/LandingPage')
+
   // 'TestWork': () => import(/* webpackChunkName: "TestWork" */ '@/views/dashboard/TestWork')
 }
 

@@ -27,7 +27,7 @@
 
       <label>{{ $t('room.new_my_tag') }}
         <input type="text" v-model="aaa" :placeholder="$t('room.new_my_tag')" class="ladyinput" @keyup.enter="addText" />
-        <a-button shape="circle" @click="addText"><a-icon type="plus-circle" class="hiRP"/></a-button>
+        <a-button shape="circle" @click="addText" icon="plus-circle"></a-button>
       </label>
       <!-- 推薦我的Tag -->
 
@@ -49,7 +49,7 @@
 
       <label>{{ $t('room.new_find_tag') }}
         <input type="text" v-model="inputFindText" :placeholder="$t('room.new_find_tag')" class="ladyinput" @keyup.enter="addFindText"/>
-        <a-button shape="circle" @click="addFindText"><a-icon type="plus-circle" class="hiRP"/></a-button>
+        <a-button shape="circle" @click="addFindText" icon="plus-circle"></a-button>
       </label>
       <!-- </v-list> -->
       <!-- 推薦Find Tag -->
@@ -73,7 +73,7 @@
 
     <div>
 
-      <a-button type="primary" @click="modal2Visible = true">
+      <a-button @click="modal2Visible = true">
         Next Step <a-icon type="right-circle" />
       </a-button>
 

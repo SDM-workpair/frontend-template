@@ -10,6 +10,7 @@
 import { domTitle, setDocumentTitle } from '@/utils/domUtil'
 import { i18nRender } from '@/locales'
 import Login from '@/views/Login.vue'
+import LandingPage from './views/LandingPage.vue'
 
 export default {
   data () {
@@ -26,7 +27,8 @@ export default {
     }
   },
   components: {
-    Login
+    Login,
+    LandingPage
   }
 }
 </script>

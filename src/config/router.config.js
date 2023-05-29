@@ -224,6 +224,14 @@ export const asyncRouterMap = [
         ]
       },
 
+       // Landing Page
+      //  {
+      //   path: '/landingPage',
+      //   name: 'LandingPage',
+      //   component: () => import('@/views/LandingPage'),
+      //   meta: { title: 'menu.MyGroup', keepAlive: true, icon: 'team' }
+      // },
+
       // account
       {
         path: '/account',
@@ -382,6 +390,21 @@ export const constantRouterMap = [
       }
     ]
   },
+
+  // {
+  //   path: '/landingPage',
+  //   // component: BlankLayout,
+  //   // redirect: '/landingPage',
+  //   component: () => import(/* webpackChunkName: "user" */ '@/views/LandingPage'),
+  //   hidden: true
+  //   // children: [
+  //   //   {
+  //   //     path: 'landingPage',
+  //   //     name: 'LandingPage',
+  //   //     component: () => import(/* webpackChunkName: "user" */ '@/views/LandingPage')
+  //   //   }
+  //   // ]
+  // },
 
   {
     path: '/404',

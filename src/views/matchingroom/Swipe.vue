@@ -353,7 +353,7 @@
   }
 
   .btns img:nth-child(2n + 1) {
-    width: 53px;
+    width: 65px;
   }
 
   .btns img:nth-child(2n) {
