@@ -19,7 +19,7 @@
           <p class="text-bookmark-white my-4 text-center lg:text-left sm:w-5 lg:w-full">{{ $t('room.loginmsg1') }}</p>
           <p class="text-bookmark-white my-4 text-center lg:text-left sm:w-5 lg:w-full">{{ $t('room.loginmsg2') }}</p>
           <p class="text-bookmark-white my-4 text-center lg:text-left sm:w-5 lg:w-full">{{ $t('room.loginmsg3') }}</p>
-          </div>
+        </div>
       </div>
       <!-- Rounded rectangle -->
       <div
