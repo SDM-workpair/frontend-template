@@ -36,7 +36,7 @@
       <img src="../../assets/vue-tinder/like.png" @click="decide('like')">
       <!-- <img src="../../assets/vue-tinder/help.png" @click="decide('help')"> -->
     </div>
-    <div class="null">目前沒有新加入的用戶</div>
+    <div class="null">{{ $t('room.nomember') }}</div>
   </div>
 </template>
 

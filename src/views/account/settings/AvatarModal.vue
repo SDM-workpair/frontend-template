@@ -48,7 +48,7 @@
         <a-button icon="redo" @click="rotateRight"/>
       </a-col>
       <a-col :lg="{span: 2, offset: 6}" :md="2">
-        <a-button type="primary" @click="finish('blob')">{{ $t('account.settings.basic.save') }}</a-button>
+        <a-button @click="finish('blob')">{{ $t('account.settings.basic.save') }}</a-button>
       </a-col>
     </a-row>
   </a-modal>

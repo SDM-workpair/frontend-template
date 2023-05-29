@@ -82,6 +82,7 @@
         :title="$t('room.msg1')"
         :cancelText="$t('layouts.userLayout.cancel')"
         :okText="$t('layouts.userLayout.ok')"
+        okType=""
         centered
         @ok="joinRoom"
       >
