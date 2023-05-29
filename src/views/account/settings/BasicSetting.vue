@@ -37,7 +37,7 @@
             <a-button v-if="!isEditing" @click="startEditing">
               {{ $t('account.settings.basic.update') }}
             </a-button>
-            <a-button v-else type="primary" @click="saveChanges">
+            <a-button v-else @click="saveChanges">
               {{ $t('account.settings.basic.save') }}
             </a-button>
             <a-button v-if="isEditing" @click="cancelEditing">

@@ -37,5 +37,6 @@ export default {
   'room.loginmsg6': 'FEARLESS, Teamatch is here to be your ultimate teammate!',
   'room.loginmsg7': 'Similar to a social networking app, Teamatch allows you to swipe left or right to discover the perfect partner for your needs.',
   'room.loginmsg8': 'If you missed it, you missed it.',
-  'room.loginmsg9': 'Please seize every opportunity!'
+  'room.loginmsg9': 'Please seize every opportunity!',
+  'room.nomember': 'There is no new member currently.'
 }

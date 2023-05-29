@@ -37,5 +37,6 @@ export default {
   'room.loginmsg6': 'Teamatch 就是你最強的隊友！',
   'room.loginmsg7': '只需要像交友軟體一樣左滑右滑就可以找到適合的夥伴',
   'room.loginmsg8': '錯過的就錯過囉',
-  'room.loginmsg9': '請好好把握每次的機會！'
+  'room.loginmsg9': '請好好把握每次的機會！',
+  'room.nomember': '目前沒有新加入的用戶'
 }
