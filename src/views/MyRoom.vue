@@ -69,7 +69,6 @@
         onSearch (value) {
         console.log('search value', value)
         const token = sessionStorage.getItem('token')
-        console.log(token)
         // Show出所有room
         axios.post('/api/v1/search/matching-room/list', {
           prompt: value,
@@ -93,10 +92,9 @@
           })
 
             console.log(this.matching_rooms)
-            console.log(token)
             console.log(this.matching_rooms.length, 'length')
 })
-        .catch((error) => console.log(error), console.log(token))
+        .catch((error) => console.log(error))
       },
         joinMR (roomID, memberID) {
             this.$router.push({
@@ -110,7 +108,6 @@
         },
         refreshMR () {
           const token = sessionStorage.getItem('token')
-          console.log(token)
           // Show出所有room
           axios.get('/api/v1/matching-room/my-list',
            {
@@ -130,9 +127,8 @@
                 }
             })
               console.log(this.matching_rooms)
-              console.log(token)
   })
-          .catch((error) => console.log(error), console.log(token))
+          .catch((error) => console.log(error))
           }
         },
         mounted: function () {

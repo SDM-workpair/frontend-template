@@ -133,7 +133,6 @@
       },
       fetchUser () {
       const token = sessionStorage.getItem('token')
-      console.log(token)
       axios.get('/api/v1/users/profile/me', {
           headers: {
             'Authorization': 'Bearer ' + token
@@ -196,7 +195,6 @@
       onSubmit (choice) {
         if (choice.type === 'like' || choice.type === 'super') {
           const token = sessionStorage.getItem('token')
-          console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
             member_id: this.memberID,
             room_id: this.roomID,
@@ -222,7 +220,6 @@
       }
       if (choice.type === 'nope') {
           const token = sessionStorage.getItem('token')
-          console.log(token)
           axios.post('/api/v1/swipe-card/swipe', {
             member_id: this.memberID,
             room_id: this.roomID,

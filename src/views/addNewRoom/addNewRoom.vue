@@ -184,7 +184,6 @@ import moment from 'moment'
         // }
         this.formatDate(this.selectedDateTime)
         const token = sessionStorage.getItem('token')
-        console.log(token)
         axios.post('/api/v1/matching-room/create', {
           name: this.inputValue,
           due_time: this.formattedDate,

@@ -54,7 +54,7 @@
       methods: {
         onSearch (value) {
           const token = sessionStorage.getItem('token')
-          console.log(token)
+          // console.log(token)
           axios.post('/api/v1/search/group/list', {
             prompt: value
           },
@@ -64,7 +64,7 @@
             }
           })
           .then((MRResponse) => {
-            // console.log(MRResponse.data)
+            // // console.log(MRResponse.data)
             this.groups = MRResponse.data.data.map (group => {
               return {
                   name: group.name,
@@ -72,14 +72,14 @@
                   groupID: group.group_id
                 }
             })
-              console.log(this.groups)
-              console.log(token)
+              // console.log(this.groups)
+              // console.log(token)
   })
-          .catch((error) => console.log(error), console.log(token))
+          .catch((error) => console.log(error))
         },
         seeGroup (groupID) {
-            console.log('see')
-            console.log(groupID)
+            // console.log('see')
+            // console.log(groupID)
             this.$router.push({
             path: '/groupResult',
             query: {
@@ -89,14 +89,14 @@
         },
         refreshMR () {
           const token = sessionStorage.getItem('token')
-          console.log(token)
+          // console.log(token)
           axios.get('/api/v1/group/my-list', {
             headers: {
               'Authorization': 'Bearer ' + token
             }
           })
           .then((MRResponse) => {
-            // console.log(MRResponse.data)
+            // // console.log(MRResponse.data)
             this.groups = MRResponse.data.data.map (group => {
               return {
                   name: group.name,
@@ -104,10 +104,10 @@
                   groupID: group.group_id
                 }
             })
-              console.log(this.groups)
-              console.log(token)
+              // console.log(this.groups)
+              // console.log(token)
   })
-          .catch((error) => console.log(error), console.log(token))
+          .catch((error) => console.log(error))
           }
         },
         mounted: function () {
