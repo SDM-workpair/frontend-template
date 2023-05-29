@@ -2,15 +2,16 @@
   <section class="relative">
     <div class="container flex flex-col-reverse lg:flex-row items-center pag-12 mt-14 lg:mt-28">
       <div class="flex flex-1 flex-col items-center lg:items-start">
-        <h2 class="text-white text-3xl md:text-4 leg:text-5xl text-center lg:text-left mb-6">The ultime USB
-          microphone</h2>
-        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">Create incomparable recordings with
-          your computer. Yeti microphones produce pristine, studio-quality recordings with legendary ease.</p>
-        <div class="flex justify-center felx-wrap gap-6">
+        <h2 class="text-white text-3xl md:text-4 leg:text-5xl text-center lg:text-left mb-6">{{ $t('room.logintitle4') }}</h2>
+        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">{{ $t('room.loginmsg4') }}</p>
+        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">{{ $t('room.loginmsg5') }}</p>
+        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">{{ $t('room.loginmsg6') }}</p>
+        <p class="text-bookmark-grey text-lg text-center lg:text-left mb-6">{{ $t('room.loginmsg7') }}</p>
+        <!-- <div class="flex justify-center felx-wrap gap-6">
           <button
             type="button"
             class="btn btn-purple hover:bg-bookmark-white hover:text-black">Discover</button>
-        </div>
+        </div> -->
       </div>
       <div class="flex flex-1 items-center justify-end mb-10 md:mb-16 lg:mb-0 z-10">
         <div style="width: 650px; height: 550px; margin-left: auto;">
@@ -20,12 +21,13 @@
             :queue.sync="queue"
             :offset-y="10"
             @submit="onSubmit"
-            style="padding-left: 300px;">
+            style="padding-left: 300px;"
+          >
             <template slot-scope="scope">
               <div
                 class="pic"
                 :style="{
-                  'background-image': `url(https://cn.bing.com//th?id=OHR.${scope.data.id}_UHD.jpg&pid=hp&w=720&h=1280&rs=1&c=4&r=0)`
+                  'background-image': `url(${scope.data.image})`
                 }"
               />
             </template>
@@ -34,14 +36,15 @@
             <img class="super-pointer" slot="super" src="@/assets/vue-tinder/super-txt.png">
             <img class="rewind-pointer" slot="rewind" src="@/assets/vue-tinder/rewind-txt.png">
           </Tinder>
+          <div class="null1">{{ $t('room.loginmsg8') }}</div>
           <div
             class="btns"
             style="left: 580px;">
-            <img src="@/assets/vue-tinder/rewind.png" @click="decide('rewind')">
+            <!-- <img src="@/assets/vue-tinder/rewind.png" @click="decide('rewind')"> -->
             <img src="@/assets/vue-tinder/nope.png" @click="decide('nope')">
-            <img src="@/assets/vue-tinder/super-like.png" @click="decide('super')">
+            <!-- <img src="@/assets/vue-tinder/super-like.png" @click="decide('super')"> -->
             <img src="@/assets/vue-tinder/like.png" @click="decide('like')">
-            <img src="@/assets/vue-tinder/help.png" @click="decide('help')">
+            <!-- <img src="@/assets/vue-tinder/help.png" @click="decide('help')"> -->
           </div>
         </div>
       </div>
@@ -65,7 +68,16 @@ export default {
     return {
       queue: [],
       offset: 0,
-      history: []
+      history: [],
+      image: [
+        'https://i1.sndcdn.com/artworks-lSuIGktDCQ0R2pBJ-VnmRxA-t500x500.jpg',
+        'https://apicms.thestar.com.my/uploads/images/2021/10/13/1329408.jpeg',
+        'https://cdn.meadd.net/photos/full/73090663.jpg',
+        'https://cc.tvbs.com.tw/img/upload/2023/04/11/20230411144313-18f73ec1.jpeg',
+        // 'https://i.pinimg.com/originals/b2/70/17/b27017e15b706dd8a0f9aa82927c6b25.jpg',
+        'https://s.yimg.com/ny/api/res/1.2/69tDbgu_PxeYD0U5tyCKLA--/YXBwaWQ9aGlnaGxhbmRlcjt3PTY0MDtoPTk5OA--/https://s.yimg.com/os/zh_Hant_TW/News/MyDaily/201807091107339933_2.jpg'
+
+      ]
     }
   },
   created () {
@@ -75,7 +87,7 @@ export default {
     mock (count = 5, append = true) {
       const list = []
       for (let i = 0; i < count; i++) {
-        list.push({ id: source[this.offset] })
+        list.push({ id: source[this.offset], image: this.image[this.offset] })
         this.offset++
       }
       if (append) {
@@ -206,9 +218,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: flex-end; /*Align the content to the right*/
-  min-width: 300px;
+  min-width: 120px;
   min-height: 65px;
-  max-width: 355px;
+  max-width: 120px;
   /* padding-right: 300px; */
 }
 
@@ -225,10 +237,20 @@ body {
 }
 
 .btns img:nth-child(2n) {
-  width: 65px;
+  width: 53px;
 }
 
 .btns img:nth-last-child(1) {
   margin-right: 0;
+}
+
+.null1 {
+    /* margin-top: 250px; */
+    margin-right: 5px;
+    margin-top: 270px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    z-index: -1;
 }
 </style>

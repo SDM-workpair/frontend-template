@@ -30,5 +30,11 @@ export default {
   'room.loginmsg1': 'Just log in with your Google account and access the system. Once inside, you can edit your personal information and choose to join individual matching room.',
   'room.loginmsg2': 'In these rooms, all you have to do is enter your tags and your expectations for potential team members, and then leave it to our system. We will utilize a matching algorithm that operates similarly to the swipe-left, swipe-right functionality found in dating apps, enabling you to express your preferences.',
   'room.loginmsg3': 'Through this matching algorithm, we will swiftly identify the most suitable individuals, transforming your dream team into a reality!',
-  'room.developer': 'Developers'
+  'room.developer': 'Developers',
+  'room.logintitle4': 'Teamatch: Your Ultimate Teammate Finder',
+  'room.loginmsg4': 'Can not find anyone familiar to discuss with?',
+  'room.loginmsg5': 'Can not find compatible teammates for a group project?',
+  'room.loginmsg6': 'FEARLESS, Teamatch is here to be your ultimate teammate!',
+  'room.loginmsg7': 'Similar to a social networking app, Teamatch allows you to swipe left or right to discover the perfect partner for your needs.',
+  'room.loginmsg8': 'Not enough...'
 }

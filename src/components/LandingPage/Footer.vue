@@ -4,9 +4,9 @@
       <div class="flex flex-1 flex-wrap items-center justidy-center md:justify-start gap-12">
         <img src="@/assets/logo.png" alt="podcast icon" width="40">
         <ul class="flex text-white uppercase gap-12 text-xs">
-        <li class="cursor-pointer"></li>
-        <li class="cursor-pointer"></li>
-        <li class="cursor-pointer"></li>
+          <li class="cursor-pointer"></li>
+          <li class="cursor-pointer"></li>
+          <li class="cursor-pointer"></li>
           <li class="cursor-pointer">{{ $t('room.developer') }}</li>
           <li class="cursor-pointer">呂文楷</li>
           <li class="cursor-pointer">楊子瑩</li>
