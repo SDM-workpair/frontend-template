@@ -151,7 +151,7 @@ export default {
     initWebSocket () {
       // const url = `ws://0.0.0.0:8000/ws/${this.token}`
       // const url = `ws://35.212.156.71:8000/ws/${this.token}`
-      console.log('heeeeeeeeeeee', this.token)
+      // console.log('heeeeeeeeeeee', this.token)
       // const url = `ws://0.0.0.0:8000/ws/${this.token}`
       const url = `ws://0.0.0.0:8000/ws/${this.token}`
       const socket = new WebSocket(url)

@@ -142,7 +142,6 @@ import { ref } from 'vue'
   methods: {
     getRecTag () {
       const token = sessionStorage.getItem('token')
-      console.log(token)
       axios.post('/api/v1/matching-room/rcmed-tag', {
         room_id: this.newRoomID
   }, {
@@ -209,7 +208,6 @@ import { ref } from 'vue'
       this.modal2Visible = false
       // 這是先join room
       const token = sessionStorage.getItem('token')
-      console.log(token)
       axios.post('/api/v1/mr-member/create', {
         user: {
           // 這邊之後要改
@@ -301,8 +299,6 @@ import { ref } from 'vue'
 
     fetchUser () {
       const token = sessionStorage.getItem('token')
-      console.log(token)
-      console.log('安安你好')
       axios.get('/api/v1/users/profile/me', {
           headers: {
             'Authorization': 'Bearer ' + token

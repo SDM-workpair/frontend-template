@@ -49,7 +49,11 @@
         Features,
         Footer }
     }
-
+  if (window.location.protocol === 'http:' && window.location.hostname !== 'localhost') {
+  console.log('here')
+  const httpsURL = https://${window.location.hostname}${window.location.pathname}${window.location.search}
+  window.location.href = httpsURL
+  }
   window.handleCallback = (response) => {
    console.log(response.credential)
    fetch('/api/v1/auth/sso-login', {
