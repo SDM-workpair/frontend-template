@@ -30,5 +30,12 @@ export default {
   'room.loginmsg1': '只需使用 Google 帳號登入，進入到系統後你可以編輯個人資訊並選擇進入個別的配對空間。',
   'room.loginmsg2': '在空間裡，你只需輸入你的標籤和對於夥伴的期望，然後交給我們的系統，接著進行類似交友軟體左滑右滑的方式選擇偏好。',
   'room.loginmsg3': '我們將透過配對演算法，迅速找到最合適的人選，讓你的夢想團隊化為現實！',
-  'room.developer': '開發團隊'
+  'room.developer': '開發團隊',
+  'room.logintitle4': 'Teamatch 你的組隊神器',
+  'room.loginmsg4': '開學到了教室卻發現沒有認識的人可以一起討論嗎？',
+  'room.loginmsg5': '要分組做課堂報告卻找不到合得來的隊友嗎？',
+  'room.loginmsg6': 'Teamatch 就是你最強的隊友！',
+  'room.loginmsg7': '只需要像交友軟體一樣左滑右滑就可以找到適合的夥伴',
+  'room.loginmsg8': '錯過的就錯過囉',
+  'room.loginmsg9': '請好好把握每次的機會！'
 }
