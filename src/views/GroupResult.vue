@@ -1,7 +1,8 @@
 <template>
   <div>
     <a-card style="marginBottom: 24px;">
-      <h1 style="font-weight: bold;">{{ $t('room.result_of') }} : {{ groupName }}</h1>
+      <h1 style="font-weight: bold;" v-if="!fromNoti">{{ $t('room.result_of') }} : {{ groupName }}</h1>
+      <h1 style="font-weight: bold;" v-else>{{ $t('room.result_of') }} : {{ groupID }}</h1>
     </a-card>
     <a-row :gutter="24">
       <a-col
@@ -36,7 +37,8 @@
             groups: [],
             groupID: this.$route.query.groupID,
             groupName: this.$route.query.groupName,
-            imgUrl: ''
+            imgUrl: '',
+            fromNoti: false
           }
         },
         methods: {
@@ -82,6 +84,9 @@
         beforeRouteUpdate (to, from, next) {
           if (to.query.groupID !== from.query.groupID) {
             this.groupID = to.query.groupID
+            console.log(to.query.fromNoti)
+            this.fromNoti = to.query.fromNoti
+            console.log(this.fromNoti)
             this.loadData(this.groupID)
           }
           next()

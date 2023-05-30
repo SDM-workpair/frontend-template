@@ -109,7 +109,8 @@ export default {
       this.$router.push({
         path: '/groupResult',
         query: {
-          groupID: groupID
+          groupID: groupID,
+          fromNoti: true
         }
       })
       this.drawerVisible = false
