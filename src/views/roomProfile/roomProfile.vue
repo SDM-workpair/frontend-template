@@ -273,8 +273,14 @@ import { ref } from 'vue'
   console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
 })
 
-  .catch((error) => console.log(error))
-    },
+  .catch((error) => {
+ console.log(error)
+    // 導到HOME
+    this.$router.push({
+            path: '/home' })
+}
+  )
+},
 
 //   refresh_mr () {
 //     axios.post('/api/v1/search/matching-room/list', {
