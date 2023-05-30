@@ -78,8 +78,20 @@
               .catch((error) => console.log(error))
           }
         },
+        // created () {
+        //   this.loadData(this.groupID)
+        // },
         created () {
-          this.loadData(this.groupID)
+          setTimeout(() => {
+            this.loadData(this.groupID)
+          }, 0)
+        },
+        beforeRouteEnter (to, from, next) {
+          next(vm => {
+            vm.groupID = to.query.groupID
+            vm.fromNoti = to.query.fromNoti
+            vm.loadData(vm.groupID)
+          })
         },
         beforeRouteUpdate (to, from, next) {
           if (to.query.groupID !== from.query.groupID) {
