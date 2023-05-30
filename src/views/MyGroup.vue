@@ -17,7 +17,7 @@
               <!-- {{ $t('home.dueDate') }}：{{ item.due_time.toLocaleDateString() }}&nbsp{{ item.due_time.getHours() }}:{{ item.due_time.getMinutes() }}:{{ item.due_time.getSeconds() }}<br> -->
             </trend>
             <div class="chart-card-footer">
-              <a-button @click="seeGroup(item.groupID)" ><a-icon type="monitor"/>{{ $t('group.seeGroupResult') }}</a-button>
+              <a-button @click="seeGroup(item.groupID, item.name)" ><a-icon type="monitor"/>{{ $t('group.seeGroupResult') }}</a-button>
             </div>
           </div>
         </chart-card>
@@ -77,13 +77,14 @@
   })
           .catch((error) => console.log(error))
         },
-        seeGroup (groupID) {
+        seeGroup (groupID, name) {
             // console.log('see')
             // console.log(groupID)
             this.$router.push({
             path: '/groupResult',
             query: {
-                groupID: groupID
+                groupID: groupID,
+                groupName: name
                   }
           })
         },

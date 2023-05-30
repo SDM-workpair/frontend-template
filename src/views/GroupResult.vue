@@ -1,7 +1,7 @@
 <template>
   <div>
     <a-card style="marginBottom: 24px;">
-      <h1 style="font-weight: bold;">{{ $t('room.result_of') }} : {{ groupID }}</h1>
+      <h1 style="font-weight: bold;">{{ $t('room.result_of') }} : {{ groupName }}</h1>
     </a-card>
     <a-row :gutter="24">
       <a-col
@@ -35,6 +35,7 @@
           return {
             groups: [],
             groupID: this.$route.query.groupID,
+            groupName: this.$route.query.groupName,
             imgUrl: ''
           }
         },
