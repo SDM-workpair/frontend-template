@@ -275,9 +275,18 @@ import { ref } from 'vue'
 
   .catch((error) => {
  console.log(error)
-    // 導到HOME
+    // 導到 my room
     this.$router.push({
-            path: '/home' })
+            path: '/myRoom' })
+
+    // 傳值到matching room
+  // this.$router.push({
+  //           path: '/matchingroom/Swipe',
+  //           query: {
+  //             roomID: this.newRoomID,
+  //             memberID: this.memberID
+  //           }
+  //         })
 }
   )
 },
