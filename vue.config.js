@@ -148,7 +148,6 @@ const vueConfig = {
     client: {
       webSocketURL: 'ws://0.0.0.0:8000/ws'
     }
-
   },
 
   // disable source map in production
