@@ -33,6 +33,26 @@ Vue.component('page-header-wrapper', PageHeaderWrapper)
 
 window.umi_plugin_ant_themeVar = themePluginConfig.theme
 
+const debounce = (fn, delay) => {
+  let timer = null
+  return function () {
+    const context = this
+    const args = arguments
+    clearTimeout(timer)
+    timer = setTimeout(function () {
+    fn.apply(context, args)
+    }, delay)
+  }
+}
+
+const _ResizeObserver = window.ResizeObserver
+  window.ResizeObserver = class Resize0bserver extends _ResizeObserver {
+  constructor (callback) {
+    callback = debounce(callback, 16)
+    super(callback)
+  }
+}
+
 new Vue({
   router,
   store,

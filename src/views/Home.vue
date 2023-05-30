@@ -143,6 +143,7 @@
         }
       },
       mounted: function () {
+        // this.ignoreLoopLimit()
         this.refreshMR()
         this.expandDescription()
         const token = sessionStorage.getItem('token')
