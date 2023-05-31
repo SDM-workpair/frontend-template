@@ -68,12 +68,12 @@
     },
     watch: {
     activeKey (key) {
-      console.log(key)
+      // console.log(key)
     }
   },
     methods: {
       onSearch (value) {
-        console.log('search value', value)
+        // console.log('search value', value)
         const token = sessionStorage.getItem('token')
         // Show出所有room
         axios.post('/api/v1/search/matching-room/list', {
@@ -85,7 +85,7 @@
           }
         })
         .then((MRResponse) => {
-          console.log(MRResponse.data.data)
+          // console.log(MRResponse.data.data)
           this.matching_rooms = MRResponse.data.data.map (room => {
             return {
                 name: room.name,
@@ -97,8 +97,8 @@
               }
           })
 
-            console.log(this.matching_rooms)
-            console.log(this.matching_rooms.length, 'length')
+            // console.log(this.matching_rooms)
+            // console.log(this.matching_rooms.length, 'length')
 })
         .catch((error) => console.log(error))
       },
@@ -137,7 +137,7 @@
                 showDescription: false
               }
           })
-            console.log(this.matching_rooms)
+            // console.log(this.matching_rooms)
 })
         .catch((error) => console.log(error))
         }

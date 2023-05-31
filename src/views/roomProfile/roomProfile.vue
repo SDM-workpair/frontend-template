@@ -155,7 +155,7 @@ import { ref } from 'vue'
           }
         })
   .then((getRecTagResponse) => {
-        console.log('getRecTagResponse', getRecTagResponse)
+        // console.log('getRecTagResponse', getRecTagResponse)
         this.recommand_list = getRecTagResponse.data.data.slice(0)
         this.recommand_list1 = getRecTagResponse.data.data.slice(0)
       })
@@ -229,11 +229,11 @@ import { ref } from 'vue'
           }
         })
   .then((joinResponse) => {
-    console.log('這是加入room的 response ', joinResponse)
+    // console.log('這是加入room的 response ', joinResponse)
     this.memberID = joinResponse.data.data.member_id
-    console.log('這是加入room的member id: ', this.memberID)
+    // console.log('這是加入room的member id: ', this.memberID)
     // 這是POST my tag
-    console.log(this.textList)
+    // console.log(this.textList)
       axios.post('/api/v1/mr-member-tag/create-self-tag', {
         mr_member: { member_id: this.memberID },
         tag_text_list: this.textList,
@@ -248,7 +248,7 @@ import { ref } from 'vue'
   .catch((error) => console.log(error))
 
     // 這是POST find tag
-    console.log(this.find_textList)
+    // console.log(this.find_textList)
       axios.post('/api/v1/mr-member-tag/create-find-tag', {
         mr_member: {
           member_id: this.memberID
@@ -276,7 +276,7 @@ import { ref } from 'vue'
               // find_tag_list: this.find_textList
             }
           })
-  console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
+  // console.log('roomID: ', this.newRoomID, '/ memberID:', this.memberID)
 })
 
   .catch((error) => {
@@ -331,8 +331,8 @@ import { ref } from 'vue'
           this.photo = uaserR.data.data.image
           this.lineID = uaserR.data.data.line_id
           document.getElementById('photo').src = this.photo
-          console.log('email:', this.email)
-          console.log('response:', uaserR)
+          // console.log('email:', this.email)
+          // console.log('response:', uaserR)
         })
 
         .catch((error) => console.log(error))

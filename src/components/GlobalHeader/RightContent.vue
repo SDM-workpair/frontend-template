@@ -96,7 +96,7 @@ export default {
     })
     .then(response => response.json())
     .then(data => {
-      console.log(data.unread_num)
+      // console.log(data.unread_num)
       this.messageCount = data.unread_num
     })
     .catch(error => {
@@ -128,7 +128,7 @@ export default {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(data.data)
+        // console.log(data.data)
         this.myList = data.data
         this.myList = this.myList.reverse()
         this.drawerVisible = true

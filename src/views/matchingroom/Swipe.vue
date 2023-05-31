@@ -72,7 +72,7 @@
       // const roomID = this.$route.query.roomID
       // const memberID = this.$route.query.memberID
       this.mock()
-      console.log(this.roomID, this.memberID)
+      // console.log(this.roomID, this.memberID)
       this.fetchUser()
     },
     methods: {
@@ -108,8 +108,8 @@
       // },
       async leaveRoom () {
         const token = sessionStorage.getItem('token')
-        console.log('leave room method', token)
-        console.log('leave room method', this.email, this.name)
+        // console.log('leave room method', token)
+        // console.log('leave room method', this.email, this.name)
         const config = {
                           headers: {
                             'Authorization': 'Bearer ' + token
@@ -129,13 +129,13 @@
                         }
         axios.delete('/api/v1/mr-member/', config)
         .then((leaveR) => {
-          console.log(leaveR)
+          // console.log(leaveR)
           const currentUrl = window.location.href
           const pathname = window.location.pathname
           const newUrl = currentUrl.replace(pathname, '/home')
           window.location.replace(newUrl)
         })
-        .catch((error) => console.log('失敗囉廢物', error))
+        .catch((error) => console.log('sorry', error))
       },
       fetchUser () {
       const token = sessionStorage.getItem('token')
@@ -147,7 +147,7 @@
         .then((userR) => {
           this.email = userR.data.data.email
           this.name = userR.data.data.name
-          console.log('fetch method', userR)
+          // console.log('fetch method', userR)
         })
 
         .catch((error) => console.log(error))
@@ -175,17 +175,17 @@
               name: member.name
             }
           })
-          console.log(this.recom)
-          console.log(this.recom[0].name)
-          console.log(this.recom.length)
-          console.log(this.offset)
-          console.log(this.recom[0].self_tag_text)
+          // console.log(this.recom)
+          // console.log(this.recom[0].name)
+          // console.log(this.recom.length)
+          // console.log(this.offset)
+          // console.log(this.recom[0].self_tag_text)
           const list = []
           for (let i = 0; i < this.recom.length; i++) {
             list.push({ id: source[this.offset], image: this.recom[this.offset].image, name: this.recom[this.offset].name, recommended_member_id: this.recom[this.offset].recommended_member_id, self_tag_text: this.recom[this.offset].self_tag_text })
             this.offset++
           }
-          console.log('這是list', list)
+          // console.log('這是list', list)
           // for (let i = 0; i < count; i++) {
           //   list.push({ id: source[this.offset] })
           //   this.offset++

@@ -140,7 +140,6 @@ export default {
     //   }
     // },
     async fetchUserProfile () {
-      console.log('1111')
       const token = sessionStorage.getItem('token')
       try {
         const response = await axios.get('/api/v1/users/profile/me', {
@@ -156,7 +155,6 @@ export default {
         this.photo = data.data.image
         // document.getElementById('photo').src = this.photo
         this.originalData = { name: this.name, line_id: this.line_id }
-        console.log('this.line_idgettt', this.originalData.line_id)
       } catch (error) {
         console.error('There was a problem with the fetch operation:', error)
       }
@@ -195,7 +193,6 @@ export default {
   },
 
   created () {
-    console.log('here')
     this.fetchUserProfile()
   }
 }
