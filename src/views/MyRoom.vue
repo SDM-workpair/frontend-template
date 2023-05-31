@@ -18,7 +18,7 @@
               {{ $t('home.minMemberNum') }}：{{ item.min_member_num }}
             </trend>
             <div class="chart-card-footer">
-              <a-button @click="joinMR(item.roomID, item.memberID)" ><a-icon type="import"/>{{ $t('menu.enterMyRoom') }}</a-button>
+              <a-button @click="joinMR(item.roomID, item.memberID, item.name)" ><a-icon type="import"/>{{ $t('menu.enterMyRoom') }}</a-button>
             </div>
 
           </div>
@@ -62,10 +62,16 @@
           loading: true,
           show: [],
           matching_rooms: [],
-          myRooms: []
+          myRooms: [],
+          roomName: ''
         }
       },
       methods: {
+        reloadPage () {
+            window.onpopstate = () => {
+            location.reload()
+          }
+        },
         onSearch (value) {
         console.log('search value', value)
         const token = sessionStorage.getItem('token')
@@ -96,13 +102,14 @@
 })
         .catch((error) => console.log(error))
       },
-        joinMR (roomID, memberID) {
+        joinMR (roomID, memberID, name) {
             this.$router.push({
                 path: '/matchingroom/Swipe',
                 // name: 'Swipe',
                 query: {
                 roomID: roomID,
-                memberID: memberID
+                memberID: memberID,
+                roomName: name
                 }
           })
         },
@@ -132,6 +139,7 @@
           }
         },
         mounted: function () {
+          this.reloadPage()
           this.refreshMR()
           this.expandDescription()
           const token = sessionStorage.getItem('token')

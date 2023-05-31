@@ -140,6 +140,11 @@ import { ref } from 'vue'
     }
   },
   methods: {
+    reloadPage () {
+      window.onpopstate = () => {
+      location.reload()
+    }
+  },
     getRecTag () {
       const token = sessionStorage.getItem('token')
       axios.post('/api/v1/matching-room/rcmed-tag', {
@@ -265,7 +270,8 @@ import { ref } from 'vue'
             // name: 'Swipe',
             query: {
               roomID: this.newRoomID,
-              memberID: this.memberID
+              memberID: this.memberID,
+              roomName: this.roomName
               // my_tag_list: this.textList,
               // find_tag_list: this.find_textList
             }
@@ -333,6 +339,7 @@ import { ref } from 'vue'
     }
   },
   mounted: function () {
+    this.reloadPage ()
     this.getRecTag ()
     this.fetchUser()
   }

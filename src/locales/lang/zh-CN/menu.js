@@ -36,12 +36,12 @@ export default {
     'menu.account.settings': '個人資訊設定',
     'menu.account.trigger': '触发报错',
     'menu.account.logout': '登出帳號',
-    'menu.all-matching-room': '可加入的配對空間',
-    'menu.matchingroom': '配對空間',
-    'menu.matchingroom.swipe': '組員配對',
-    'menu.addnewroom': '新增配對空間',
-    'menu.roomprofile': '配對空間個人資料',
+    'menu.all-matching-room': '可加入的組隊空間',
+    'menu.matchingroom': '組隊空間',
+    'menu.matchingroom.swipe': '組員組隊',
+    'menu.addnewroom': '新增組隊空間',
+    'menu.roomprofile': '組隊空間個人資料',
     'menu.MyGroup': '我的小組',
-    'menu.MyRoom': '我的配對空間',
-    'menu.enterMyRoom': '進入配對空間'
+    'menu.MyRoom': '我的組隊空間',
+    'menu.enterMyRoom': '進入組隊空間'
 }

@@ -1,3 +1,3 @@
 export default {
-    'group.seeGroupResult': '查看配對結果'
+    'group.seeGroupResult': '查看組隊結果'
   }

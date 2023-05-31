@@ -71,8 +71,8 @@ export default {
   },
   created () {
     this.token = sessionStorage.getItem('token')
-    console.log('initWebSocket')
-    this.initWebSocket()
+    // console.log('initWebSocket')
+    // this.initWebSocket()
   },
   mounted () {
     if (!this.token) {

@@ -33,5 +33,5 @@ export default {
   'dashboard.analysis.table.search-keyword': '搜索关键词',
   'dashboard.analysis.table.users': '用户数',
   'dashboard.analysis.table.weekly-range': '周涨幅',
-  'menu.addnewroom': '新增配對空間'
+  'menu.addnewroom': '新增組隊空間'
 }
