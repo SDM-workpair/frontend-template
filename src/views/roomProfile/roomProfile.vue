@@ -140,6 +140,11 @@ import { ref } from 'vue'
     }
   },
   methods: {
+    reloadPage () {
+      window.onpopstate = () => {
+      location.reload()
+    }
+  },
     getRecTag () {
       const token = sessionStorage.getItem('token')
       axios.post('/api/v1/matching-room/rcmed-tag', {
@@ -333,6 +338,7 @@ import { ref } from 'vue'
     }
   },
   mounted: function () {
+    this.reloadPage()
     this.getRecTag ()
     this.fetchUser()
   }
@@ -350,44 +356,31 @@ import { ref } from 'vue'
   width: 400px;
 }
 
-  .gaga_RP{
+  /* .gaga_RP{
     text-align: center;
     color: rgb(209, 7, 7);
     margin-top: 30px;
     font-weight: bold;
-  }
-  .ladyhaha_RP{
+  } */
+  /* .ladyhaha_RP{
     text-align: center;
     margin-top: 20px;
-  }
-  .popup_RP {
-    background-color:rgb(235, 233, 233);
-    /* padding: 1rem; */
-    border-radius: 1rem;
-    width: 600px;
-    height: 230px;
-    /* max-width: 90%;
-    max-height: 90%; */
-    /* overflow-y: auto; */
-    /* border-color: black;
-    border-width: 10px; */
-    /* margin-top: 90px; */
-  }
+  } */
 
-  .hiRP{
+  /* .hiRP{ */
     /* margin-left: 10px; */
-    font-size: 2rem;
+    /* font-size: 2rem;
     border:10px;
-  }
+  } */
 
-  .hahaMR {
-font-family: Avenir, Helvetica, Arial, sans-serif;
--webkit-font-smoothing: antialiased;
--moz-osx-font-smoothing: grayscale;
-text-align: center;
-color: #2c3e50;
-margin-top: 80px;
-}
+  /* .hahaMR {
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 80px;
+} */
 
 .avatar {
     display: flex;
@@ -419,32 +412,19 @@ margin-top: 80px;
     margin: 10px;
 
   }
-  .tagBody{
-    display: flex;
-    flex-direction: column;
-    align-items: left;
-    font-family: Arial, sans-serif;
-    margin-top: 10px;
-  }
+
   .roomInfoBody{
     display: flex;
     flex-direction: column;
     align-items: right;
     font-family: Arial, sans-serif;
   }
+
   .profileBody {
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: Arial, sans-serif;
-  }
-  .profile_h1 {
-    margin-top: 20px;
-  }
-
-  .hiProfile {
-    margin-right: 20px;
-    font-size: 1rem;
   }
 
   .hiTag{

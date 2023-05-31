@@ -120,7 +120,7 @@ body {
 body {
   margin: 0;
   background-color: #20262e;
-  overflow-y: scroll;
+  overflow: auto;
 }
 
 .tinder-container {
