@@ -38,5 +38,7 @@ export default {
   'room.loginmsg7': 'Similar to a social networking app, Teamatch allows you to swipe left or right to discover the perfect partner for your needs.',
   'room.loginmsg8': 'If you missed it, you missed it.',
   'room.loginmsg9': 'Please seize every opportunity!',
-  'room.nomember': 'There is no new member currently.'
+  'room.nomember': 'There is no new member currently.',
+  'room.searchRoom': 'input search room name',
+  'room.searchGroup': 'input search group name'
 }

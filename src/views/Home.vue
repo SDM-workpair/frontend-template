@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-input-search placeholder="input search text" style="width: 200px" @search="onSearch" />
+    <a-input-search :placeholder="$t('room.searchRoom')" style="width: 200px" @search="onSearch" />
     <a-row :gutter="24">
       <a-col
         :sm="24"
