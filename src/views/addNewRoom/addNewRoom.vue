@@ -196,9 +196,9 @@ import moment from 'moment'
           }
         })
         .then((mrResponse) => {
-          console.log(mrResponse.data.data)
+          // console.log(mrResponse.data.data)
           const roomID = mrResponse.data.data.room_id
-          console.log('roomID is', roomID)
+          // console.log('roomID is', roomID)
 
           this.$router.push({
             path: '/roomProfile',
@@ -212,10 +212,10 @@ import moment from 'moment'
 
         .catch((error) => console.log(error))
 
-      console.log('輸入的值是：', this.inputValue)
-      console.log('輸入的值是：', this.formattedDate)
-      console.log('輸入的值是：', this.quantity)
-      console.log('輸入的值是：', this.description)
+      // console.log('輸入的值是：', this.inputValue)
+      // console.log('輸入的值是：', this.formattedDate)
+      // console.log('輸入的值是：', this.quantity)
+      // console.log('輸入的值是：', this.description)
 
       // this.$emit('close')
     }
