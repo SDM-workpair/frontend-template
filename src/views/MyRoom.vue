@@ -66,6 +66,11 @@
         }
       },
       methods: {
+        reloadPage () {
+            window.onpopstate = () => {
+            location.reload()
+          }
+        },
         onSearch (value) {
         console.log('search value', value)
         const token = sessionStorage.getItem('token')
@@ -132,6 +137,7 @@
           }
         },
         mounted: function () {
+          this.reloadPage()
           this.refreshMR()
           this.expandDescription()
           const token = sessionStorage.getItem('token')
