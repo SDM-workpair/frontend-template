@@ -270,7 +270,8 @@ import { ref } from 'vue'
             // name: 'Swipe',
             query: {
               roomID: this.newRoomID,
-              memberID: this.memberID
+              memberID: this.memberID,
+              roomName: this.roomName
               // my_tag_list: this.textList,
               // find_tag_list: this.find_textList
             }

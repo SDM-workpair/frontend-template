@@ -1,6 +1,10 @@
 /* eslint-disable */
 <template>
   <div id="app">
+    <div>
+        <h1 style="font-weight: bold;"> {{ $t('room.roomName') }} : {{ roomName }}</h1>
+    </div>
+    <div>
     <Tinder ref="tinder" key-name="id" :queue.sync="queue" :offset-y="10" @submit="onSubmit">
       <template slot-scope="scope">
         <div
@@ -28,6 +32,7 @@
       <img class="like-pointer" slot="super" src="../../assets/vue-tinder/like-txt.png">
       <img class="rewind-pointer" slot="rewind" src="../../assets/vue-tinder/rewind-txt.png">
     </Tinder>
+  </div>
     <div class="btns">
       <!-- <img src="../../assets/vue-tinder/rewind.png" @click="decide('rewind')"> -->
       <img src="../../assets/vue-tinder/nope.png" @click="decide('nope')">
@@ -59,7 +64,8 @@
       memberID: this.$route.query.memberID,
       tag: [],
       email: '',
-      name: ''
+      name: '',
+      roomName: this.$route.query.roomName
     }
 },
     created () {

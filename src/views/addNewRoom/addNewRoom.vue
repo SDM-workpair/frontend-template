@@ -1,13 +1,13 @@
 <template>
   <div>
-    <!-- 這裡是配對活動名稱 -->
+    <!-- 這裡是組隊活動名稱 -->
     <div class="input-panel">
       <label for="input-field">{{ $t('room.roomName') }}</label>
       <input id="input-field" type="text" :placeholder="$t('room.inputRoomName')" v-model="inputValue" class="ladyinput">
 
     </div>
 
-    <!-- 這裡是配對日期 -->
+    <!-- 這裡是組隊日期 -->
     <div style="margin-top: 20px;">
       <label for="date" class="datelabel">{{ $t('room.dueDate') }}</label>
       <a-date-picker
@@ -32,7 +32,7 @@
       :show-time="{ defaultValue: moment('00:00:00', 'HH:mm:ss') }"
     /> -->
 
-    <!-- 這裡是配對人數 -->
+    <!-- 這裡是組隊人數 -->
     <div class="ladyqua">
       <label for="quantity">{{ $t('room.minMemberNum') }}</label>
       <input
@@ -175,11 +175,11 @@ import moment from 'moment'
           return
         }
         // if (!this.quantity) {
-        //   alert('配對人數 ')
+        //   alert('組隊人數 ')
         //   return
         // }
         // if (!this.description) {
-        //   alert('配對空間資訊 ')
+        //   alert('組隊空間資訊 ')
         //   return
         // }
         this.formatDate(this.selectedDateTime)
