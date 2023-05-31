@@ -140,6 +140,11 @@ import { ref } from 'vue'
     }
   },
   methods: {
+    reloadPage () {
+      window.onpopstate = () => {
+      location.reload()
+    }
+  },
     getRecTag () {
       const token = sessionStorage.getItem('token')
       axios.post('/api/v1/matching-room/rcmed-tag', {
@@ -333,6 +338,7 @@ import { ref } from 'vue'
     }
   },
   mounted: function () {
+    this.reloadPage ()
     this.getRecTag ()
     this.fetchUser()
   }
